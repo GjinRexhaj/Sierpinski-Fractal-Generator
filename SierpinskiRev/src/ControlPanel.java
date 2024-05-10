@@ -10,6 +10,7 @@ import java.awt.Color;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class ControlPanel extends JFrame {
 
@@ -38,6 +39,7 @@ public class ControlPanel extends JFrame {
    * Create the frame.
    */
   public ControlPanel() {
+    setIconImage(Toolkit.getDefaultToolkit().getImage(ControlPanel.class.getResource("/resources/fractalIcon.png")));
     setAlwaysOnTop(false);
     setTitle("Java Fractal Generator");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
