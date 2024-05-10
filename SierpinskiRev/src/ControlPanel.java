@@ -69,7 +69,7 @@ public class ControlPanel extends JFrame {
     moreInfo.setBounds(25, 122, 461, 39);
     contentPane.add(moreInfo);
     
-    JLabel versionlabel = new JLabel("Version 1.0,   github.com/gjinrexhaj,   implemented with Java Swing and AWT");
+    JLabel versionlabel = new JLabel("Version 1.1,   github.com/gjinrexhaj,   implemented with Java Swing and AWT");
     versionlabel.setBounds(10, 389, 541, 14);
     contentPane.add(versionlabel);
     
