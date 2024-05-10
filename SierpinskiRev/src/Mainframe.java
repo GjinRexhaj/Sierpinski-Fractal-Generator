@@ -121,6 +121,7 @@ public class Mainframe extends JFrame {
         
         //test
         new Mainframe(5,600);
+        System.out.println("test");
       }
     });
   }
