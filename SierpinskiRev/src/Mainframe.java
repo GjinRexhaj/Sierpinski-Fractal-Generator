@@ -46,7 +46,7 @@ public class Mainframe extends JFrame {
     pack();
     setTitle(canvasWidth + "x" + canvasHeight + " | " + depth +"th order Sierpinski Fractal");
     setResizable(false);
-    setAlwaysOnTop(true);
+    setAlwaysOnTop(false);
     setVisible(true);
   }
   
@@ -121,7 +121,6 @@ public class Mainframe extends JFrame {
         
         //test
         new Mainframe(5,600);
-        System.out.println("test1");
       }
     });
   }

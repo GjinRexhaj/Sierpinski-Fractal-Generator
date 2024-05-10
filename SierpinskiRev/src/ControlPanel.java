@@ -38,7 +38,7 @@ public class ControlPanel extends JFrame {
    * Create the frame.
    */
   public ControlPanel() {
-    setAlwaysOnTop(true);
+    setAlwaysOnTop(false);
     setTitle("Java Fractal Generator");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setBounds(100, 100, 523, 453);
@@ -73,7 +73,7 @@ public class ControlPanel extends JFrame {
     versionlabel.setBounds(10, 389, 541, 14);
     contentPane.add(versionlabel);
     
-    JButton generateButton = new JButton("GENERATE");
+    JButton generateButton = new JButton("RENDER");
     generateButton.setToolTipText("Click to generate fractal with specified parameters, this will render the fractal on a new window independent of the program.");
     generateButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -86,9 +86,6 @@ public class ControlPanel extends JFrame {
         Mainframe renderWindow = new Mainframe(depthFieldInput, rezFieldInput);
         info.setVisible(true);
         
-        // clear depthField and textField
-        depthField.setText(null);
-        rezField.setText(null);
       }
     });
     generateButton.setForeground(Color.BLACK);
