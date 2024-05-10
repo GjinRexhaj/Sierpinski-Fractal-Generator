@@ -51,7 +51,7 @@ public class ControlPanel extends JFrame {
     setContentPane(contentPane);
     contentPane.setLayout(null);
     
-    JLabel Title = new JLabel("Sierpinski Triangle Generator");
+    JLabel Title = new JLabel("Sierpinski Fractal Generator");
     Title.setForeground(new Color(0, 0, 0));
     Title.setFont(new Font("Tahoma", Font.BOLD, 30));
     Title.setBounds(25, 25, 451, 39);
