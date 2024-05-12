@@ -82,16 +82,19 @@ public class ControlPanel extends JFrame {
     generateButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         
-        // store user input in int vars
-        int depthFieldInput = Integer.parseInt(depthField.getText());
-        int rezFieldInput = Integer.parseInt(rezField.getText());
+        try {
+          // store user input in int vars
+          int depthFieldInput = Integer.parseInt(depthField.getText());
+          int rezFieldInput = Integer.parseInt(rezField.getText());
         
-        //create mainframe object
-        Mainframe renderWindow = new Mainframe(depthFieldInput, rezFieldInput);
-        info.setVisible(true);
-        
-        System.out.println(renderWindow.getResolution());
-        
+          // create mainframe object
+          Mainframe renderWindow = new Mainframe(depthFieldInput, rezFieldInput);
+          info.setVisible(true);
+        } catch (NumberFormatException exception) {
+          // if there isn't an int in textfields, display error box
+          WarningBox warning = new WarningBox();
+          warning.setVisible(true);
+        }
         
       }
     });

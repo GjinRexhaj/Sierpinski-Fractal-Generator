@@ -16,8 +16,8 @@ public class Mainframe extends JFrame {
   private static int iterator = 1;
   
   //Default size of window
-  public static int canvasWidth = 600;
-  public static int canvasHeight = 600;
+  private static int canvasWidth = 600;
+  private static int canvasHeight = 600;
   
   // setDepth of sierpinski triangle method
   public static void setDepth(int input) {

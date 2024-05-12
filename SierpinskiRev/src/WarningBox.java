@@ -1,0 +1,90 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
+import java.awt.Toolkit;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.ActionEvent;
+
+public class WarningBox extends JFrame {
+
+  private static final long serialVersionUID = 1L;
+  private JPanel contentPane;
+
+  /**
+   * Launch the application.
+   */
+  public static void main(String[] args) {
+    EventQueue.invokeLater(new Runnable() {
+      public void run() {
+        try {
+          WarningBox frame = new WarningBox();
+          frame.setVisible(true);
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+      }
+    });
+  }
+
+  /**
+   * Create the frame.
+   */
+  public WarningBox() {
+    setResizable(false);
+    setTitle("Render Error");
+    setIconImage(Toolkit.getDefaultToolkit().getImage(WarningBox.class.getResource("/resources/fractalIcon.png")));
+    setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    setBounds(100, 100, 349, 300);
+    contentPane = new JPanel();
+    contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+    setContentPane(contentPane);
+    contentPane.setLayout(null);
+    
+    JLabel lblWarning = new JLabel("Render Failed");
+    lblWarning.setForeground(Color.RED);
+    lblWarning.setFont(new Font("Tahoma", Font.BOLD, 22));
+    lblWarning.setIcon(null);
+    lblWarning.setHorizontalAlignment(SwingConstants.LEFT);
+    lblWarning.setBounds(30, 30, 275, 27);
+    contentPane.add(lblWarning);
+    
+    JLabel lblMakeSureYoure = new JLabel("Make sure you're inputing integers");
+    lblMakeSureYoure.setHorizontalAlignment(SwingConstants.LEFT);
+    lblMakeSureYoure.setFont(new Font("Tahoma", Font.PLAIN, 17));
+    lblMakeSureYoure.setBounds(30, 78, 275, 27);
+    contentPane.add(lblMakeSureYoure);
+    
+    JLabel lblInBothText = new JLabel("in both text fields.");
+    lblInBothText.setHorizontalAlignment(SwingConstants.LEFT);
+    lblInBothText.setFont(new Font("Tahoma", Font.PLAIN, 17));
+    lblInBothText.setBounds(30, 101, 275, 27);
+    contentPane.add(lblInBothText);
+    
+    JButton btnNewButton = new JButton("Ok");
+    btnNewButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        dispose();
+      }
+    });
+    btnNewButton.setBackground(Color.WHITE);
+    btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
+    btnNewButton.setBounds(30, 152, 112, 46);
+    contentPane.add(btnNewButton);
+    
+    JLabel lblNewLabel = new JLabel("NumberFormatException caught");
+    lblNewLabel.setBackground(Color.WHITE);
+    lblNewLabel.setFont(new Font("Consolas", Font.PLAIN, 11));
+    lblNewLabel.setBounds(30, 223, 177, 14);
+    contentPane.add(lblNewLabel);
+  }
+}
