@@ -9,8 +9,10 @@ import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import javax.swing.SwingConstants;
 
 public class ControlPanel extends JFrame {
 
@@ -71,7 +73,7 @@ public class ControlPanel extends JFrame {
     moreInfo.setBounds(25, 122, 461, 39);
     contentPane.add(moreInfo);
     
-    JLabel versionlabel = new JLabel("Version 1.1,   github.com/gjinrexhaj,   implemented with Java Swing and AWT");
+    JLabel versionlabel = new JLabel("Version 1.2,   github.com/gjinrexhaj,   implemented with Java Swing and AWT");
     versionlabel.setBounds(10, 389, 541, 14);
     contentPane.add(versionlabel);
     
@@ -79,7 +81,7 @@ public class ControlPanel extends JFrame {
     generateButton.setToolTipText("Click to generate fractal with specified parameters, this will render the fractal on a new window independent of the program.");
     generateButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-         
+        
         // store user input in int vars
         int depthFieldInput = Integer.parseInt(depthField.getText());
         int rezFieldInput = Integer.parseInt(rezField.getText());
@@ -88,12 +90,15 @@ public class ControlPanel extends JFrame {
         Mainframe renderWindow = new Mainframe(depthFieldInput, rezFieldInput);
         info.setVisible(true);
         
+        System.out.println(renderWindow.getResolution());
+        
+        
       }
     });
     generateButton.setForeground(Color.BLACK);
     generateButton.setBackground(Color.GREEN);
     generateButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-    generateButton.setBounds(226, 176, 162, 68);
+    generateButton.setBounds(226, 176, 130, 68);
     contentPane.add(generateButton);
     
     depthField = new JTextField();
@@ -171,5 +176,6 @@ public class ControlPanel extends JFrame {
     lblFieldsex.setFont(new Font("Tahoma", Font.PLAIN, 13));
     lblFieldsex.setBounds(236, 314, 336, 39);
     contentPane.add(lblFieldsex);
+    
   }
 }
