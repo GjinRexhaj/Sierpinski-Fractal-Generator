@@ -12,6 +12,9 @@ public class Mainframe extends JFrame {
   // default depth of recursion: same as degree
   private static int depth = 2;
   
+  // iterator to iterate filenames
+  private static int iterator = 1;
+  
   //Default size of window
   public static int canvasWidth = 600;
   public static int canvasHeight = 600;
@@ -46,7 +49,8 @@ public class Mainframe extends JFrame {
         saveButton.setVisible(false);
 
         // save image
-        saveImage("fractal", "png", getResolution(), getResolution());
+        saveImage("fractal_" + iterator, "png", getResolution(), getResolution());
+        iterator++;
         
         // change button to textbox that says "Saved!"
         saveButton.setText("SAVED");
