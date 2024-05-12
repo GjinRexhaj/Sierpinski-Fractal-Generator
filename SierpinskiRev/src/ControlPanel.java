@@ -171,11 +171,11 @@ public class ControlPanel extends JFrame {
     lblIntegerValuesIn.setBounds(236, 297, 336, 39);
     contentPane.add(lblIntegerValuesIn);
     
-    JLabel lblFieldsex = new JLabel("fields (EX: 600, 4)");
-    lblFieldsex.setForeground(Color.BLACK);
-    lblFieldsex.setFont(new Font("Tahoma", Font.PLAIN, 13));
-    lblFieldsex.setBounds(236, 314, 336, 39);
-    contentPane.add(lblFieldsex);
+    JLabel lblFields = new JLabel("fields (EX: 600, 4)");
+    lblFields.setForeground(Color.BLACK);
+    lblFields.setFont(new Font("Tahoma", Font.PLAIN, 13));
+    lblFields.setBounds(236, 314, 336, 39);
+    contentPane.add(lblFields);
     
   }
 }
