@@ -138,47 +138,23 @@ public class ControlPanel extends JFrame {
     lblWarning.setBounds(25, 259, 100, 39);
     contentPane.add(lblWarning);
     
-    JLabel lblAsTheRequired = new JLabel("at which the program crashes");
-    lblAsTheRequired.setForeground(Color.RED);
-    lblAsTheRequired.setFont(new Font("Tahoma", Font.PLAIN, 13));
-    lblAsTheRequired.setBounds(25, 314, 198, 39);
-    contentPane.add(lblAsTheRequired);
+    JLabel lblWarning1 = new JLabel("at which the program crashes");
+    lblWarning1.setForeground(Color.RED);
+    lblWarning1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+    lblWarning1.setBounds(25, 314, 198, 39);
+    contentPane.add(lblWarning1);
     
-    JLabel lblSingleDigitNumbers = new JLabel("single digit numbers, the value");
-    lblSingleDigitNumbers.setForeground(Color.RED);
-    lblSingleDigitNumbers.setFont(new Font("Tahoma", Font.PLAIN, 13));
-    lblSingleDigitNumbers.setBounds(25, 298, 191, 39);
-    contentPane.add(lblSingleDigitNumbers);
+    JLabel lblWarning2 = new JLabel("single digit numbers, the value");
+    lblWarning2.setForeground(Color.RED);
+    lblWarning2.setFont(new Font("Tahoma", Font.PLAIN, 13));
+    lblWarning2.setBounds(25, 298, 191, 39);
+    contentPane.add(lblWarning2);
     
-    JLabel lblVariesOnHardware = new JLabel("varies on hardware.");
-    lblVariesOnHardware.setForeground(Color.RED);
-    lblVariesOnHardware.setFont(new Font("Tahoma", Font.PLAIN, 13));
-    lblVariesOnHardware.setBounds(25, 330, 191, 39);
-    contentPane.add(lblVariesOnHardware);
-    
-    JLabel lblNotRender = new JLabel("Not Rendering?");
-    lblNotRender.setForeground(Color.BLACK);
-    lblNotRender.setFont(new Font("Tahoma", Font.BOLD, 15));
-    lblNotRender.setBounds(236, 256, 120, 39);
-    contentPane.add(lblNotRender);
-    
-    JLabel lblMakeSureYoure = new JLabel("Make sure you're inputting");
-    lblMakeSureYoure.setForeground(Color.BLACK);
-    lblMakeSureYoure.setFont(new Font("Tahoma", Font.PLAIN, 13));
-    lblMakeSureYoure.setBounds(236, 280, 336, 39);
-    contentPane.add(lblMakeSureYoure);
-    
-    JLabel lblIntegerValuesIn = new JLabel("integer values in both text");
-    lblIntegerValuesIn.setForeground(Color.BLACK);
-    lblIntegerValuesIn.setFont(new Font("Tahoma", Font.PLAIN, 13));
-    lblIntegerValuesIn.setBounds(236, 297, 336, 39);
-    contentPane.add(lblIntegerValuesIn);
-    
-    JLabel lblFields = new JLabel("fields (EX: 600, 4)");
-    lblFields.setForeground(Color.BLACK);
-    lblFields.setFont(new Font("Tahoma", Font.PLAIN, 13));
-    lblFields.setBounds(236, 314, 336, 39);
-    contentPane.add(lblFields);
+    JLabel lblWarning3 = new JLabel("varies on hardware.");
+    lblWarning3.setForeground(Color.RED);
+    lblWarning3.setFont(new Font("Tahoma", Font.PLAIN, 13));
+    lblWarning3.setBounds(25, 330, 191, 39);
+    contentPane.add(lblWarning3);
     
   }
 }
