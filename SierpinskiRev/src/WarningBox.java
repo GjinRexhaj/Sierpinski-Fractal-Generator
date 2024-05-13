@@ -58,17 +58,17 @@ public class WarningBox extends JFrame {
     lblWarning.setBounds(30, 30, 275, 27);
     contentPane.add(lblWarning);
     
-    JLabel lblMakeSureYoure = new JLabel("Make sure you're inputing integers");
-    lblMakeSureYoure.setHorizontalAlignment(SwingConstants.LEFT);
-    lblMakeSureYoure.setFont(new Font("Tahoma", Font.PLAIN, 17));
-    lblMakeSureYoure.setBounds(30, 78, 275, 27);
-    contentPane.add(lblMakeSureYoure);
+    JLabel lblDescriptor1 = new JLabel("Make sure you're inputing integers");
+    lblDescriptor1.setHorizontalAlignment(SwingConstants.LEFT);
+    lblDescriptor1.setFont(new Font("Tahoma", Font.PLAIN, 17));
+    lblDescriptor1.setBounds(30, 78, 275, 27);
+    contentPane.add(lblDescriptor1);
     
-    JLabel lblInBothText = new JLabel("in both text fields.");
-    lblInBothText.setHorizontalAlignment(SwingConstants.LEFT);
-    lblInBothText.setFont(new Font("Tahoma", Font.PLAIN, 17));
-    lblInBothText.setBounds(30, 101, 275, 27);
-    contentPane.add(lblInBothText);
+    JLabel lblDescriptor2 = new JLabel("in both text fields.");
+    lblDescriptor2.setHorizontalAlignment(SwingConstants.LEFT);
+    lblDescriptor2.setFont(new Font("Tahoma", Font.PLAIN, 17));
+    lblDescriptor2.setBounds(30, 101, 275, 27);
+    contentPane.add(lblDescriptor2);
     
     JButton btnNewButton = new JButton("Ok");
     btnNewButton.addActionListener(new ActionListener() {
@@ -81,10 +81,10 @@ public class WarningBox extends JFrame {
     btnNewButton.setBounds(30, 152, 112, 46);
     contentPane.add(btnNewButton);
     
-    JLabel lblNewLabel = new JLabel("NumberFormatException caught");
-    lblNewLabel.setBackground(Color.WHITE);
-    lblNewLabel.setFont(new Font("Consolas", Font.PLAIN, 11));
-    lblNewLabel.setBounds(30, 223, 177, 14);
-    contentPane.add(lblNewLabel);
+    JLabel lblExceptionCaught = new JLabel("NumberFormatException caught");
+    lblExceptionCaught.setBackground(Color.WHITE);
+    lblExceptionCaught.setFont(new Font("Consolas", Font.PLAIN, 11));
+    lblExceptionCaught.setBounds(30, 223, 177, 14);
+    contentPane.add(lblExceptionCaught);
   }
 }
