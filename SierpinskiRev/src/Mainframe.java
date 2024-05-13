@@ -42,31 +42,33 @@ public class Mainframe extends JFrame {
   public Mainframe(int depth, int rez) {
     
     //add savebutton
-    JButton saveButton = new JButton("SAVE");
-    saveButton.addActionListener(new ActionListener() {
+    JButton btnSaveButton = new JButton("SAVE");
+    btnSaveButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         // hide button while screenshot processes
-        saveButton.setVisible(false);
+        btnSaveButton.setVisible(false);
 
         // save image
         saveImage("fractal_" + iterator, "png", getResolution(), getResolution());
         iterator++;
         
         // change button to textbox that says "Saved!"
-        saveButton.setText("SAVED");
+        btnSaveButton.setText("SAVED");
         
-        saveButton.setEnabled(false);
-        saveButton.setBackground(Color.CYAN);
+        btnSaveButton.setEnabled(false);
+        btnSaveButton.setBackground(Color.CYAN);
         
-        saveButton.setVisible(true);
+        btnSaveButton.setVisible(true);
       }
     });
-    saveButton.setToolTipText("Click to save the latest generated fractal as a .png image.");
-    saveButton.setForeground(Color.BLACK);
-    saveButton.setFont(new Font("Tahoma", Font.PLAIN, 9));
-    saveButton.setBackground(Color.CYAN);
-    saveButton.setBounds(25, 25, 80, 30);
-    add(saveButton);
+    
+    // Create save button
+    btnSaveButton.setToolTipText("Click to save the latest generated fractal as a .png image.");
+    btnSaveButton.setForeground(Color.BLACK);
+    btnSaveButton.setFont(new Font("Tahoma", Font.PLAIN, 9));
+    btnSaveButton.setBackground(Color.CYAN);
+    btnSaveButton.setBounds(25, 25, 80, 30);
+    add(btnSaveButton);
     
     // set order to user specified
     setDepth(depth);
@@ -157,29 +159,29 @@ public class Mainframe extends JFrame {
   }
   
 
-  // main method to test stuff
-  public static void main(String[] args) {
-    SwingUtilities.invokeLater(new Runnable() {
-      @Override
-      public void run() {
+  /* main method to test stuff
+   public static void main(String[] args) {
+     SwingUtilities.invokeLater(new Runnable() {
+       @Override
+       public void run() {
         
-        // command-line app
-        // int inputRez;
-        
-        // Scanner s1 = new Scanner(System.in);
-        // System.out.println("WARNING: Entering too high of an 'n' value will make the program crash!");
-        // System.out.print("Enter n^th degree of Triangle to be generated: ");
-        // setDepth(s1.nextInt());
-        
-        // System.out.print("Specify canvas resolution (INPUTxINPUT): ");
-        // inputRez = s1.nextInt();
-        // setResolution(inputRez);
-        
-        // test
-        // Mainframe m1 = new Mainframe(5,600);
-        // m1.saveImage("fractal", "png");
-        // System.out.println("main method end");
-      }
-    });
-  }
+         command-line app
+         int inputRez;
+          
+         Scanner s1 = new Scanner(System.in);
+         System.out.println("WARNING: Entering too high of an 'n' value will make the program crash!");
+         System.out.print("Enter n^th degree of Triangle to be generated: ");
+         setDepth(s1.nextInt());
+          
+         System.out.print("Specify canvas resolution (INPUTxINPUT): ");
+         inputRez = s1.nextInt();
+         setResolution(inputRez);
+          
+         test
+         Mainframe m1 = new Mainframe(5,600);
+         m1.saveImage("fractal", "png");
+         System.out.println("main method end");
+       }
+     });           
+   }                  */
 }
