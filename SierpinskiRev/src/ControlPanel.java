@@ -18,8 +18,8 @@ public class ControlPanel extends JFrame {
 
   private static final long serialVersionUID = 1L;
   private JPanel contentPane;
-  private JTextField depthField;
-  private JTextField rezField;
+  private JTextField fldDepthField;
+  private JTextField fldResolutionField;
 
   /**
    * Launch the application.
@@ -53,43 +53,43 @@ public class ControlPanel extends JFrame {
     setContentPane(contentPane);
     contentPane.setLayout(null);
     
-    JLabel Title = new JLabel("Sierpinski Fractal Generator");
-    Title.setForeground(new Color(0, 0, 0));
-    Title.setFont(new Font("Tahoma", Font.BOLD, 30));
-    Title.setBounds(25, 25, 451, 39);
-    contentPane.add(Title);
+    JLabel lblTitle = new JLabel("Sierpinski Fractal Generator");
+    lblTitle.setForeground(new Color(0, 0, 0));
+    lblTitle.setFont(new Font("Tahoma", Font.BOLD, 30));
+    lblTitle.setBounds(25, 25, 451, 39);
+    contentPane.add(lblTitle);
     
-    JLabel credits = new JLabel("Developed by Gjin Rexhaj");
-    credits.setBounds(25, 65, 321, 14);
-    contentPane.add(credits);
+    JLabel lblCredits = new JLabel("Developed by Gjin Rexhaj");
+    lblCredits.setBounds(25, 65, 321, 14);
+    contentPane.add(lblCredits);
     
-    JLabel info = new JLabel("This program generates an \"nth\" order Sierpinski gasket on a seperate window. \r\n");
-    info.setFont(new Font("Tahoma", Font.PLAIN, 13));
-    info.setBounds(25, 103, 485, 39);
-    contentPane.add(info);
+    JLabel lblInfo = new JLabel("This program generates an \"nth\" order Sierpinski gasket on a seperate window. \r\n");
+    lblInfo.setFont(new Font("Tahoma", Font.PLAIN, 13));
+    lblInfo.setBounds(25, 103, 485, 39);
+    contentPane.add(lblInfo);
     
-    JLabel moreInfo = new JLabel("The 'n' value and resolution of the square drawing canvas are user specifiable.\r\n");
-    moreInfo.setFont(new Font("Tahoma", Font.PLAIN, 13));
-    moreInfo.setBounds(25, 122, 461, 39);
-    contentPane.add(moreInfo);
+    JLabel lblMoreInfo = new JLabel("The 'n' value and resolution of the square drawing canvas are user specifiable.\r\n");
+    lblMoreInfo.setFont(new Font("Tahoma", Font.PLAIN, 13));
+    lblMoreInfo.setBounds(25, 122, 461, 39);
+    contentPane.add(lblMoreInfo);
     
-    JLabel versionlabel = new JLabel("Version 1.2,   github.com/gjinrexhaj,   implemented with Java Swing and AWT");
-    versionlabel.setBounds(10, 389, 541, 14);
-    contentPane.add(versionlabel);
+    JLabel lblVersion = new JLabel("Version 1.2,   github.com/gjinrexhaj,   implemented with Java Swing and AWT");
+    lblVersion.setBounds(10, 389, 541, 14);
+    contentPane.add(lblVersion);
     
-    JButton generateButton = new JButton("RENDER");
-    generateButton.setToolTipText("Click to generate fractal with specified parameters, this will render the fractal on a new window independent of the program.");
-    generateButton.addActionListener(new ActionListener() {
+    JButton btnGenerateButton = new JButton("RENDER");
+    btnGenerateButton.setToolTipText("Click to generate fractal with specified parameters, this will render the fractal on a new window independent of the program.");
+    btnGenerateButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         
         try {
           // store user input in int vars
-          int depthFieldInput = Integer.parseInt(depthField.getText());
-          int rezFieldInput = Integer.parseInt(rezField.getText());
+          int depthFieldInput = Integer.parseInt(fldDepthField.getText());
+          int rezFieldInput = Integer.parseInt(fldResolutionField.getText());
         
           // create mainframe object
           Mainframe renderWindow = new Mainframe(depthFieldInput, rezFieldInput);
-          info.setVisible(true);
+          lblInfo.setVisible(true);
         } catch (NumberFormatException exception) {
           // if there isn't an int in textfields, display error box
           WarningBox warning = new WarningBox();
@@ -98,28 +98,28 @@ public class ControlPanel extends JFrame {
         
       }
     });
-    generateButton.setForeground(Color.BLACK);
-    generateButton.setBackground(Color.GREEN);
-    generateButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-    generateButton.setBounds(226, 176, 130, 68);
-    contentPane.add(generateButton);
+    btnGenerateButton.setForeground(Color.BLACK);
+    btnGenerateButton.setBackground(Color.GREEN);
+    btnGenerateButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+    btnGenerateButton.setBounds(226, 176, 130, 68);
+    contentPane.add(btnGenerateButton);
     
-    depthField = new JTextField();
-    depthField.setToolTipText("Input a single integer value (any positive number under 10 is recommended)");
-    depthField.setBounds(130, 215, 86, 29);
-    contentPane.add(depthField);
-    depthField.setColumns(10);
+    fldDepthField = new JTextField();
+    fldDepthField.setToolTipText("Input a single integer value (any positive number under 10 is recommended)");
+    fldDepthField.setBounds(130, 215, 86, 29);
+    contentPane.add(fldDepthField);
+    fldDepthField.setColumns(10);
     
-    rezField = new JTextField();
-    rezField.setToolTipText("Input a single integer value (600 is recommended)");
-    rezField.setColumns(10);
-    rezField.setBounds(130, 176, 86, 29);
-    contentPane.add(rezField);
+    fldResolutionField = new JTextField();
+    fldResolutionField.setToolTipText("Input a single integer value (600 is recommended)");
+    fldResolutionField.setColumns(10);
+    fldResolutionField.setBounds(130, 176, 86, 29);
+    contentPane.add(fldResolutionField);
     
-    JLabel degLabel = new JLabel("Degree:");
-    degLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-    degLabel.setBounds(53, 210, 82, 38);
-    contentPane.add(degLabel);
+    JLabel lblDegLabel = new JLabel("Degree:");
+    lblDegLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+    lblDegLabel.setBounds(53, 210, 82, 38);
+    contentPane.add(lblDegLabel);
     
     JLabel lblResolution = new JLabel("Resolution:");
     lblResolution.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -156,11 +156,11 @@ public class ControlPanel extends JFrame {
     lblVariesOnHardware.setBounds(25, 330, 191, 39);
     contentPane.add(lblVariesOnHardware);
     
-    JLabel NotRender = new JLabel("Not Rendering?");
-    NotRender.setForeground(Color.BLACK);
-    NotRender.setFont(new Font("Tahoma", Font.BOLD, 15));
-    NotRender.setBounds(236, 256, 120, 39);
-    contentPane.add(NotRender);
+    JLabel lblNotRender = new JLabel("Not Rendering?");
+    lblNotRender.setForeground(Color.BLACK);
+    lblNotRender.setFont(new Font("Tahoma", Font.BOLD, 15));
+    lblNotRender.setBounds(236, 256, 120, 39);
+    contentPane.add(lblNotRender);
     
     JLabel lblMakeSureYoure = new JLabel("Make sure you're inputting");
     lblMakeSureYoure.setForeground(Color.BLACK);
