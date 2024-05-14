@@ -70,16 +70,16 @@ public class WarningBox extends JFrame {
     lblDescriptor2.setBounds(30, 101, 275, 27);
     contentPane.add(lblDescriptor2);
     
-    JButton btnNewButton = new JButton("Ok");
-    btnNewButton.addActionListener(new ActionListener() {
+    JButton btnOkButton = new JButton("Ok");
+    btnOkButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         dispose();
       }
     });
-    btnNewButton.setBackground(Color.WHITE);
-    btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-    btnNewButton.setBounds(30, 152, 112, 46);
-    contentPane.add(btnNewButton);
+    btnOkButton.setBackground(Color.WHITE);
+    btnOkButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
+    btnOkButton.setBounds(30, 152, 112, 46);
+    contentPane.add(btnOkButton);
     
     JLabel lblExceptionCaught = new JLabel("NumberFormatException caught");
     lblExceptionCaught.setBackground(Color.WHITE);

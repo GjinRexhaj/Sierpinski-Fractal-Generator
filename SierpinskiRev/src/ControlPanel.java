@@ -21,6 +21,19 @@ public class ControlPanel extends JFrame {
   private JTextField fldDepthField;
   private JTextField fldResolutionField;
 
+  private static int depthFieldInput;
+  private static int rezFieldInput;
+  
+  // getter methods for depth and rezfield input
+  public static int getDepthFieldInput() {
+    return depthFieldInput;
+  }
+  
+  public static int getRezFieldInput() {
+    return rezFieldInput;
+  }
+  
+  
   /**
    * Launch the application.
    */
@@ -83,13 +96,25 @@ public class ControlPanel extends JFrame {
       public void actionPerformed(ActionEvent e) {
         
         try {
+    
           // store user input in int vars
-          int depthFieldInput = Integer.parseInt(fldDepthField.getText());
-          int rezFieldInput = Integer.parseInt(fldResolutionField.getText());
-        
-          // create mainframe object
-          Mainframe renderWindow = new Mainframe(depthFieldInput, rezFieldInput);
-          lblInfo.setVisible(true);
+          depthFieldInput = Integer.parseInt(fldDepthField.getText());
+          rezFieldInput = Integer.parseInt(fldResolutionField.getText());
+          
+          
+          System.out.println(depthFieldInput);
+          System.out.println(rezFieldInput);
+          
+          // if fldDepthField > 9, create warningbox
+          if (Integer.parseInt(fldDepthField.getText()) > 9) {
+            // create warningbox
+            HighDegreeWarningBox h1 = new HighDegreeWarningBox();
+            h1.setVisible(true);
+          } else {
+            // create mainframe object
+            Mainframe renderWindow = new Mainframe(depthFieldInput, rezFieldInput);
+            
+          }
         } catch (NumberFormatException exception) {
           // if there isn't an int in textfields, display error box
           WarningBox warning = new WarningBox();
