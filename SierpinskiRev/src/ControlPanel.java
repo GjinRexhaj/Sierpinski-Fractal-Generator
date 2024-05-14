@@ -148,35 +148,5 @@ public class ControlPanel extends JFrame {
     lblResolution.setBounds(25, 177, 110, 29);
     contentPane.add(lblResolution);
     
-    JLabel lblWarningLimitDegree = new JLabel("\r\nTry to limit degree values to");
-    lblWarningLimitDegree.setForeground(Color.RED);
-    lblWarningLimitDegree.setFont(new Font("Tahoma", Font.PLAIN, 13));
-    lblWarningLimitDegree.setBounds(25, 282, 198, 39);
-    contentPane.add(lblWarningLimitDegree);
-    
-    JLabel lblWarning = new JLabel("WARNING!");
-    lblWarning.setForeground(Color.RED);
-    lblWarning.setFont(new Font("Tahoma", Font.BOLD, 15));
-    lblWarning.setBounds(25, 259, 100, 39);
-    contentPane.add(lblWarning);
-    
-    JLabel lblWarning1 = new JLabel("at which the program crashes");
-    lblWarning1.setForeground(Color.RED);
-    lblWarning1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-    lblWarning1.setBounds(25, 314, 198, 39);
-    contentPane.add(lblWarning1);
-    
-    JLabel lblWarning2 = new JLabel("single digit numbers, the value");
-    lblWarning2.setForeground(Color.RED);
-    lblWarning2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-    lblWarning2.setBounds(25, 298, 191, 39);
-    contentPane.add(lblWarning2);
-    
-    JLabel lblWarning3 = new JLabel("varies on hardware.");
-    lblWarning3.setForeground(Color.RED);
-    lblWarning3.setFont(new Font("Tahoma", Font.PLAIN, 13));
-    lblWarning3.setBounds(25, 330, 191, 39);
-    contentPane.add(lblWarning3);
-    
   }
 }

@@ -52,7 +52,7 @@ public class HighDegreeWarningBox extends ControlPanel {
     contentPane.setLayout(null);
     
     JLabel lblWarning = new JLabel("High Degree Detected");
-    lblWarning.setForeground(new Color(255, 0, 0));
+    lblWarning.setForeground(Color.BLACK);
     lblWarning.setFont(new Font("Tahoma", Font.BOLD, 22));
     lblWarning.setIcon(null);
     lblWarning.setHorizontalAlignment(SwingConstants.LEFT);
