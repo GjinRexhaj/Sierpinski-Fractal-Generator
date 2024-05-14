@@ -102,9 +102,6 @@ public class ControlPanel extends JFrame {
           rezFieldInput = Integer.parseInt(fldResolutionField.getText());
           
           
-          System.out.println(depthFieldInput);
-          System.out.println(rezFieldInput);
-          
           // if fldDepthField > 9, create warningbox
           if (Integer.parseInt(fldDepthField.getText()) > 9) {
             // create warningbox
