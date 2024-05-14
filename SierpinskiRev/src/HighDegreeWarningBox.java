@@ -102,10 +102,6 @@ public class HighDegreeWarningBox extends ControlPanel {
       public void actionPerformed(ActionEvent e) {
         System.out.println("render anyways button clicked");
         Mainframe renderWindow = new Mainframe(getDepthFieldInput(), getRezFieldInput());
-        
-        System.out.println(getDepthFieldInput());
-        System.out.println(getRezFieldInput());
-        
       }
     });
     btnRenderAnyways.setFont(new Font("Tahoma", Font.PLAIN, 14));

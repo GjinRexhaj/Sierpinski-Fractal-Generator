@@ -157,26 +157,25 @@ public class Mainframe extends JFrame {
     }
     
   }
-  
 
   /* main method to test stuff
    public static void main(String[] args) {
      SwingUtilities.invokeLater(new Runnable() {
        @Override
        public void run() {
-        
+
          command-line app
          int inputRez;
-          
+
          Scanner s1 = new Scanner(System.in);
          System.out.println("WARNING: Entering too high of an 'n' value will make the program crash!");
          System.out.print("Enter n^th degree of Triangle to be generated: ");
          setDepth(s1.nextInt());
-          
+
          System.out.print("Specify canvas resolution (INPUTxINPUT): ");
          inputRez = s1.nextInt();
          setResolution(inputRez);
-          
+
          test
          Mainframe m1 = new Mainframe(5,600);
          m1.saveImage("fractal", "png");
