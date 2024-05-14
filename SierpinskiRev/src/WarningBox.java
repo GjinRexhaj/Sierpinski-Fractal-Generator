@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 
-public class WarningBox extends JFrame {
+public class WarningBox extends ControlPanel {
 
   private static final long serialVersionUID = 1L;
   private JPanel contentPane;
