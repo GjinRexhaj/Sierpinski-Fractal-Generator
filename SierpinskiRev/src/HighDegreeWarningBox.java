@@ -42,7 +42,7 @@ public class HighDegreeWarningBox extends ControlPanel {
   public HighDegreeWarningBox() {
     setResizable(false);
     setTitle("Render Warning");
-    setIconImage(Toolkit.getDefaultToolkit().getImage(WarningBox.class.getResource("/resources/fractalIcon.png")));
+    setIconImage(Toolkit.getDefaultToolkit().getImage(HighDegreeWarningBox.class.getResource("/resources/fractalIcon.png")));
     setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     setBounds(100, 100, 349, 300);
     contentPane = new JPanel();

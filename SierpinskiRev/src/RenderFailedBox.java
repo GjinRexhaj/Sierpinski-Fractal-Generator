@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 
-public class WarningBox extends ControlPanel {
+public class RenderFailedBox extends ControlPanel {
 
   private static final long serialVersionUID = 1L;
   private JPanel contentPane;
@@ -26,7 +26,7 @@ public class WarningBox extends ControlPanel {
     EventQueue.invokeLater(new Runnable() {
       public void run() {
         try {
-          WarningBox frame = new WarningBox();
+          RenderFailedBox frame = new RenderFailedBox();
           frame.setVisible(true);
         } catch (Exception e) {
           e.printStackTrace();
@@ -38,10 +38,10 @@ public class WarningBox extends ControlPanel {
   /**
    * Create the frame.
    */
-  public WarningBox() {
+  public RenderFailedBox() {
     setResizable(false);
     setTitle("Render Error");
-    setIconImage(Toolkit.getDefaultToolkit().getImage(WarningBox.class.getResource("/resources/fractalIcon.png")));
+    setIconImage(Toolkit.getDefaultToolkit().getImage(RenderFailedBox.class.getResource("/resources/fractalIcon.png")));
     setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     setBounds(100, 100, 349, 300);
     contentPane = new JPanel();
@@ -51,7 +51,7 @@ public class WarningBox extends ControlPanel {
     contentPane.setLayout(null);
     
     JLabel lblWarning = new JLabel("Render Failed");
-    lblWarning.setForeground(Color.RED);
+    lblWarning.setForeground(new Color(255, 0, 0));
     lblWarning.setFont(new Font("Tahoma", Font.BOLD, 22));
     lblWarning.setIcon(null);
     lblWarning.setHorizontalAlignment(SwingConstants.LEFT);
