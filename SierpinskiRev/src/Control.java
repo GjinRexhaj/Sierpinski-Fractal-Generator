@@ -16,10 +16,8 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   public double focusX = 0;
   public double focusY = 0;
   
-  private JPanel contentPane;
   private DrawCanvas canvas;
   
-  private JLabel myLabel;
   
   // main method
   public static void main(String[] args) {
@@ -40,19 +38,6 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     canvas.addMouseWheelListener(this);
     this.add(canvas);
     this.setVisible(true);
-  
-    
-    //canvas.setPreferredSize(new Dimension(500, 500));
-    //canvas.setBackground(Color.BLACK);
-    //canvas.setBounds(0, 0, 500, 500);
-    //contentPane.add(canvas);
-    //canvas.setVisible(true);
-    //canvas.addMouseWheelListener(this);
-    
-    
-    // set drawingcanvas as JFrame content pane
-    //Container cp = getContentPane();
-    //cp.add(canvas);
   }
   
   private class DrawCanvas extends JPanel {
@@ -65,17 +50,24 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
       super.paintComponent(g);
       setBackground(Color.GRAY);
       
+      // TO-DO: MAKE SCROLL-PANEL SCALE WITH WINDOW-MAKE WINDOW RESIZABLE
+      // FOR EACH SCROLL, ZOOM IN ON WHERE MOUSE CURSOR IS POINTED, BY CHANGING
+      // POINTS P1-P3 IN ACCORDANCE WITH ZOOM AND RE-RENDERING THE FRACTAL
+      // ??-BASED ON ZOOM FACTOR, INCREASE DEGREE OF FRACTAL AND DISPOSE ANY NON-DISPLAYED POINTS
+      
+      
       // create initial triangle: use Point objects in zoom square
+      /*
+      int vertMargin = 100;
+      int horiMargin = 100;
       
-      // int vertMargin = 100;
-      // int horiMargin = 100;
+      Point p1 = new Point((int)RenderBox.getWidth() / 2, vertMargin); // 25: hardcoded margin offset var
+      Point p2 = new Point(horiMargin, (int)RenderBox.getHeight() - vertMargin); 
+      Point p3 = new Point((int)RenderBox.getWidth() - horiMargin, (int)RenderBox.getWidth() - vertMargin);
       
-      //Point p1 = new Point((int)RenderBox.getWidth() / 2, vertMargin); // 25: hardcoded margin offset var
-      //Point p2 = new Point(horiMargin, (int)RenderBox.getHeight() - vertMargin); 
-      //Point p3 = new Point((int)RenderBox.getWidth() - horiMargin, (int)RenderBox.getWidth() - vertMargin);
-      
-      // call to recursive method
-      //renderTriangles(g, depth, p1, p2, p3);
+      //call to recursive method
+      renderTriangles(g, 3, p1, p2, p3);
+      */
     }
   }
   
