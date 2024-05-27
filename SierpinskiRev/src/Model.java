@@ -10,7 +10,7 @@ import java.io.File;
 import javax.imageio.ImageIO;
 
 
-public class Mainframe extends JFrame {
+public class Model extends JFrame {
   
   // default depth of recursion: null- same as degree
   private static int depth;;
@@ -48,7 +48,7 @@ public class Mainframe extends JFrame {
   private DrawCanvas canvas;
   
   // GUI setup
-  public Mainframe() {
+  public Model() {
     
     //add savebutton
     JButton btnSaveButton = new JButton("SAVE");
@@ -193,7 +193,7 @@ public class Mainframe extends JFrame {
          //setResolution(inputRez);
 
          // test
-         new Mainframe();
+         new Model();
          //m1.saveImage("fractal", "png");
          System.out.println("main method end");
        }

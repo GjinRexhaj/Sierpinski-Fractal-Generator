@@ -4,11 +4,9 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelListener;
 import java.awt.event.MouseWheelEvent;
-
 import javax.swing.*;
 
-import Mainframe.DrawCanvas;
-
+@SuppressWarnings("serial")
 public class Control extends JFrame implements MouseListener, MouseWheelListener, MouseMotionListener {
   // instance variables of important scroller factors
   public double scrollRate;
@@ -18,9 +16,10 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   public double focusX = 0;
   public double focusY = 0;
   
+  private JPanel contentPane;
   private DrawCanvas canvas;
   
-  
+  private JLabel myLabel;
   
   // main method
   public static void main(String[] args) {
@@ -33,18 +32,33 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     this.setSize(500,500);
     this.setLayout(null);
-    this.setVisible(true);
-    canvas = new DrawCanvas();
-    canvas.setPreferredSize(new Dimension(500, 500));
     
+    //test
+    canvas = new DrawCanvas();
+    canvas.setBounds(0, 0, 500, 500);
+    canvas.setBackground(Color.red);
+    canvas.setOpaque(true);
     canvas.addMouseWheelListener(this);
+    this.add(canvas);
+    this.setVisible(true);
+  
+    
+    //canvas.setPreferredSize(new Dimension(500, 500));
+    //canvas.setBackground(Color.RED);
+    //canvas.setBounds(0, 0, 500, 500);
+    //contentPane.add(canvas);
+    //canvas.setVisible(true);
+    //canvas.addMouseWheelListener(this);
+    
     
     // set drawingcanvas as JFrame content pane
-    Container cp = getContentPane();
-    cp.add(canvas);
+    //Container cp = getContentPane();
+    //cp.add(canvas);
   }
   
   private class DrawCanvas extends JPanel {
+    
+    
     @Override
     public void paintComponent(Graphics g) {
       
@@ -54,8 +68,8 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
       
       // create initial triangle: use Point objects in zoom square
       
-      int vertMargin = 100;
-      int horiMargin = 100;
+      // int vertMargin = 100;
+      // int horiMargin = 100;
       
       //Point p1 = new Point((int)RenderBox.getWidth() / 2, vertMargin); // 25: hardcoded margin offset var
       //Point p2 = new Point(horiMargin, (int)RenderBox.getHeight() - vertMargin); 
@@ -83,6 +97,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   @Override
   public void mouseClicked(MouseEvent e) {
     // TODO Auto-generated method stub
+    System.out.println("aaaa");
 
   }
 
@@ -120,5 +135,6 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   public void mouseMoved(MouseEvent e) {
     // TODO Auto-generated method stub
     
-  }
+  } 
 }
+  
