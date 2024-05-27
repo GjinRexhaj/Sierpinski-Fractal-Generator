@@ -9,7 +9,7 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class Control extends JFrame implements MouseListener, MouseWheelListener, MouseMotionListener {
   // instance variables of important scroller factors
-  public double scrollRate;
+  public int scrollFactor;
   public int fractalDepth;
   
   public int xResolution = 1280;
@@ -70,17 +70,17 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
       
       
       // create initial triangle: use Point objects in zoom square
-      /*
-      int vertMargin = 100;
-      int horiMargin = 100;
       
-      Point p1 = new Point((int)RenderBox.getWidth() / 2, vertMargin); // 25: hardcoded margin offset var
-      Point p2 = new Point(horiMargin, (int)RenderBox.getHeight() - vertMargin); 
-      Point p3 = new Point((int)RenderBox.getWidth() - horiMargin, (int)RenderBox.getWidth() - vertMargin);
+      int vertMargin = yResolution / 2;
+      int horiMargin = xResolution / 2;
       
-      //call to recursive method
-      renderTriangles(g, 3, p1, p2, p3);
-      */
+      Point p1 = new Point(horiMargin / 2, 100); // 25: hardcoded margin offset var
+      Point p2 = new Point(horiMargin, vertMargin - 100); 
+      Point p3 = new Point(horiMargin - 100, vertMargin - 100);
+      
+      //call to recursive method which belongs in Model class
+      Model.renderSierpinskiTriangle(g, 3, p1, p2, p3);
+      
     }
   }
   
@@ -90,11 +90,14 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   public void mouseWheelMoved(MouseWheelEvent e) {
     // nested if statements to determine scroll wheel direction
     int notches = e.getWheelRotation();
+    System.out.println("scrollFactor: " + scrollFactor);
     
     if (notches < 0) {
       textArea.setText("Mouse Wheel Up");
+      scrollFactor++;
     } else {
       textArea.setText("Mouse Wheel Down");
+      scrollFactor--;
     }
   }
 

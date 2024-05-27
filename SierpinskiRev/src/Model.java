@@ -12,6 +12,35 @@ import javax.imageio.ImageIO;
 
 public class Model extends JFrame {
   
+  // CLASS WHICH CONTAINS ALL FRACTAL ALGORITHMS,
+  // IN PROCESS OF BEING MIGRATED, HAS A LOT OF UNUSED CODE
+  
+  // temp test placement
+ public static void renderSierpinskiTriangle(Graphics g, int localDepth, Point p1, Point p2, Point p3) {
+   // base case
+   if (localDepth == 0) {
+     // draw degree 0 triangle
+     drawLine(g, p1, p2);
+     drawLine(g, p2, p3);
+     drawLine(g, p3, p1);
+     return;
+   }
+   // 
+   
+   // recursive case, 3 layers of recursion
+   Point midOneTwo = midpoint(p1,p2);
+   Point midTwoThr = midpoint(p2,p3);
+   Point midThrOne = midpoint(p3,p1);
+   renderSierpinskiTriangle(g, localDepth - 1, p1, midOneTwo, midThrOne);
+   renderSierpinskiTriangle(g, localDepth - 1, midOneTwo, p2, midTwoThr);
+   renderSierpinskiTriangle(g, localDepth - 1, midThrOne, midTwoThr, p3);
+ }
+  
+  
+  
+  
+  
+  
   // default depth of recursion: null- same as degree
   private static int depth;;
   
