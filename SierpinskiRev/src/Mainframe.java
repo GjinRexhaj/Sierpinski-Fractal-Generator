@@ -5,19 +5,28 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.*;
 import java.io.File;
+
+
 import javax.imageio.ImageIO;
+
 
 public class Mainframe extends JFrame {
   
-  // default depth of recursion: same as degree
-  private static int depth = 2;
+  // default depth of recursion: null- same as degree
+  private static int depth;;
   
   // iterator to iterate filenames
   private static int iterator = 1;
   
   //Default size of window
-  private static int canvasWidth = 600;
-  private static int canvasHeight = 600;
+  
+
+  public static Dimension size = new Dimension(800,600);
+  // where triangle renders
+  public static Dimension RenderBox = new Dimension(500, 500);
+  
+  private static int canvasWidth = (int)size.getWidth();
+  private static int canvasHeight = (int)size.getHeight();
   
   // setDepth of sierpinski triangle method
   public static void setDepth(int input) {
@@ -25,39 +34,38 @@ public class Mainframe extends JFrame {
   }
   
   // setResolution of window method
-  public static void setResolution(int resolution) {
-    canvasWidth = resolution;
-    canvasHeight = resolution;
+  public static void setResolution(Dimension input) {
+    canvasWidth = (int)input.getWidth();
+    canvasHeight = (int)input.getHeight();
   }
   
   //getResolution of window method
-  public static int getResolution() {
-    return canvasWidth;
+  public static Dimension getResolution() {
+    return size;
   }
   
   // construct future drawcanvas object
   private DrawCanvas canvas;
   
   // GUI setup
-  public Mainframe(int depth, int rez) {
+  public Mainframe() {
     
     //add savebutton
     JButton btnSaveButton = new JButton("SAVE");
     btnSaveButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         // hide button while screenshot processes
+        btnSaveButton.setEnabled(false);
         btnSaveButton.setVisible(false);
+        
 
         // save image
-        saveImage("fractal_" + iterator, "png", getResolution(), getResolution());
+        saveImage("fractal_" + iterator, "png", (int)getResolution().getWidth(), (int)getResolution().getWidth());
         iterator++;
         
         // change button to textbox that says "Saved!"
-        btnSaveButton.setText("SAVED");
-        
-        btnSaveButton.setEnabled(false);
-        btnSaveButton.setBackground(Color.CYAN);
-        
+        // TO-DO, add subtext that briefly mentions "image saved to <directory>
+        btnSaveButton.setEnabled(true);
         btnSaveButton.setVisible(true);
       }
     });
@@ -73,8 +81,10 @@ public class Mainframe extends JFrame {
     // set order to user specified
     setDepth(depth);
     
-    // set resolution to user specified
-    setResolution(rez);
+    // set resolution to user specified- don't do this yet, make default
+    // rez be monitor size, then freely resizable/scalable/scrollable
+    // setResolution(rez);
+    setResolution(size);
     
     // create canvas with user input
     canvas = new DrawCanvas();
@@ -88,10 +98,11 @@ public class Mainframe extends JFrame {
     setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     pack();
     setTitle(canvasWidth + "x" + canvasHeight + " | " + depth +"th order Sierpinski Fractal");
-    setResizable(false);
+    setResizable(true);
     setAlwaysOnTop(false);
     setVisible(true);
   }
+  
   
   // inner class with polymorphic JPanel used for custom rendering
   private class DrawCanvas extends JPanel {
@@ -102,10 +113,14 @@ public class Mainframe extends JFrame {
       super.paintComponent(g);
       setBackground(Color.WHITE);
       
-      // create initial triangle: use Point objects
-      Point p1 = new Point(canvasWidth / 2, 25); // 25: hardcoded margin offset var
-      Point p2 = new Point(25, canvasHeight - 25); 
-      Point p3 = new Point(canvasWidth - 25, canvasWidth - 25);
+      // create initial triangle: use Point objects in zoom square
+      
+      int vertMargin = 100;
+      int horiMargin = 100;
+      
+      Point p1 = new Point((int)RenderBox.getWidth() / 2, vertMargin); // 25: hardcoded margin offset var
+      Point p2 = new Point(horiMargin, (int)RenderBox.getHeight() - vertMargin); 
+      Point p3 = new Point((int)RenderBox.getWidth() - horiMargin, (int)RenderBox.getWidth() - vertMargin);
       
       // call to recursive method
       renderTriangles(g, depth, p1, p2, p3);
@@ -158,29 +173,30 @@ public class Mainframe extends JFrame {
     
   }
 
-  /* main method to test stuff
+// main method to test stuff
    public static void main(String[] args) {
      SwingUtilities.invokeLater(new Runnable() {
        @Override
        public void run() {
 
-         command-line app
-         int inputRez;
+         //command-line app
 
-         Scanner s1 = new Scanner(System.in);
-         System.out.println("WARNING: Entering too high of an 'n' value will make the program crash!");
-         System.out.print("Enter n^th degree of Triangle to be generated: ");
-         setDepth(s1.nextInt());
+         //Scanner s1 = new Scanner(System.in);
+         //System.out.println("WARNING: Entering too high of an 'n' value will make the program crash!");
+         //System.out.print("Enter n^th degree of Triangle to be generated: ");
+         //setDepth(s1.nextInt());
+         
+         setDepth(4);
 
-         System.out.print("Specify canvas resolution (INPUTxINPUT): ");
-         inputRez = s1.nextInt();
-         setResolution(inputRez);
+         //System.out.print("Specify canvas resolution (INPUTxINPUT): ");
+        // inputRez = s1.nextInt();
+         //setResolution(inputRez);
 
-         test
-         Mainframe m1 = new Mainframe(5,600);
-         m1.saveImage("fractal", "png");
+         // test
+         new Mainframe();
+         //m1.saveImage("fractal", "png");
          System.out.println("main method end");
        }
      });           
-   }                  */
+   }                  
 }
