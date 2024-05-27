@@ -12,6 +12,9 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   public double scrollRate;
   public int fractalDepth;
   
+  public int xResolution = 1280;
+  public int yResolution = 720;
+  
   public double scale = 1;
   public double focusX = 0;
   public double focusY = 0;
@@ -29,19 +32,20 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   public Control() {
     // GUI setup
     this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    this.setSize(500,500);
+    this.setSize(xResolution,yResolution);
     this.setLayout(null);
-    
-    //test
-    
+    setResizable(false);
+
     textArea.setText("TEXT AREA INITIALIZED"); //set text of label
     
+    setLocationRelativeTo(null);
     
     canvas = new DrawCanvas();
-    canvas.setBounds(0, 0, 500, 500);
+    canvas.setBounds(0, 0, xResolution, yResolution);
     canvas.setOpaque(true);
     canvas.addMouseWheelListener(this);
     canvas.addMouseMotionListener(this);
+    canvas.addMouseListener(this);
     canvas.add(textArea);
     
     this.add(canvas);
@@ -96,7 +100,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   @Override
   public void mouseClicked(MouseEvent e) {
     // TODO Auto-generated method stub
-    textArea.setText("Mouse clicked");
+    System.out.println("Mouse clicked: (" + e.getX() + "), (" + e.getY() + ")");
 
   }
 
