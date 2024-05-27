@@ -12,8 +12,8 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   public int scrollFactor;
   public int fractalDepth;
   
-  public int xResolution = 1280;
-  public int yResolution = 720;
+  public int xResolution = 1280 + 17; //19 px taken up by unknown
+  public int yResolution = 720 + 40; //40 px taken up by window header
   
   public double scale = 1;
   public double focusX = 0;
@@ -61,7 +61,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
       
       // drawcanvas setup
       super.paintComponent(g);
-      setBackground(Color.GRAY);
+      setBackground(Color.WHITE);
       
       // TO-DO: MAKE SCROLL-PANEL SCALE WITH WINDOW-MAKE WINDOW RESIZABLE
       // FOR EACH SCROLL, ZOOM IN ON WHERE MOUSE CURSOR IS POINTED, BY CHANGING
@@ -74,9 +74,9 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
       int vertMargin = yResolution / 2;
       int horiMargin = xResolution / 2;
       
-      Point p1 = new Point(horiMargin / 2, 100); // 25: hardcoded margin offset var
-      Point p2 = new Point(horiMargin, vertMargin - 100); 
-      Point p3 = new Point(horiMargin - 100, vertMargin - 100);
+      Point p1 = new Point(xResolution / 2, 100); // 25: hardcoded margin offset var
+      Point p2 = new Point(320, yResolution - 100); 
+      Point p3 = new Point(xResolution - 320, yResolution - 100);
       
       //call to recursive method which belongs in Model class
       Model.renderSierpinskiTriangle(g, 3, p1, p2, p3);
