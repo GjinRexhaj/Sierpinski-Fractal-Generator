@@ -36,7 +36,6 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     //test
     canvas = new DrawCanvas();
     canvas.setBounds(0, 0, 500, 500);
-    canvas.setBackground(Color.red);
     canvas.setOpaque(true);
     canvas.addMouseWheelListener(this);
     this.add(canvas);
@@ -44,7 +43,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   
     
     //canvas.setPreferredSize(new Dimension(500, 500));
-    //canvas.setBackground(Color.RED);
+    //canvas.setBackground(Color.BLACK);
     //canvas.setBounds(0, 0, 500, 500);
     //contentPane.add(canvas);
     //canvas.setVisible(true);
@@ -64,7 +63,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
       
       // drawcanvas setup
       super.paintComponent(g);
-      setBackground(Color.RED);
+      setBackground(Color.GRAY);
       
       // create initial triangle: use Point objects in zoom square
       
@@ -88,9 +87,9 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     int notches = e.getWheelRotation();
     
     if (notches < 0) {
-      System.out.println("Mouse Wheel Up" + -notches + " notch(es) \n");
+      System.out.println("Mouse Wheel Up " + -notches + " notch(es) \n");
     } else {
-      System.out.println("Mouse Wheel Down" + notches + " notch(es) \n");
+      System.out.println("Mouse Wheel Down " + notches + " notch(es) \n");
     }
   }
 
