@@ -18,6 +18,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   
   private DrawCanvas canvas;
   
+  JLabel textArea = new JLabel(); //create a label
   
   // main method
   public static void main(String[] args) {
@@ -32,10 +33,17 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     this.setLayout(null);
     
     //test
+    
+    textArea.setText("TEXT AREA INITIALIZED"); //set text of label
+    
+    
     canvas = new DrawCanvas();
     canvas.setBounds(0, 0, 500, 500);
     canvas.setOpaque(true);
     canvas.addMouseWheelListener(this);
+    canvas.addMouseMotionListener(this);
+    canvas.add(textArea);
+    
     this.add(canvas);
     this.setVisible(true);
   }
@@ -79,16 +87,16 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     int notches = e.getWheelRotation();
     
     if (notches < 0) {
-      System.out.println("Mouse Wheel Up " + -notches + " notch(es) \n");
+      textArea.setText("Mouse Wheel Up");
     } else {
-      System.out.println("Mouse Wheel Down " + notches + " notch(es) \n");
+      textArea.setText("Mouse Wheel Down");
     }
   }
 
   @Override
   public void mouseClicked(MouseEvent e) {
     // TODO Auto-generated method stub
-    System.out.println("aaaa");
+    textArea.setText("Mouse clicked");
 
   }
 
@@ -107,25 +115,34 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   @Override
   public void mouseEntered(MouseEvent e) {
     // TODO Auto-generated method stub
-    
+    textArea.setText("Mouse entered");
   }
 
   @Override
   public void mouseExited(MouseEvent e) {
     // TODO Auto-generated method stub
+    textArea.setText("Mouse exited");
     
   }
 
   @Override
   public void mouseDragged(MouseEvent e) {
     // TODO Auto-generated method stub
+    mouseTracker("Mouse dragged", e);
     
   }
 
   @Override
   public void mouseMoved(MouseEvent e) {
     // TODO Auto-generated method stub
+    mouseTracker("Mouse moved", e);
     
   } 
+  
+  // method to display crucial mouse info
+  void mouseTracker(String description, MouseEvent e) {
+    textArea.setText(description + " (" + e.getX() + ", " + e.getY() + ")" /* + 
+    " detected on " + e.getComponent().getClass().getName() + "\n"*/);
+  }
 }
   
