@@ -32,7 +32,7 @@ public class ControlPanel extends JFrame {
   public static int getRezFieldInput() {
     return rezFieldInput;
   }
-  
+  //
   
   /**
    * Launch the application.
