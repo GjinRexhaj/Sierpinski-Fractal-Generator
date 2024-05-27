@@ -36,6 +36,8 @@ public class Launcher extends JFrame {
    * Create the frame.
    */
   public Launcher() {
+    
+    
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setBounds(100, 100, 566, 471);
     contentPane = new JPanel();

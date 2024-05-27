@@ -38,6 +38,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
 
     textArea.setText("TEXT AREA INITIALIZED"); //set text of label
     
+    setTitle("Fractal Viewer");
     setLocationRelativeTo(null);
     
     canvas = new DrawCanvas();
