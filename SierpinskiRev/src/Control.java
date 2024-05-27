@@ -21,6 +21,12 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   
   private DrawCanvas canvas;
   
+  
+  Point p1 = new Point(xResolution / 2, 100); // 25: hardcoded margin offset var
+  Point p2 = new Point(320, yResolution - 100); 
+  Point p3 = new Point(xResolution - 320, yResolution - 100);
+  
+  
   JLabel textArea = new JLabel(); //create a label
   
   // main method
@@ -71,15 +77,9 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
       
       // create initial triangle: use Point objects in zoom square
       
-      int vertMargin = yResolution / 2;
-      int horiMargin = xResolution / 2;
-      
-      Point p1 = new Point(xResolution / 2, 100); // 25: hardcoded margin offset var
-      Point p2 = new Point(320, yResolution - 100); 
-      Point p3 = new Point(xResolution - 320, yResolution - 100);
-      
       //call to recursive method which belongs in Model class
       Model.renderSierpinskiTriangle(g, 3, p1, p2, p3);
+      System.out.println("paintComponent method run...");
       
     }
   }
@@ -92,13 +92,25 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     int notches = e.getWheelRotation();
     System.out.println("scrollFactor: " + scrollFactor);
     
+    // mousePosX, and mousePosY
+    
     if (notches < 0) {
       textArea.setText("Mouse Wheel Up");
-      scrollFactor++;
+      scrollFactor += 50;
+      
     } else {
       textArea.setText("Mouse Wheel Down");
-      scrollFactor--;
+      scrollFactor -= 50;
     }
+    
+    p1.setLocation(xResolution / 2, 100 - scrollFactor);
+    p2.setLocation(320 - scrollFactor, yResolution - 100 + scrollFactor);
+    p3.setLocation(xResolution - 320 + scrollFactor, yResolution - 100 + scrollFactor);
+    
+    repaint();
+    
+    Model.renderSierpinskiTriangle(getGraphics(), fractalDepth, p1, p2, p3);
+    
   }
 
   @Override
@@ -143,12 +155,14 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   @Override
   public void mouseMoved(MouseEvent e) {
     // TODO Auto-generated method stub
-    mouseTracker("Mouse moved", e);
+    // mouseTracker("Mouse moved", e); // commented out as it keeps running paintComponent
+    int mousePosX = e.getX();
+    int mousePosY = e.getY();
     
   } 
   
   // method to display crucial mouse info
-  void mouseTracker(String description, MouseEvent e) {
+  private void mouseTracker(String description, MouseEvent e) {
     textArea.setText(description + " (" + e.getX() + ", " + e.getY() + ")" /* + 
     " detected on " + e.getComponent().getClass().getName() + "\n"*/);
   }
