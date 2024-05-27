@@ -10,7 +10,7 @@ import javax.swing.*;
 public class Control extends JFrame implements MouseListener, MouseWheelListener, MouseMotionListener {
   // instance variables of important scroller factors
   public int scrollFactor;
-  public int fractalDepth;
+  public int fractalDepth = 5;
   
   public int xResolution = 1280 + 17; //19 px taken up by unknown
   public int yResolution = 720 + 40; //40 px taken up by window header
@@ -78,7 +78,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
       // create initial triangle: use Point objects in zoom square
       
       //call to recursive method which belongs in Model class
-      Model.renderSierpinskiTriangle(g, 3, p1, p2, p3);
+      Model.renderSierpinskiTriangle(g, fractalDepth, p1, p2, p3);
       System.out.println("paintComponent method run...");
       
     }
@@ -96,20 +96,21 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     
     if (notches < 0) {
       textArea.setText("Mouse Wheel Up");
-      scrollFactor += 50;
+      scrollFactor += 1;
+      scrollFactor *= 1.1232;
       
     } else {
       textArea.setText("Mouse Wheel Down");
-      scrollFactor -= 50;
+      scrollFactor -= 1;
+      scrollFactor /= 1.1232;
     }
     
     p1.setLocation(xResolution / 2, 100 - scrollFactor);
     p2.setLocation(320 - scrollFactor, yResolution - 100 + scrollFactor);
     p3.setLocation(xResolution - 320 + scrollFactor, yResolution - 100 + scrollFactor);
     
-    repaint();
     
-    Model.renderSierpinskiTriangle(getGraphics(), fractalDepth, p1, p2, p3);
+    repaint();
     
   }
 
