@@ -76,11 +76,13 @@ public class Launcher extends JFrame {
     
     //
     JSpinner degreeSpinner = new JSpinner();
+    degreeSpinner.setToolTipText("Select the degree of the fractal");
     degreeSpinner.setModel(new SpinnerNumberModel(5, 1, 12, 1));
     degreeSpinner.setBounds(143, 235, 57, 68);
     contentPane.add(degreeSpinner);
     
     JSpinner resolutionSpinner = new JSpinner();
+    resolutionSpinner.setToolTipText("Select the resolution of the drawing canvas");
     resolutionSpinner.setModel(new SpinnerListModel(new String[] {"1024x576", "1152x648", "1280x720", "1366x768", "1600x900", "1920x1080"}));
     resolutionSpinner.setBounds(26, 235, 107, 68);
     contentPane.add(resolutionSpinner);
