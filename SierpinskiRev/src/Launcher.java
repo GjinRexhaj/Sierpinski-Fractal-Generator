@@ -117,32 +117,7 @@ public class Launcher extends JFrame {
         String[] splitString = stringResolution.split("x");
         
         
-        Control controlWindow = new Control(Integer.parseInt(splitString[0]), Integer.parseInt(splitString[1]), (Integer) degreeSpinner.getValue());
-      
-        
-        /*  try {
-    
-          // store user input in int vars
-          depthFieldInput = Integer.parseInt(fldDepthField.getText());
-          rezFieldInput = Integer.parseInt(fldResolutionField.getText());
-          
-          
-          // if fldDepthField > 9, create warningbox
-          if (Integer.parseInt(fldDepthField.getText()) > 9) {
-            // create warningbox
-            HighDegreeWarningBox w2 = new HighDegreeWarningBox();
-            w2.setVisible(true);
-          } else {
-            // create mainframe object
-            new Mainframe(depthFieldInput, rezFieldInput);
-            
-          }
-          
-        } catch (NumberFormatException exception) {
-          // if there isn't an int in textfields, display error box
-          RenderFailedBox renderFailed = new RenderFailedBox();
-          renderFailed.setVisible(true);
-        } */
+        new Control(Integer.parseInt(splitString[0]), Integer.parseInt(splitString[1]), (Integer) degreeSpinner.getValue());
         
       }
     });

@@ -87,6 +87,8 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     canvas.add(textArea);
     this.add(canvas);
     this.setVisible(true);
+    
+    
   }
   
   private class DrawCanvas extends JPanel {
@@ -189,4 +191,6 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     textArea.setText(description + " (" + e.getX() + ", " + e.getY() + ")" /* + 
     " detected on " + e.getComponent().getClass().getName() + "\n"*/);
   }
+  
+  
 }

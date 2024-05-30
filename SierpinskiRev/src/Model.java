@@ -16,7 +16,7 @@ public class Model extends JFrame {
   // IN PROCESS OF BEING MIGRATED, HAS A LOT OF UNUSED CODE
   
   // temp test placement
- public static void renderSierpinskiTriangle(Graphics g, int localDepth, Point p1, Point p2, Point p3) {
+  public static void renderSierpinskiTriangle(Graphics g, int localDepth, Point p1, Point p2, Point p3) {
    // base case
    if (localDepth == 0) {
      // draw degree 0 triangle
@@ -40,20 +40,19 @@ public class Model extends JFrame {
   
   
   
-  
-  // default depth of recursion: null- same as degree
+  // DEFAULT VALUES FOR TESTING PURPOSES
   private static int depth;;
-  
-  // iterator to iterate filenames
-  private static int iterator = 1;
+
   
   //Default size of window
-  
-
   public static Dimension size = new Dimension(800,600);
+  
+  
+  
   // where triangle renders
   public static Dimension RenderBox = new Dimension(500, 500);
   
+  /*
   private static int canvasWidth = (int)size.getWidth();
   private static int canvasHeight = (int)size.getHeight();
   
@@ -72,13 +71,16 @@ public class Model extends JFrame {
   public static Dimension getResolution() {
     return size;
   }
-  
+  */
   // construct future drawcanvas object
   private DrawCanvas canvas;
+  
+  
   
   // GUI setup
   public Model() {
     
+    /*
     //add savebutton
     JButton btnSaveButton = new JButton("SAVE");
     btnSaveButton.addActionListener(new ActionListener() {
@@ -107,17 +109,18 @@ public class Model extends JFrame {
     btnSaveButton.setBounds(25, 25, 80, 30);
     add(btnSaveButton);
     
+    */
     // set order to user specified
-    setDepth(depth);
+   // setDepth(depth);
     
     // set resolution to user specified- don't do this yet, make default
     // rez be monitor size, then freely resizable/scalable/scrollable
     // setResolution(rez);
-    setResolution(size);
+  //  setResolution(size);
     
     // create canvas with user input
     canvas = new DrawCanvas();
-    canvas.setPreferredSize(new Dimension(canvasWidth, canvasHeight));
+    canvas.setPreferredSize(new Dimension(800, 600));
     
     // set drawingcanvas as JFrame content pane
     Container cp = getContentPane();
@@ -126,12 +129,11 @@ public class Model extends JFrame {
     // more setup
     setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     pack();
-    setTitle(canvasWidth + "x" + canvasHeight + " | " + depth +"th order Sierpinski Fractal");
+    setTitle(800 + "x" + 600 + " | " + depth +"th order Sierpinski Fractal");
     setResizable(true);
     setAlwaysOnTop(false);
     setVisible(true);
   }
-  
   
   // inner class with polymorphic JPanel used for custom rendering
   private class DrawCanvas extends JPanel {
@@ -202,28 +204,12 @@ public class Model extends JFrame {
     
   }
 
-// main method to test stuff
+  // main method to test stuff
    public static void main(String[] args) {
      SwingUtilities.invokeLater(new Runnable() {
        @Override
        public void run() {
-
-         //command-line app
-
-         //Scanner s1 = new Scanner(System.in);
-         //System.out.println("WARNING: Entering too high of an 'n' value will make the program crash!");
-         //System.out.print("Enter n^th degree of Triangle to be generated: ");
-         //setDepth(s1.nextInt());
-         
-         setDepth(4);
-
-         //System.out.print("Specify canvas resolution (INPUTxINPUT): ");
-        // inputRez = s1.nextInt();
-         //setResolution(inputRez);
-
-         // test
          new Model();
-         //m1.saveImage("fractal", "png");
          System.out.println("main method end");
        }
      });           
