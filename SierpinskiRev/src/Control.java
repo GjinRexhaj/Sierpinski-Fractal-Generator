@@ -8,20 +8,29 @@ import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class Control extends JFrame implements MouseListener, MouseWheelListener, MouseMotionListener {
-  // instance variables of important scroller factors
+  
+  // how zoomed in the user is
   public int scrollFactor;
+  
+  // the speed at which scrolling zooms into the fractal
+  public double zoomSpeed = 1.1232;
+  
+  // TO-DO, implement and "infinite depth" setting which increments fractal
+  // depth when zoom level increases
   public int fractalDepth = 5;
   
+  // Test resolutions
   public int xResolution = 1280 + 17; //19 px taken up by unknown
   public int yResolution = 720 + 40; //40 px taken up by window header
   
+  // TO-DO, add click/drag functionality
   public double deflectionX = 0;
   public double deflectionY = 0;
   
   private DrawCanvas canvas;
-  
-  
-  Point p1 = new Point(xResolution / 2, 100); // 25: hardcoded margin offset var
+ 
+  // default point values for testing purposes: suited for 1280x720
+  Point p1 = new Point(xResolution / 2, 100); // 100 and 320 are hardcoded margin offset
   Point p2 = new Point(320, yResolution - 100); 
   Point p3 = new Point(xResolution - 320, yResolution - 100);
   
@@ -35,21 +44,29 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   
   // constructor
   public Control(int xRez, int yRez, int degree) {
+    // instance variables that facilitate communication between
+    // control and launcher
     xResolution = xRez;
     yResolution = yRez;
     fractalDepth = degree;
+    
+    
+    // default zoom points which adapt to the selected resolution
+    // 100 and 320 are hardcoded margins
+    p1.setLocation(xResolution / 2, 100 - scrollFactor);
+    p2.setLocation(320 - scrollFactor, yResolution - 100 + scrollFactor);
+    p3.setLocation(xResolution - 320 + scrollFactor, yResolution - 100 + scrollFactor);
+    
+    // textArea contains useful debug text (mouse drag position, scroll state, etc.)
+    // textArea.setText("TEXT AREA INITIALIZED"); //set text of label
     
     // GUI setup
     this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     this.setSize(xResolution,yResolution);
     this.setLayout(null);
     setResizable(false);
-
-    textArea.setText("TEXT AREA INITIALIZED"); //set text of label
-    
     setTitle("Fractal Viewer");
     setLocationRelativeTo(null);
-    
     canvas = new DrawCanvas();
     canvas.setBounds(0, 0, xResolution, yResolution);
     canvas.setOpaque(true);
@@ -57,13 +74,11 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     canvas.addMouseMotionListener(this);
     canvas.addMouseListener(this);
     canvas.add(textArea);
-    
     this.add(canvas);
     this.setVisible(true);
   }
   
   private class DrawCanvas extends JPanel {
-    
     
     @Override
     public void paintComponent(Graphics g) {
@@ -71,14 +86,6 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
       // drawcanvas setup
       super.paintComponent(g);
       setBackground(Color.WHITE);
-      
-      // TO-DO: MAKE SCROLL-PANEL SCALE WITH WINDOW-MAKE WINDOW RESIZABLE
-      // FOR EACH SCROLL, ZOOM IN ON WHERE MOUSE CURSOR IS POINTED, BY CHANGING
-      // POINTS P1-P3 IN ACCORDANCE WITH ZOOM AND RE-RENDERING THE FRACTAL
-      // ??-BASED ON ZOOM FACTOR, INCREASE DEGREE OF FRACTAL AND DISPOSE ANY NON-DISPLAYED POINTS
-      
-      
-      // create initial triangle: use Point objects in zoom square
       
       //call to recursive method which belongs in Model class
       Model.renderSierpinskiTriangle(g, fractalDepth, p1, p2, p3);
@@ -95,28 +102,29 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     int notches = e.getWheelRotation();
     System.out.println("scrollFactor: " + scrollFactor);
     
-    // mousePosX, and mousePosY
-    
     if (notches < 0) {
       textArea.setText("Mouse Wheel Up");
       scrollFactor += 1;
-      scrollFactor *= 1.1232;
+      scrollFactor *= zoomSpeed;
       
     } else {
       textArea.setText("Mouse Wheel Down");
       scrollFactor -= 1;
-      scrollFactor /= 1.1232;
+      scrollFactor /= zoomSpeed;
     }
     
+    // adjust three points then run recursive method to
+    // draw new "zoomed in" triangle
+    // 100 and 320 are hardcoded margins
     p1.setLocation(xResolution / 2, 100 - scrollFactor);
     p2.setLocation(320 - scrollFactor, yResolution - 100 + scrollFactor);
     p3.setLocation(xResolution - 320 + scrollFactor, yResolution - 100 + scrollFactor);
-    
-    
     repaint();
     
   }
 
+
+  // debug and unused overriden mouse event methods
   @Override
   public void mouseClicked(MouseEvent e) {
     // TODO Auto-generated method stub
