@@ -30,11 +30,15 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   
   // main method
   public static void main(String[] args) {
-    new Control();
+    new Control(1280 + 17, 720 + 40, 4);
   }
   
   // constructor
-  public Control() {
+  public Control(int xRez, int yRez, int degree) {
+    xResolution = xRez;
+    yResolution = yRez;
+    fractalDepth = degree;
+    
     // GUI setup
     this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     this.setSize(xResolution,yResolution);
