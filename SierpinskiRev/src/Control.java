@@ -1,13 +1,22 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.awt.event.MouseWheelEvent;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class Control extends JFrame implements MouseListener, MouseWheelListener, MouseMotionListener {
+  
+  // static iterator variable for save image name incrementing
+  public static int iterator = 1;
   
   // how zoomed in the user is
   public int scrollFactor;
@@ -34,8 +43,8 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   Point p2 = new Point(320, yResolution - 100); 
   Point p3 = new Point(xResolution - 320, yResolution - 100);
   
-  
-  JLabel textArea = new JLabel(); //create a label
+  //create a label which displays useful debug information
+  JLabel textArea = new JLabel(); 
   
   // main method
   public static void main(String[] args) {
@@ -44,6 +53,8 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   
   // constructor
   public Control(int xRez, int yRez, int degree) {
+    //TO-DO: Add "save image" button outside of drawingCanvas
+    
     // instance variables that facilitate communication between
     // control and launcher
     xResolution = xRez;
@@ -179,4 +190,3 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     " detected on " + e.getComponent().getClass().getName() + "\n"*/);
   }
 }
-  
