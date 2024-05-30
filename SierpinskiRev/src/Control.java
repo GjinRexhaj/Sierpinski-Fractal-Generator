@@ -15,9 +15,8 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   public int xResolution = 1280 + 17; //19 px taken up by unknown
   public int yResolution = 720 + 40; //40 px taken up by window header
   
-  public double scale = 1;
-  public double focusX = 0;
-  public double focusY = 0;
+  public double deflectionX = 0;
+  public double deflectionY = 0;
   
   private DrawCanvas canvas;
   
