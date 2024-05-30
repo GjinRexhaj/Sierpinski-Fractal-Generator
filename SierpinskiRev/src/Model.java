@@ -10,6 +10,7 @@ import java.io.File;
 import javax.imageio.ImageIO;
 
 
+@SuppressWarnings("serial")
 public class Model extends JFrame {
   
   // CLASS WHICH CONTAINS ALL FRACTAL ALGORITHMS,
