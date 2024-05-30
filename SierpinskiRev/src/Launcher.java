@@ -110,16 +110,12 @@ public class Launcher extends JFrame {
     btnGenerateButton.setToolTipText("Click to generate fractal with specified parameters, this will render the fractal on a new window independent of the program.");
     btnGenerateButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
+        // split <resolution>x<resolution> from JSpinner into
+        // two seperate strings, parse strings as int and
+        // pass them into the control/view constructor
         String stringResolution = (String)resolutionSpinner.getValue();
         String[] splitString = stringResolution.split("x");
         
-        System.out.println(stringResolution);
-        System.out.println(splitString[0]);
-        System.out.println(splitString[1]);
-        
-        
-        //int xRes = Integer.parseInt(stringResolution.split("x"));
-        //int yRes = 
         
         Control controlWindow = new Control(Integer.parseInt(splitString[0]), Integer.parseInt(splitString[1]), (Integer) degreeSpinner.getValue());
       
