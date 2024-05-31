@@ -88,7 +88,33 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     this.add(canvas);
     this.setVisible(true);
     
+    //add savebutton
+    JButton btnSaveButton = new JButton("SAVE");
+    btnSaveButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        // hide button while screenshot processes
+        btnSaveButton.setEnabled(false);
+        btnSaveButton.setVisible(false);
+        
+        System.out.println("save button hit");
+
+        // save image
+        saveImage("fractal_" + iterator, "png", xResolution, yResolution);
+        iterator++;
+        
+        // TO-DO, add subtext that briefly mentions "image saved to <directory>
+        btnSaveButton.setEnabled(true);
+        btnSaveButton.setVisible(true);
+      }
+    });
     
+    // Create save button
+    btnSaveButton.setToolTipText("Click to save the latest generated fractal as a .png image.");
+    btnSaveButton.setForeground(Color.BLACK);
+    btnSaveButton.setFont(new Font("Tahoma", Font.PLAIN, 9));
+    btnSaveButton.setBackground(Color.CYAN);
+    btnSaveButton.setBounds(0, yResolution - 75, 80, 36);
+    add(btnSaveButton);
   }
   
   private class DrawCanvas extends JPanel {
@@ -191,6 +217,21 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     textArea.setText(description + " (" + e.getX() + ", " + e.getY() + ")" /* + 
     " detected on " + e.getComponent().getClass().getName() + "\n"*/);
   }
-  
+
+  // method to save canvas as image
+  public void saveImage(String name, String type, int width, int height) {
+    // configure new buffered image object
+    BufferedImage image = new BufferedImage(width+16, height+25, BufferedImage.TYPE_INT_RGB);
+    Graphics2D g2 = (Graphics2D) image.getGraphics();
+    printAll(g2);
+    
+    try {
+      ImageIO.write(image, type, new File(name + "." + type));
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    
+  }
+
   
 }
