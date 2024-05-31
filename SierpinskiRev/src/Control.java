@@ -53,6 +53,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   
   // constructor
   public Control(int xRez, int yRez, int degree) {
+    setIconImage(Toolkit.getDefaultToolkit().getImage(Launcher.class.getResource("/resources/fractalIcon.png")));
     //TO-DO: Add "save image" button outside of drawingCanvas
     
     // instance variables that facilitate communication between
