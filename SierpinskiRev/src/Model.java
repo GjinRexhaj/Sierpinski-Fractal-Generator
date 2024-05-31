@@ -18,28 +18,24 @@ public class Model extends JFrame {
   
   // temp test placement
   public static void renderSierpinskiTriangle(Graphics g, int localDepth, Point p1, Point p2, Point p3) {
-   // base case
-   if (localDepth == 0) {
-     // draw degree 0 triangle
-     drawLine(g, p1, p2);
-     drawLine(g, p2, p3);
-     drawLine(g, p3, p1);
-     return;
-   }
-   // 
+    // base case
+    if (localDepth == 0) {
+      // draw degree 0 triangle
+      drawLine(g, p1, p2);
+      drawLine(g, p2, p3);
+      drawLine(g, p3, p1);
+      return;
+    }
+    
    
-   // recursive case, 3 layers of recursion
-   Point midOneTwo = midpoint(p1,p2);
-   Point midTwoThr = midpoint(p2,p3);
-   Point midThrOne = midpoint(p3,p1);
-   renderSierpinskiTriangle(g, localDepth - 1, p1, midOneTwo, midThrOne);
-   renderSierpinskiTriangle(g, localDepth - 1, midOneTwo, p2, midTwoThr);
-   renderSierpinskiTriangle(g, localDepth - 1, midThrOne, midTwoThr, p3);
- }
-  
-  
-  
-  
+    // recursive case, 3 layers of recursion
+    Point midOneTwo = midpoint(p1,p2);
+    Point midTwoThr = midpoint(p2,p3);
+    Point midThrOne = midpoint(p3,p1);
+    renderSierpinskiTriangle(g, localDepth - 1, p1, midOneTwo, midThrOne);
+    renderSierpinskiTriangle(g, localDepth - 1, midOneTwo, p2, midTwoThr);
+    renderSierpinskiTriangle(g, localDepth - 1, midThrOne, midTwoThr, p3);
+  }
   
   // DEFAULT VALUES FOR TESTING PURPOSES
   private static int depth;;
@@ -52,73 +48,12 @@ public class Model extends JFrame {
   
   // where triangle renders
   public static Dimension RenderBox = new Dimension(500, 500);
-  
-  /*
-  private static int canvasWidth = (int)size.getWidth();
-  private static int canvasHeight = (int)size.getHeight();
-  
-  // setDepth of sierpinski triangle method
-  public static void setDepth(int input) {
-    depth = input;
-  }
-  
-  // setResolution of window method
-  public static void setResolution(Dimension input) {
-    canvasWidth = (int)input.getWidth();
-    canvasHeight = (int)input.getHeight();
-  }
-  
-  //getResolution of window method
-  public static Dimension getResolution() {
-    return size;
-  }
-  */
-  // construct future drawcanvas object
   private DrawCanvas canvas;
   
   
   
   // GUI setup
   public Model() {
-    
-    /*
-    //add savebutton
-    JButton btnSaveButton = new JButton("SAVE");
-    btnSaveButton.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        // hide button while screenshot processes
-        btnSaveButton.setEnabled(false);
-        btnSaveButton.setVisible(false);
-        
-
-        // save image
-        saveImage("fractal_" + iterator, "png", (int)getResolution().getWidth(), (int)getResolution().getWidth());
-        iterator++;
-        
-        // change button to textbox that says "Saved!"
-        // TO-DO, add subtext that briefly mentions "image saved to <directory>
-        btnSaveButton.setEnabled(true);
-        btnSaveButton.setVisible(true);
-      }
-    });
-    
-    // Create save button
-    btnSaveButton.setToolTipText("Click to save the latest generated fractal as a .png image.");
-    btnSaveButton.setForeground(Color.BLACK);
-    btnSaveButton.setFont(new Font("Tahoma", Font.PLAIN, 9));
-    btnSaveButton.setBackground(Color.CYAN);
-    btnSaveButton.setBounds(25, 25, 80, 30);
-    add(btnSaveButton);
-    
-    */
-    // set order to user specified
-   // setDepth(depth);
-    
-    // set resolution to user specified- don't do this yet, make default
-    // rez be monitor size, then freely resizable/scalable/scrollable
-    // setResolution(rez);
-  //  setResolution(size);
-    
     // create canvas with user input
     canvas = new DrawCanvas();
     canvas.setPreferredSize(new Dimension(800, 600));
@@ -188,21 +123,6 @@ public class Model extends JFrame {
     renderTriangles(g, localDepth - 1, p1, midOneTwo, midThrOne);
     renderTriangles(g, localDepth - 1, midOneTwo, p2, midTwoThr);
     renderTriangles(g, localDepth - 1, midThrOne, midTwoThr, p3);
-  }
-  
-  // method to save canvas as image
-  public void saveImage(String name, String type, int width, int height) {
-    // configure new buffered image object
-    BufferedImage image = new BufferedImage(width+16, height+25, BufferedImage.TYPE_INT_RGB);
-    Graphics2D g2 = (Graphics2D) image.getGraphics();
-    printAll(g2);
-    
-    try {
-      ImageIO.write(image, type, new File(name + "." + type));
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    
   }
 
   // main method to test stuff
