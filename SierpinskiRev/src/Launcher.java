@@ -7,19 +7,17 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.Color;
-import javax.swing.JTextField;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
-import javax.swing.SwingConstants;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.SpinnerListModel;
 
-public class ControlPanel extends JFrame {
+public class Launcher extends JFrame {
 
   private static final long serialVersionUID = 1L;
   private JPanel contentPane;
-  private JTextField fldDepthField;
-  private JTextField fldResolutionField;
 
   private static int depthFieldInput;
   private static int rezFieldInput;
@@ -41,7 +39,7 @@ public class ControlPanel extends JFrame {
     EventQueue.invokeLater(new Runnable() {
       public void run() {
         try {
-          ControlPanel frame = new ControlPanel();
+          Launcher frame = new Launcher();
           frame.setVisible(true);
         } catch (Exception e) {
           e.printStackTrace();
@@ -53,12 +51,12 @@ public class ControlPanel extends JFrame {
   /**
    * Create the frame.
    */
-  public ControlPanel() {
-    setIconImage(Toolkit.getDefaultToolkit().getImage(ControlPanel.class.getResource("/resources/fractalIcon.png")));
+  public Launcher() {
+    setIconImage(Toolkit.getDefaultToolkit().getImage(Launcher.class.getResource("/resources/fractalIcon.png")));
     setAlwaysOnTop(false);
     setTitle("Java Fractal Generator");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setBounds(100, 100, 523, 453);
+    setBounds(100, 100, 529, 453);
     contentPane = new JPanel();
     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
     setResizable(false);
@@ -76,17 +74,31 @@ public class ControlPanel extends JFrame {
     lblCredits.setBounds(25, 65, 321, 14);
     contentPane.add(lblCredits);
     
+    //
+    JSpinner degreeSpinner = new JSpinner();
+    degreeSpinner.setToolTipText("Select the degree of the fractal");
+    degreeSpinner.setModel(new SpinnerNumberModel(5, 1, 12, 1));
+    degreeSpinner.setBounds(143, 235, 57, 68);
+    contentPane.add(degreeSpinner);
+    
+    JSpinner resolutionSpinner = new JSpinner();
+    resolutionSpinner.setToolTipText("Select the resolution of the drawing canvas");
+    resolutionSpinner.setModel(new SpinnerListModel(new String[] {"1024x576", "1152x648", "1280x720", "1366x768", "1600x900", "1920x1080"}));
+    resolutionSpinner.setBounds(26, 235, 107, 68);
+    contentPane.add(resolutionSpinner);
+    //
+    
     JLabel lblInfo = new JLabel("This program generates an \"nth\" order Sierpinski gasket on a seperate window. \r\n");
     lblInfo.setFont(new Font("Tahoma", Font.PLAIN, 13));
     lblInfo.setBounds(25, 103, 485, 39);
     contentPane.add(lblInfo);
     
-    JLabel lblMoreInfo = new JLabel("The 'n' value and resolution of the square drawing canvas are user specifiable.\r\n");
+    JLabel lblMoreInfo = new JLabel("The 'n' value and resolution of the rendered canvas are user specifiable.\r\n");
     lblMoreInfo.setFont(new Font("Tahoma", Font.PLAIN, 13));
     lblMoreInfo.setBounds(25, 122, 461, 39);
     contentPane.add(lblMoreInfo);
     
-    JLabel lblVersion = new JLabel("Version 1.2,   github.com/gjinrexhaj,   implemented with Java Swing and AWT");
+    JLabel lblVersion = new JLabel("Version 2.0,   github.com/gjinrexhaj,   implemented with Java Swing and AWT");
     lblVersion.setBounds(10, 389, 541, 14);
     contentPane.add(lblVersion);
     
@@ -94,60 +106,28 @@ public class ControlPanel extends JFrame {
     btnGenerateButton.setToolTipText("Click to generate fractal with specified parameters, this will render the fractal on a new window independent of the program.");
     btnGenerateButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
+        // split <resolution>x<resolution> from JSpinner into
+        // two seperate strings, parse strings as int and
+        // pass them into the control/view constructor
+        String stringResolution = (String)resolutionSpinner.getValue();
+        String[] splitString = stringResolution.split("x");
         
-        try {
-    
-          // store user input in int vars
-          depthFieldInput = Integer.parseInt(fldDepthField.getText());
-          rezFieldInput = Integer.parseInt(fldResolutionField.getText());
-          
-          
-          // if fldDepthField > 9, create warningbox
-          if (Integer.parseInt(fldDepthField.getText()) > 9) {
-            // create warningbox
-            HighDegreeWarningBox w2 = new HighDegreeWarningBox();
-            w2.setVisible(true);
-          } else {
-            // create mainframe object
-            new Mainframe(depthFieldInput, rezFieldInput);
-            
-          }
-          
-        } catch (NumberFormatException exception) {
-          // if there isn't an int in textfields, display error box
-          RenderFailedBox renderFailed = new RenderFailedBox();
-          renderFailed.setVisible(true);
-        }
+        
+        new Control(Integer.parseInt(splitString[0]), Integer.parseInt(splitString[1]), (Integer) degreeSpinner.getValue());
         
       }
     });
     btnGenerateButton.setForeground(Color.BLACK);
     btnGenerateButton.setBackground(Color.GREEN);
     btnGenerateButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-    btnGenerateButton.setBounds(226, 176, 130, 68);
+    btnGenerateButton.setBounds(255, 235, 130, 68);
     contentPane.add(btnGenerateButton);
     
-    fldDepthField = new JTextField();
-    fldDepthField.setToolTipText("Input a single integer value (any positive number under 10 is recommended)");
-    fldDepthField.setBounds(130, 215, 86, 29);
-    contentPane.add(fldDepthField);
-    fldDepthField.setColumns(10);
-    
-    fldResolutionField = new JTextField();
-    fldResolutionField.setToolTipText("Input a single integer value (600 is recommended)");
-    fldResolutionField.setColumns(10);
-    fldResolutionField.setBounds(130, 176, 86, 29);
-    contentPane.add(fldResolutionField);
-    
-    JLabel lblDegLabel = new JLabel("Degree:");
-    lblDegLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-    lblDegLabel.setBounds(53, 210, 82, 38);
-    contentPane.add(lblDegLabel);
-    
-    JLabel lblResolution = new JLabel("Resolution:");
+    JLabel lblResolution = new JLabel("Resolution and Degree");
     lblResolution.setFont(new Font("Tahoma", Font.PLAIN, 20));
-    lblResolution.setBounds(25, 177, 110, 29);
+    lblResolution.setBounds(25, 195, 217, 29);
     contentPane.add(lblResolution);
+    
     
   }
 }
