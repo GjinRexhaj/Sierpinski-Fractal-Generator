@@ -69,7 +69,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     p3.setLocation(xResolution - 320 + scrollFactor, yResolution - 100 + scrollFactor);
     
     // textArea contains useful debug text (mouse drag position, scroll state, etc.)
-    // textArea.setText("TEXT AREA INITIALIZED"); //set text of label
+    //textArea.setLocation(0, yResolution - 75);
     
     // GUI setup
     this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
