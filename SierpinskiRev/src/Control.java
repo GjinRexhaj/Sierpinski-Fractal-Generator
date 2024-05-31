@@ -88,8 +88,32 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     this.add(canvas);
     this.setVisible(true);
     
+    // TO-DO: add analysis button which opens seperate dialog box
+    // which displays details about what's being viewed
+    /*
+    //add analysis button
+    JButton btnAnalysisButton = new JButton("ANALYSIS");
+    btnAnalysisButton.setToolTipText("Click to open fractal analysis window.");
+    btnAnalysisButton.setForeground(Color.BLACK);
+    btnAnalysisButton.setFont(new Font("Tahoma", Font.PLAIN, 9));
+    btnAnalysisButton.setBackground(Color.LIGHT_GRAY);
+    btnAnalysisButton.setBounds(80, yResolution - 75, 100, 36);
+    add(btnAnalysisButton);
+    btnAnalysisButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        
+      }
+    });
+    */
+    
     //add savebutton
     JButton btnSaveButton = new JButton("SAVE");
+    btnSaveButton.setToolTipText("Click to save the latest generated fractal as a .png image.");
+    btnSaveButton.setForeground(Color.BLACK);
+    btnSaveButton.setFont(new Font("Tahoma", Font.PLAIN, 9));
+    btnSaveButton.setBackground(Color.CYAN);
+    btnSaveButton.setBounds(0, yResolution - 75, 80, 36);
+    add(btnSaveButton);
     btnSaveButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         // hide button while screenshot processes
@@ -107,14 +131,6 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
         btnSaveButton.setVisible(true);
       }
     });
-    
-    // Create save button
-    btnSaveButton.setToolTipText("Click to save the latest generated fractal as a .png image.");
-    btnSaveButton.setForeground(Color.BLACK);
-    btnSaveButton.setFont(new Font("Tahoma", Font.PLAIN, 9));
-    btnSaveButton.setBackground(Color.CYAN);
-    btnSaveButton.setBounds(0, yResolution - 75, 80, 36);
-    add(btnSaveButton);
   }
   
   private class DrawCanvas extends JPanel {
@@ -142,12 +158,12 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     System.out.println("scrollFactor: " + scrollFactor);
     
     if (notches < 0) {
-      textArea.setText("Mouse Wheel Up");
+      //textArea.setText("Mouse Wheel Up");
       scrollFactor += 1;
       scrollFactor *= zoomSpeed;
       
     } else {
-      textArea.setText("Mouse Wheel Down");
+      //textArea.setText("Mouse Wheel Down");
       scrollFactor -= 1;
       scrollFactor /= zoomSpeed;
     }
@@ -186,20 +202,20 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   @Override
   public void mouseEntered(MouseEvent e) {
     // TODO Auto-generated method stub
-    textArea.setText("Mouse entered");
+    //textArea.setText("Mouse entered");
   }
 
   @Override
   public void mouseExited(MouseEvent e) {
     // TODO Auto-generated method stub
-    textArea.setText("Mouse exited");
+    //textArea.setText("Mouse exited");
     
   }
 
   @Override
   public void mouseDragged(MouseEvent e) {
     // TODO Auto-generated method stub
-    mouseTracker("Mouse dragged", e);
+    //mouseTracker("Mouse dragged", e);
     
   }
 
@@ -207,16 +223,16 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   public void mouseMoved(MouseEvent e) {
     // TODO Auto-generated method stub
     // mouseTracker("Mouse moved", e); // commented out as it keeps running paintComponent
-    int mousePosX = e.getX();
-    int mousePosY = e.getY();
+    //int mousePosX = e.getX();
+    //int mousePosY = e.getY();
     
   } 
   
   // method to display crucial mouse info
-  private void mouseTracker(String description, MouseEvent e) {
+  /* private void mouseTracker(String description, MouseEvent e) {
     textArea.setText(description + " (" + e.getX() + ", " + e.getY() + ")" /* + 
-    " detected on " + e.getComponent().getClass().getName() + "\n"*/);
-  }
+    " detected on " + e.getComponent().getClass().getName() + "\n"); 
+  }  */
 
   // method to save canvas as image
   public void saveImage(String name, String type, int width, int height) {
