@@ -237,7 +237,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   // method to save canvas as image
   public void saveImage(String name, String type, int width, int height) {
     // configure new buffered image object
-    BufferedImage image = new BufferedImage(width+16, height+25, BufferedImage.TYPE_INT_RGB);
+    BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
     Graphics2D g2 = (Graphics2D) image.getGraphics();
     printAll(g2);
     
