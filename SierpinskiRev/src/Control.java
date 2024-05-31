@@ -44,7 +44,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   Point p3 = new Point(xResolution - 320, yResolution - 100);
   
   //create a label which displays useful debug information
-  JLabel textArea = new JLabel(); 
+  JLabel textArea = new JLabel();
   
   // main method
   public static void main(String[] args) {
@@ -79,7 +79,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     setTitle("Fractal Viewer");
     setLocationRelativeTo(null);
     canvas = new DrawCanvas();
-    canvas.setBounds(0, 0, xResolution, yResolution);
+    canvas.setBounds(0, 0, xResolution, yResolution - 75);
     canvas.setOpaque(true);
     canvas.addMouseWheelListener(this);
     canvas.addMouseMotionListener(this);
