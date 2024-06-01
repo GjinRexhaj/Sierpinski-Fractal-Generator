@@ -1,7 +1,7 @@
 # Sierpinski-Fractal-Generator
 A Java GUI program which renders an "nth" order Sierpinski gasket. The canvas size and degree of the rendered Sierpinski gasket are user-specified.
 
-# Prerequisites
+## Prerequisites
 To run this program, your computer must hava Java. Ignore this process if you have it installed.
 
 1. Navigate to the official Java downloads page: https://www.java.com/download/ie_manual.jsp
