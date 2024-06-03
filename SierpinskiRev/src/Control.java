@@ -33,9 +33,13 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   public int yResolution = 720 + 40; //40 px taken up by window header
   
   // TO-DO, add click/drag functionality
-  public double deflectionX = 0;
-  public double deflectionY = 0;
+  //public double deflectionX = 0;
+  //public double deflectionY = 0;
   
+  //box where triangle will render inside of
+  public RenderBounds box = new RenderBounds();
+  
+  // create canvas
   private DrawCanvas canvas;
  
   // default point values for testing purposes: suited for 1280x720
@@ -44,7 +48,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   Point p3 = new Point(xResolution - 320, yResolution - 100);
   
   //create a label which displays useful debug information
-  JLabel textArea = new JLabel();
+  //JLabel textArea = new JLabel();
   
   // main method
   public static void main(String[] args) {
@@ -54,7 +58,6 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   // constructor
   public Control(int xRez, int yRez, int degree) {
     setIconImage(Toolkit.getDefaultToolkit().getImage(Launcher.class.getResource("/resources/fractalIcon.png")));
-    //TO-DO: Add "save image" button outside of drawingCanvas
     
     // instance variables that facilitate communication between
     // control and launcher
@@ -62,12 +65,13 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     yResolution = yRez;
     fractalDepth = degree;
     
+    // set size of RenderBounds box for triangle
+    box.setSize(yResolution);
     
     // default zoom points which adapt to the selected resolution
-    // 100 and 320 are hardcoded margins
-    p1.setLocation(xResolution / 2, 100 - scrollFactor);
-    p2.setLocation(320 - scrollFactor, yResolution - 100 + scrollFactor);
-    p3.setLocation(xResolution - 320 + scrollFactor, yResolution - 100 + scrollFactor);
+    p1.setLocation(xResolution/2, 0 - scrollFactor);
+    p2.setLocation(box.calculateHorizontalMargin(xResolution) - scrollFactor, box.getHeight() + scrollFactor);
+    p3.setLocation(xResolution - box.calculateHorizontalMargin(xResolution) + scrollFactor, box.getHeight() + scrollFactor);
     
     // textArea contains useful debug text (mouse drag position, scroll state, etc.)
     //textArea.setLocation(0, yResolution - 75);
@@ -85,7 +89,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     canvas.addMouseWheelListener(this);
     canvas.addMouseMotionListener(this);
     canvas.addMouseListener(this);
-    canvas.add(textArea);
+    //canvas.add(textArea);
     this.add(canvas);
     this.setVisible(true);
     
@@ -160,21 +164,27 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     
     if (notches < 0) {
       //textArea.setText("Mouse Wheel Up");
-      scrollFactor += 1;
+      scrollFactor += 8;
       scrollFactor *= zoomSpeed;
       
     } else {
       //textArea.setText("Mouse Wheel Down");
-      scrollFactor -= 1;
+      scrollFactor -= 8;
       scrollFactor /= zoomSpeed;
     }
     
     // adjust three points then run recursive method to
     // draw new "zoomed in" triangle
-    // 100 and 320 are hardcoded margins
-    p1.setLocation(xResolution / 2, 100 - scrollFactor);
-    p2.setLocation(320 - scrollFactor, yResolution - 100 + scrollFactor);
-    p3.setLocation(xResolution - 320 + scrollFactor, yResolution - 100 + scrollFactor);
+    p1.setLocation(xResolution/2, 0 - scrollFactor);
+    p2.setLocation(box.calculateHorizontalMargin(xResolution) - scrollFactor, box.getHeight() + scrollFactor);
+    p3.setLocation(xResolution - box.calculateHorizontalMargin(xResolution) + scrollFactor, box.getHeight() + scrollFactor);
+    //p1.setLocation(xResolution / 2, 100 - scrollFactor);
+    //p2.setLocation(320 - scrollFactor, yResolution - 100 + scrollFactor);
+    //p3.setLocation(xResolution - 320 + scrollFactor, yResolution - 100 + scrollFactor);
+    
+    System.out.println(box.getSize());
+    System.out.println(box.getHeight());
+    
     repaint();
     
   }
