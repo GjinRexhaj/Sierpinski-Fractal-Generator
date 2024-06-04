@@ -24,9 +24,6 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   // the speed at which scrolling zooms into the fractal
   public double zoomSpeed = 1.1232;
   
-  // speed at which the click and drag pans the fractal
-  // is set equal to half the fractaldepth in constructor
-  
   // TO-DO, implement and "infinite depth" setting which increments fractal
   // depth when zoom level increases
   public int fractalDepth = 5;
