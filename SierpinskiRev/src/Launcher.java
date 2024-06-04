@@ -111,7 +111,6 @@ public class Launcher extends JFrame {
     btnGenerateButton.setBounds(255, 235, 130, 68);
     contentPane.add(btnGenerateButton);
     
-    
     JLabel lblResolution = new JLabel("Resolution and Degree");
     lblResolution.setFont(new Font("Tahoma", Font.PLAIN, 20));
     lblResolution.setBounds(25, 195, 217, 29);

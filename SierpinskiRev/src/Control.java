@@ -7,7 +7,6 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.Vector;
 import java.awt.event.MouseWheelEvent;
 
 import javax.imageio.ImageIO;
@@ -25,6 +24,9 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   // the speed at which scrolling zooms into the fractal
   public double zoomSpeed = 1.1232;
   
+  // speed at which the click and drag pans the fractal
+  // is set equal to half the fractaldepth in constructor
+  
   // TO-DO, implement and "infinite depth" setting which increments fractal
   // depth when zoom level increases
   public int fractalDepth = 5;
@@ -34,8 +36,8 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   public int yResolution = 720 + 40; //40 px taken up by window header
   
   // TO-DO, add click/drag functionality
-  public int deflectionX = 0;
-  public int deflectionY = 0;
+  public double deflectionX = 0;
+  public double deflectionY = 0;
   
   //box where triangle will render inside of
   public RenderBounds box = new RenderBounds();
