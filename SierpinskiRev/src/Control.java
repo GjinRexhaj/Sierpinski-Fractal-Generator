@@ -175,12 +175,9 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     
     // adjust three points then run recursive method to
     // draw new "zoomed in" triangle
-    p1.setLocation(xResolution/2 + deflectionX, 0 + deflectionY);
+    p1.setLocation(xResolution/2 + deflectionX, 0 - scrollFactor + deflectionY);
     p2.setLocation(box.calculateHorizontalMargin(xResolution) - scrollFactor + deflectionX, box.getHeight() + scrollFactor + deflectionY);
     p3.setLocation(xResolution - box.calculateHorizontalMargin(xResolution) + scrollFactor + deflectionX, box.getHeight() + scrollFactor + deflectionY);
-    //p1.setLocation(xResolution / 2, 100 - scrollFactor);
-    //p2.setLocation(320 - scrollFactor, yResolution - 100 + scrollFactor);
-    //p3.setLocation(xResolution - 320 + scrollFactor, yResolution - 100 + scrollFactor);
     
     System.out.println(box.getSize());
     System.out.println(box.getHeight());
@@ -252,8 +249,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
       originalY = e.getY();
     }
     
-    
-    p1.setLocation(xResolution/2 + deflectionX, 0 + deflectionY);
+    p1.setLocation(xResolution/2 + deflectionX, 0 - scrollFactor + deflectionY);
     p2.setLocation(box.calculateHorizontalMargin(xResolution) - scrollFactor + deflectionX, box.getHeight() + scrollFactor + deflectionY);
     p3.setLocation(xResolution - box.calculateHorizontalMargin(xResolution) + scrollFactor + deflectionX, box.getHeight() + scrollFactor + deflectionY);
     repaint();
