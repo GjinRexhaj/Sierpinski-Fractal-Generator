@@ -33,8 +33,8 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   public int yResolution = 720 + 40; //40 px taken up by window header
   
   // TO-DO, add click/drag functionality
-  //public double deflectionX = 0;
-  //public double deflectionY = 0;
+  public double deflectionX = 0;
+  public double deflectionY = 0;
   
   //box where triangle will render inside of
   public RenderBounds box = new RenderBounds();
@@ -175,9 +175,9 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     
     // adjust three points then run recursive method to
     // draw new "zoomed in" triangle
-    p1.setLocation(xResolution/2, 0 - scrollFactor);
-    p2.setLocation(box.calculateHorizontalMargin(xResolution) - scrollFactor, box.getHeight() + scrollFactor);
-    p3.setLocation(xResolution - box.calculateHorizontalMargin(xResolution) + scrollFactor, box.getHeight() + scrollFactor);
+    p1.setLocation(xResolution/2 + deflectionX, 0 + deflectionY);
+    p2.setLocation(box.calculateHorizontalMargin(xResolution) - scrollFactor + deflectionX, box.getHeight() + scrollFactor + deflectionY);
+    p3.setLocation(xResolution - box.calculateHorizontalMargin(xResolution) + scrollFactor + deflectionX, box.getHeight() + scrollFactor + deflectionY);
     //p1.setLocation(xResolution / 2, 100 - scrollFactor);
     //p2.setLocation(320 - scrollFactor, yResolution - 100 + scrollFactor);
     //p3.setLocation(xResolution - 320 + scrollFactor, yResolution - 100 + scrollFactor);
@@ -198,9 +198,15 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
 
   }
 
+  
+  // variables so the program knows which direction mouse is being dragged
+  public int originalX;
+  public int originalY;
+  
   @Override
   public void mousePressed(MouseEvent e) {
-    // TODO Auto-generated method stub
+    originalX = e.getX();
+    originalY = e.getY();
     
   }
 
@@ -225,9 +231,32 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
 
   @Override
   public void mouseDragged(MouseEvent e) {
-    // TODO Auto-generated method stub
-    //mouseTracker("Mouse dragged", e);
+    // increment deflectionX if dragged right
+    // decrement deflectionX if dragged left
+    if (e.getX() > originalX) {
+      deflectionX++;
+      originalX = e.getX();
+    } else if (e.getX() < originalX) {
+      deflectionX--;
+      originalX = e.getX();
+    }
     
+    // increment deflectionY if dragged up
+    // decrement deflectionY if dragged down
+    // NOTE Y AXIS IS INVERTED IN JAVA!
+    if (e.getY() > originalY) {
+      deflectionY++;
+      originalY = e.getY();
+    } else if (e.getY() < originalY) {
+      deflectionY--;
+      originalY = e.getY();
+    }
+    
+    
+    p1.setLocation(xResolution/2 + deflectionX, 0 + deflectionY);
+    p2.setLocation(box.calculateHorizontalMargin(xResolution) - scrollFactor + deflectionX, box.getHeight() + scrollFactor + deflectionY);
+    p3.setLocation(xResolution - box.calculateHorizontalMargin(xResolution) + scrollFactor + deflectionX, box.getHeight() + scrollFactor + deflectionY);
+    repaint();
   }
 
   @Override
@@ -240,10 +269,10 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   } 
   
   // method to display crucial mouse info
-  /* private void mouseTracker(String description, MouseEvent e) {
-    textArea.setText(description + " (" + e.getX() + ", " + e.getY() + ")" /* + 
-    " detected on " + e.getComponent().getClass().getName() + "\n"); 
-  }  */
+  //private void mouseTracker(String description, MouseEvent e) {
+  //  System.out.println(description + " (" + e.getX() + ", " + e.getY() + ")" + 
+  //  " detected on " + e.getComponent().getClass().getName() + "\n");
+  //}  
 
   // method to save canvas as image
   public void saveImage(String name, String type, int width, int height) {
@@ -257,8 +286,5 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     } catch (Exception e) {
       e.printStackTrace();
     }
-    
   }
-
-  
 }
