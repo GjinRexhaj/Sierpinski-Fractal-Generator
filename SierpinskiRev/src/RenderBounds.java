@@ -1,25 +1,27 @@
-// custom class, objects of this class contain a Width and Height int variable, with get/set methods
+// custom class used to create a rectangle which bounds an equilateral triangle
+// objects of this class contain a Width and Height int variable, with get/set methods
+
 public class RenderBounds {
 
-  private int size;
+  private int width;
   private int height;
   
-  public RenderBounds(int size) {
-    size = this.size;
-    height = (int) (this.size *(Math.sqrt(3)/2));
+  public RenderBounds(int input) {
+    width = input;
+    height = (int) (this.width *(Math.sqrt(3)/2));
   }
   
   public RenderBounds() {
   
   }
   
-  public void setSize(int input) {
-    size = input;
-    height = (int) (this.size *(Math.sqrt(3)/2));
+  public void setWidth(int input) {
+    width = input;
+    height = (int) (this.width *(Math.sqrt(3)/2));
   }
   
-  public int getSize() {
-    return size;
+  public int getWidth() {
+    return width;
   }
   
   public int getHeight() {
@@ -28,10 +30,10 @@ public class RenderBounds {
   
   
   public int getCenter() {
-    return size / 2;
+    return width / 2;
   }
   
   public int calculateHorizontalMargin(int parentWidth) {
-    return (parentWidth / 2) - (size / 2);
+    return (parentWidth / 2) - (width / 2);
   }
 }

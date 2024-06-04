@@ -66,7 +66,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     fractalDepth = degree;
     
     // set size of RenderBounds box for triangle
-    box.setSize(yResolution);
+    box.setWidth(yResolution);
     
     // default zoom points which adapt to the selected resolution
     p1.setLocation(xResolution/2, 0 - scrollFactor);
@@ -84,7 +84,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     setTitle("Fractal Viewer");
     setLocationRelativeTo(null);
     canvas = new DrawCanvas();
-    canvas.setBounds(0, 0, xResolution, yResolution - 75);
+    canvas.setBounds(0, 30, xResolution, yResolution);
     canvas.setOpaque(true);
     canvas.addMouseWheelListener(this);
     canvas.addMouseMotionListener(this);
@@ -117,7 +117,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     btnSaveButton.setForeground(Color.BLACK);
     btnSaveButton.setFont(new Font("Tahoma", Font.PLAIN, 9));
     btnSaveButton.setBackground(Color.CYAN);
-    btnSaveButton.setBounds(0, yResolution - 75, 80, 36);
+    btnSaveButton.setBounds(0, 0, 80, 30);
     add(btnSaveButton);
     btnSaveButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -179,7 +179,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     p2.setLocation(box.calculateHorizontalMargin(xResolution) - scrollFactor + deflectionX, box.getHeight() + scrollFactor + deflectionY);
     p3.setLocation(xResolution - box.calculateHorizontalMargin(xResolution) + scrollFactor + deflectionX, box.getHeight() + scrollFactor + deflectionY);
     
-    System.out.println(box.getSize());
+    System.out.println(box.getWidth());
     System.out.println(box.getHeight());
     
     repaint();
