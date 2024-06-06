@@ -25,7 +25,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   public double zoomSpeed = 1.1232;
   
   // TO-DO, implement and "infinite depth" setting which increments fractal
-  // depth when zoom level increases
+  // depth when zoom level increases, this is the defualt value for testing purposes
   public int fractalDepth = 5;
   
   // Test resolutions
