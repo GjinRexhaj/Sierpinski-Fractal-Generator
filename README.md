@@ -1,14 +1,17 @@
-# Sierpinski-Fractal-Generator
-A Java GUI program which renders an "nth" order Sierpinski gasket. The canvas size and degree of the rendered Sierpinski gasket are user-specified.
+# Development Branch
+This is the primary branch where new features will be integrated and tested before reaching main
 
-## Prerequisites
-To run this program, your computer must hava Java. Ignore this process if you have it installed.
+## Launcher.java
+As the name implies, this is the launching point of the program. This is the first window which opens after the application is run, and it currently contains two JSpinners which let the user choose the resolution of the render canvas (Control.java) and the degree of the fractal to be rendered.
 
-1. Navigate to the official Java downloads page: https://www.java.com/download/ie_manual.jsp
-2. Download and run the Java installer
+## Control.java
+After clicking "Render", a Control.java window will open up, which calls renderTriangles() from Model.java to draw a fractal in accordance with the selected options passed from Launcher.java.
+Control.java currently implements MouseListener, MouseWheelListener, and MouseMotionListener. Currently, only MouseWheelListener is being used and it's for zooming in/out. 
+Everytime a mouse event happens, it changes values such as zoomFactor and calls renderTriangles() again but it passes these changed variables to produce the desired results.
 
-## Running the program
-To run this program on Windows, simply download the latest version of the runnable .jar file (see in releases tab) and run the file like an executable.
+## Model.java
+Contains definitions for the recursive methods used to draw fractals, which are then called by Control.java.
+Currently only supports drawing Sierpinski Triangles.
 
-## Saving images
-To save a render to a .png file, simply click the "SAVE" button that appears on the window with the rendered fractal. Images are saved in the same directory as the runnable .jar file.
+## Documentation
+All of the documentation for this project can be found in this README file, I'll probably create a Javadoc sometime in the near future.

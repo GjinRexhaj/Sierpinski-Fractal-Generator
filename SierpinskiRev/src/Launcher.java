@@ -18,18 +18,6 @@ public class Launcher extends JFrame {
 
   private static final long serialVersionUID = 1L;
   private JPanel contentPane;
-
-  private static int depthFieldInput;
-  private static int rezFieldInput;
-  
-  // getter methods for depth and rezfield input
-  public static int getDepthFieldInput() {
-    return depthFieldInput;
-  }
-  
-  public static int getRezFieldInput() {
-    return rezFieldInput;
-  }
   
   
   /**

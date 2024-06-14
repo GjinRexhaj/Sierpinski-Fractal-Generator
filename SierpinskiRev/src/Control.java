@@ -12,7 +12,6 @@ import java.awt.event.MouseWheelEvent;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-@SuppressWarnings("serial")
 public class Control extends JFrame implements MouseListener, MouseWheelListener, MouseMotionListener {
   
   // static iterator variable for save image name incrementing
@@ -25,7 +24,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   public double zoomSpeed = 1.1232;
   
   // TO-DO, implement and "infinite depth" setting which increments fractal
-  // depth when zoom level increases
+  // depth when zoom level increases, this is the defualt value for testing purposes
   public int fractalDepth = 5;
   
   // Test resolutions
@@ -36,6 +35,10 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   public double deflectionX = 0;
   public double deflectionY = 0;
   
+  //box where triangle will render inside of
+  public RenderBounds box = new RenderBounds();
+  
+  // create canvas
   private DrawCanvas canvas;
  
   // default point values for testing purposes: suited for 1280x720
@@ -44,7 +47,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   Point p3 = new Point(xResolution - 320, yResolution - 100);
   
   //create a label which displays useful debug information
-  JLabel textArea = new JLabel();
+  //JLabel textArea = new JLabel();
   
   // main method
   public static void main(String[] args) {
@@ -54,7 +57,6 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   // constructor
   public Control(int xRez, int yRez, int degree) {
     setIconImage(Toolkit.getDefaultToolkit().getImage(Launcher.class.getResource("/resources/fractalIcon.png")));
-    //TO-DO: Add "save image" button outside of drawingCanvas
     
     // instance variables that facilitate communication between
     // control and launcher
@@ -62,12 +64,13 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     yResolution = yRez;
     fractalDepth = degree;
     
+    // set size of RenderBounds box for triangle
+    box.setWidth(yResolution);
     
     // default zoom points which adapt to the selected resolution
-    // 100 and 320 are hardcoded margins
-    p1.setLocation(xResolution / 2, 100 - scrollFactor);
-    p2.setLocation(320 - scrollFactor, yResolution - 100 + scrollFactor);
-    p3.setLocation(xResolution - 320 + scrollFactor, yResolution - 100 + scrollFactor);
+    p1.setLocation(xResolution/2, 0 - scrollFactor);
+    p2.setLocation(box.calculateHorizontalMargin(xResolution) - scrollFactor, box.getHeight() + scrollFactor);
+    p3.setLocation(xResolution - box.calculateHorizontalMargin(xResolution) + scrollFactor, box.getHeight() + scrollFactor);
     
     // textArea contains useful debug text (mouse drag position, scroll state, etc.)
     //textArea.setLocation(0, yResolution - 75);
@@ -80,12 +83,12 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     setTitle("Fractal Viewer");
     setLocationRelativeTo(null);
     canvas = new DrawCanvas();
-    canvas.setBounds(0, 0, xResolution, yResolution - 75);
+    canvas.setBounds(0, 30, xResolution, yResolution);
     canvas.setOpaque(true);
     canvas.addMouseWheelListener(this);
     canvas.addMouseMotionListener(this);
     canvas.addMouseListener(this);
-    canvas.add(textArea);
+    //canvas.add(textArea);
     this.add(canvas);
     this.setVisible(true);
     
@@ -113,7 +116,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     btnSaveButton.setForeground(Color.BLACK);
     btnSaveButton.setFont(new Font("Tahoma", Font.PLAIN, 9));
     btnSaveButton.setBackground(Color.CYAN);
-    btnSaveButton.setBounds(0, yResolution - 75, 80, 36);
+    btnSaveButton.setBounds(0, 0, 80, 30);
     add(btnSaveButton);
     btnSaveButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -160,21 +163,24 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     
     if (notches < 0) {
       //textArea.setText("Mouse Wheel Up");
-      scrollFactor += 1;
+      scrollFactor += 8;
       scrollFactor *= zoomSpeed;
       
     } else {
       //textArea.setText("Mouse Wheel Down");
-      scrollFactor -= 1;
+      scrollFactor -= 8;
       scrollFactor /= zoomSpeed;
     }
     
     // adjust three points then run recursive method to
     // draw new "zoomed in" triangle
-    // 100 and 320 are hardcoded margins
-    p1.setLocation(xResolution / 2, 100 - scrollFactor);
-    p2.setLocation(320 - scrollFactor, yResolution - 100 + scrollFactor);
-    p3.setLocation(xResolution - 320 + scrollFactor, yResolution - 100 + scrollFactor);
+    p1.setLocation(xResolution/2 + deflectionX, 0 - scrollFactor + deflectionY);
+    p2.setLocation(box.calculateHorizontalMargin(xResolution) - scrollFactor + deflectionX, box.getHeight() + scrollFactor + deflectionY);
+    p3.setLocation(xResolution - box.calculateHorizontalMargin(xResolution) + scrollFactor + deflectionX, box.getHeight() + scrollFactor + deflectionY);
+    
+    System.out.println(box.getWidth());
+    System.out.println(box.getHeight());
+    
     repaint();
     
   }
@@ -188,9 +194,15 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
 
   }
 
+  
+  // variables so the program knows which direction mouse is being dragged
+  public int originalX;
+  public int originalY;
+  
   @Override
   public void mousePressed(MouseEvent e) {
-    // TODO Auto-generated method stub
+    originalX = e.getX();
+    originalY = e.getY();
     
   }
 
@@ -215,9 +227,31 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
 
   @Override
   public void mouseDragged(MouseEvent e) {
-    // TODO Auto-generated method stub
-    //mouseTracker("Mouse dragged", e);
+    // increment deflectionX if dragged right
+    // decrement deflectionX if dragged left
+    if (e.getX() > originalX) {
+      deflectionX++;
+      originalX = e.getX();
+    } else if (e.getX() < originalX) {
+      deflectionX--;
+      originalX = e.getX();
+    }
     
+    // increment deflectionY if dragged up
+    // decrement deflectionY if dragged down
+    // NOTE Y AXIS IS INVERTED IN JAVA!
+    if (e.getY() > originalY) {
+      deflectionY++;
+      originalY = e.getY();
+    } else if (e.getY() < originalY) {
+      deflectionY--;
+      originalY = e.getY();
+    }
+    
+    p1.setLocation(xResolution/2 + deflectionX, 0 - scrollFactor + deflectionY);
+    p2.setLocation(box.calculateHorizontalMargin(xResolution) - scrollFactor + deflectionX, box.getHeight() + scrollFactor + deflectionY);
+    p3.setLocation(xResolution - box.calculateHorizontalMargin(xResolution) + scrollFactor + deflectionX, box.getHeight() + scrollFactor + deflectionY);
+    repaint();
   }
 
   @Override
@@ -230,10 +264,10 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   } 
   
   // method to display crucial mouse info
-  /* private void mouseTracker(String description, MouseEvent e) {
-    textArea.setText(description + " (" + e.getX() + ", " + e.getY() + ")" /* + 
-    " detected on " + e.getComponent().getClass().getName() + "\n"); 
-  }  */
+  //private void mouseTracker(String description, MouseEvent e) {
+  //  System.out.println(description + " (" + e.getX() + ", " + e.getY() + ")" + 
+  //  " detected on " + e.getComponent().getClass().getName() + "\n");
+  //}  
 
   // method to save canvas as image
   public void saveImage(String name, String type, int width, int height) {
@@ -247,8 +281,5 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     } catch (Exception e) {
       e.printStackTrace();
     }
-    
   }
-
-  
 }
