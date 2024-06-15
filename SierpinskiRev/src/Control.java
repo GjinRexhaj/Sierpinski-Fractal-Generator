@@ -21,6 +21,8 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   // static iterator variable for save image name incrementing
   public static int iterator = 1;
   
+  JLabel lblImageSaved = new JLabel();
+  
   // how zoomed in the user is
   public int scrollFactor;
   
@@ -123,6 +125,19 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     });
     */
     
+    // label which notifies user that image has been saved
+    File file = new File("");
+    String path = file.getAbsolutePath();
+    lblImageSaved.setForeground(Color.BLACK);
+    lblImageSaved.setBackground(Color.WHITE);
+    lblImageSaved.setFont(new Font("Tahoma", Font.PLAIN, 9));
+    lblImageSaved.setLocation(80, 0);
+    lblImageSaved.setBounds(100, 0, 700, 30);
+    add(lblImageSaved);
+    lblImageSaved.setVisible(true);
+    
+    
+    
     //add savebutton
     JButton btnSaveButton = new JButton("SAVE");
     btnSaveButton.setToolTipText("Click to save the latest generated fractal as a .png image.");
@@ -141,11 +156,12 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
 
         // save image
         saveImage("fractal_" + iterator, "png", xResolution, yResolution);
-        iterator++;
         
         // TO-DO, add subtext that briefly mentions "image saved to <directory>
         btnSaveButton.setEnabled(true);
         btnSaveButton.setVisible(true);
+        lblImageSaved.setText("fractal_" + iterator + ".png saved to " + path);
+        iterator++;
       }
     });
   }
@@ -159,10 +175,12 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
       super.paintComponent(g);
       setBackground(backgroundColor);
       g.setColor(fractalColor);
+      lblImageSaved.setText("");
       
       //call to recursive method which belongs in Model class
       Model.renderSierpinskiTriangle(g, fractalDepth, p1, p2, p3);
       System.out.println("paintComponent method run...");
+      
       
     }
   }
