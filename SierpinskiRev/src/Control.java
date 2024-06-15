@@ -56,7 +56,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   //default color value for testing
 
   
-  // main method
+  // main method for testing purposes
   public static void main(String[] args) {
     Color testBackgroundColor = new Color(255, 255, 255);
     Color testFractalColor = new Color(0, 0, 0);

@@ -22,8 +22,9 @@ public class Launcher extends JFrame {
   private JPanel contentPane;
   
   // create fractal and backgorund color objects for later use
+  // black and white are the default color options
   Color fractalColor = new Color(0, 0, 0);
-  Color backgroundColor = new Color(0, 0, 0);
+  Color backgroundColor = new Color(255, 255, 255);
   
   /**
    * Launch the application.
@@ -91,7 +92,7 @@ public class Launcher extends JFrame {
     lblMoreInfo.setBounds(25, 122, 461, 39);
     contentPane.add(lblMoreInfo);
     
-    JLabel lblVersion = new JLabel("Version 2.1,   github.com/gjinrexhaj,   implemented with Java Swing and AWT");
+    JLabel lblVersion = new JLabel("Version 2.2,   github.com/gjinrexhaj,   implemented with Java Swing and AWT");
     lblVersion.setBounds(10, 408, 541, 14);
     contentPane.add(lblVersion);
     
@@ -124,9 +125,9 @@ public class Launcher extends JFrame {
     JButton btnBackgroundColor = new JButton("");
     btnBackgroundColor.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        JColorChooser backgroundColorChooser = new JColorChooser();
+        new JColorChooser();
         
-        backgroundColor = JColorChooser.showDialog(btnBackgroundColor, "Choose the background color", Color.BLACK);
+        backgroundColor = JColorChooser.showDialog(null, "Choose the background color", Color.BLACK);
         btnBackgroundColor.setBackground(backgroundColor);
       }
     });
@@ -141,9 +142,9 @@ public class Launcher extends JFrame {
     JButton btnFractalColor = new JButton("");
     btnFractalColor.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        JColorChooser fractalColorChooser = new JColorChooser();
+        new JColorChooser();
         
-        fractalColor = JColorChooser.showDialog(btnFractalColor, "Choose the fractal color", Color.BLACK);
+        fractalColor = JColorChooser.showDialog(null, "Choose the fractal color", Color.BLACK);
         btnFractalColor.setBackground(fractalColor);
         
       }
