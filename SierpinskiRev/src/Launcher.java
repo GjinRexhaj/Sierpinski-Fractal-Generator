@@ -13,7 +13,6 @@ import java.awt.Toolkit;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SpinnerListModel;
-import javax.swing.colorchooser.ColorChooserComponentFactory;
 import javax.swing.JColorChooser;
 
 public class Launcher extends JFrame {
