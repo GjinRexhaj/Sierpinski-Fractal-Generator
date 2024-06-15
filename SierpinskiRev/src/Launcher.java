@@ -72,13 +72,13 @@ public class Launcher extends JFrame {
     JSpinner degreeSpinner = new JSpinner();
     degreeSpinner.setToolTipText("Select the degree of the fractal");
     degreeSpinner.setModel(new SpinnerNumberModel(5, 1, 12, 1));
-    degreeSpinner.setBounds(143, 235, 57, 68);
+    degreeSpinner.setBounds(143, 227, 57, 68);
     contentPane.add(degreeSpinner);
     
     JSpinner resolutionSpinner = new JSpinner();
     resolutionSpinner.setToolTipText("Select the resolution of the drawing canvas");
     resolutionSpinner.setModel(new SpinnerListModel(new String[] {"1024x576", "1152x648", "1280x720", "1366x768", "1600x900", "1920x1080"}));
-    resolutionSpinner.setBounds(26, 235, 107, 68);
+    resolutionSpinner.setBounds(26, 227, 107, 68);
     contentPane.add(resolutionSpinner);
     //
     
@@ -114,12 +114,12 @@ public class Launcher extends JFrame {
     btnGenerateButton.setForeground(Color.BLACK);
     btnGenerateButton.setBackground(Color.GREEN);
     btnGenerateButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-    btnGenerateButton.setBounds(255, 235, 130, 68);
+    btnGenerateButton.setBounds(255, 227, 130, 68);
     contentPane.add(btnGenerateButton);
     
     JLabel lblResolution = new JLabel("Resolution and Degree");
     lblResolution.setFont(new Font("Tahoma", Font.PLAIN, 20));
-    lblResolution.setBounds(25, 195, 217, 29);
+    lblResolution.setBounds(25, 187, 217, 29);
     contentPane.add(lblResolution);
     
     JButton btnBackgroundColor = new JButton("");
@@ -136,7 +136,7 @@ public class Launcher extends JFrame {
     btnBackgroundColor.setFont(new Font("Tahoma", Font.PLAIN, 16));
     btnBackgroundColor.setBackground(Color.WHITE);
     btnBackgroundColor.setOpaque(true);
-    btnBackgroundColor.setBounds(25, 314, 29, 29);
+    btnBackgroundColor.setBounds(25, 306, 29, 29);
     contentPane.add(btnBackgroundColor);
     
     JButton btnFractalColor = new JButton("");
@@ -153,17 +153,17 @@ public class Launcher extends JFrame {
     btnFractalColor.setForeground(Color.BLACK);
     btnFractalColor.setFont(new Font("Tahoma", Font.PLAIN, 16));
     btnFractalColor.setBackground(Color.BLACK);
-    btnFractalColor.setBounds(25, 349, 29, 29);
+    btnFractalColor.setBounds(25, 341, 29, 29);
     contentPane.add(btnFractalColor);
     
     JLabel lblBackgroundColor = new JLabel("Background Color");
     lblBackgroundColor.setFont(new Font("Tahoma", Font.PLAIN, 13));
-    lblBackgroundColor.setBounds(66, 314, 107, 29);
+    lblBackgroundColor.setBounds(66, 306, 107, 29);
     contentPane.add(lblBackgroundColor);
     
     JLabel lblFractalColor = new JLabel("Fractal Color");
     lblFractalColor.setFont(new Font("Tahoma", Font.PLAIN, 13));
-    lblFractalColor.setBounds(64, 349, 107, 29);
+    lblFractalColor.setBounds(64, 341, 107, 29);
     contentPane.add(lblFractalColor);
     
     
