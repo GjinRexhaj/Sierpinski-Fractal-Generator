@@ -131,7 +131,7 @@ public class Launcher extends JFrame {
         btnBackgroundColor.setBackground(backgroundColor);
       }
     });
-    btnBackgroundColor.setToolTipText("Click to generate fractal with specified parameters, this will render the fractal on a new window independent of the program.");
+    btnBackgroundColor.setToolTipText("Click to change the background color of the render canvas");
     btnBackgroundColor.setForeground(Color.BLACK);
     btnBackgroundColor.setFont(new Font("Tahoma", Font.PLAIN, 16));
     btnBackgroundColor.setBackground(Color.WHITE);
@@ -149,7 +149,7 @@ public class Launcher extends JFrame {
         
       }
     });
-    btnFractalColor.setToolTipText("Click to generate fractal with specified parameters, this will render the fractal on a new window independent of the program.");
+    btnFractalColor.setToolTipText("Click to change the color of the rendered fractal");
     btnFractalColor.setForeground(Color.BLACK);
     btnFractalColor.setFont(new Font("Tahoma", Font.PLAIN, 16));
     btnFractalColor.setBackground(Color.BLACK);
