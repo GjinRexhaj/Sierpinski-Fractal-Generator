@@ -86,7 +86,7 @@ public class Launcher extends JFrame {
     lblMoreInfo.setBounds(25, 122, 461, 39);
     contentPane.add(lblMoreInfo);
     
-    JLabel lblVersion = new JLabel("Version 2.0,   github.com/gjinrexhaj,   implemented with Java Swing and AWT");
+    JLabel lblVersion = new JLabel("Version 2.1,   github.com/gjinrexhaj,   implemented with Java Swing and AWT");
     lblVersion.setBounds(10, 389, 541, 14);
     contentPane.add(lblVersion);
     
