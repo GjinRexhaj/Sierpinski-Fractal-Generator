@@ -13,12 +13,17 @@ import java.awt.Toolkit;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SpinnerListModel;
+import javax.swing.colorchooser.ColorChooserComponentFactory;
+import javax.swing.JColorChooser;
 
 public class Launcher extends JFrame {
 
   private static final long serialVersionUID = 1L;
   private JPanel contentPane;
   
+  // create fractal and backgorund color objects for later use
+  Color fractalColor = new Color(0, 0, 0);
+  Color backgroundColor = new Color(0, 0, 0);
   
   /**
    * Launch the application.
@@ -44,7 +49,7 @@ public class Launcher extends JFrame {
     setAlwaysOnTop(false);
     setTitle("Java Fractal Generator");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setBounds(100, 100, 529, 453);
+    setBounds(100, 100, 529, 472);
     contentPane = new JPanel();
     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
     setResizable(false);
@@ -87,7 +92,7 @@ public class Launcher extends JFrame {
     contentPane.add(lblMoreInfo);
     
     JLabel lblVersion = new JLabel("Version 2.1,   github.com/gjinrexhaj,   implemented with Java Swing and AWT");
-    lblVersion.setBounds(10, 389, 541, 14);
+    lblVersion.setBounds(10, 408, 541, 14);
     contentPane.add(lblVersion);
     
     JButton btnGenerateButton = new JButton("RENDER");
@@ -101,7 +106,7 @@ public class Launcher extends JFrame {
         String[] splitString = stringResolution.split("x");
         
         
-        new Control(Integer.parseInt(splitString[0]), Integer.parseInt(splitString[1]), (Integer) degreeSpinner.getValue());
+        new Control(Integer.parseInt(splitString[0]), Integer.parseInt(splitString[1]), (Integer) degreeSpinner.getValue(), backgroundColor, fractalColor);
         
       }
     });
@@ -115,6 +120,50 @@ public class Launcher extends JFrame {
     lblResolution.setFont(new Font("Tahoma", Font.PLAIN, 20));
     lblResolution.setBounds(25, 195, 217, 29);
     contentPane.add(lblResolution);
+    
+    JButton btnBackgroundColor = new JButton("");
+    btnBackgroundColor.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        JColorChooser backgroundColorChooser = new JColorChooser();
+        
+        backgroundColor = JColorChooser.showDialog(btnBackgroundColor, "Choose the background color", Color.BLACK);
+        btnBackgroundColor.setBackground(backgroundColor);
+      }
+    });
+    btnBackgroundColor.setToolTipText("Click to generate fractal with specified parameters, this will render the fractal on a new window independent of the program.");
+    btnBackgroundColor.setForeground(Color.BLACK);
+    btnBackgroundColor.setFont(new Font("Tahoma", Font.PLAIN, 16));
+    btnBackgroundColor.setBackground(Color.WHITE);
+    btnBackgroundColor.setOpaque(true);
+    btnBackgroundColor.setBounds(25, 314, 29, 29);
+    contentPane.add(btnBackgroundColor);
+    
+    JButton btnFractalColor = new JButton("");
+    btnFractalColor.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        JColorChooser fractalColorChooser = new JColorChooser();
+        
+        fractalColor = JColorChooser.showDialog(btnFractalColor, "Choose the fractal color", Color.BLACK);
+        btnFractalColor.setBackground(fractalColor);
+        
+      }
+    });
+    btnFractalColor.setToolTipText("Click to generate fractal with specified parameters, this will render the fractal on a new window independent of the program.");
+    btnFractalColor.setForeground(Color.BLACK);
+    btnFractalColor.setFont(new Font("Tahoma", Font.PLAIN, 16));
+    btnFractalColor.setBackground(Color.BLACK);
+    btnFractalColor.setBounds(25, 349, 29, 29);
+    contentPane.add(btnFractalColor);
+    
+    JLabel lblBackgroundColor = new JLabel("Background Color");
+    lblBackgroundColor.setFont(new Font("Tahoma", Font.PLAIN, 13));
+    lblBackgroundColor.setBounds(66, 314, 107, 29);
+    contentPane.add(lblBackgroundColor);
+    
+    JLabel lblFractalColor = new JLabel("Fractal Color");
+    lblFractalColor.setFont(new Font("Tahoma", Font.PLAIN, 13));
+    lblFractalColor.setBounds(64, 349, 107, 29);
+    contentPane.add(lblFractalColor);
     
     
   }

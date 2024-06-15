@@ -14,6 +14,10 @@ import javax.swing.*;
 
 public class Control extends JFrame implements MouseListener, MouseWheelListener, MouseMotionListener {
   
+  // color objects
+  Color backgroundColor;
+  Color fractalColor;
+  
   // static iterator variable for save image name incrementing
   public static int iterator = 1;
   
@@ -49,14 +53,23 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   //create a label which displays useful debug information
   //JLabel textArea = new JLabel();
   
+  //default color value for testing
+
+  
   // main method
   public static void main(String[] args) {
-    new Control(1280 + 17, 720 + 40, 4);
+    Color testBackgroundColor = new Color(255, 255, 255);
+    Color testFractalColor = new Color(0, 0, 0);
+    new Control(1280 + 17, 720 + 40, 4, testBackgroundColor, testFractalColor);
   }
   
   // constructor
-  public Control(int xRez, int yRez, int degree) {
+  public Control(int xRez, int yRez, int degree, Color inputBackgroundColor, Color inputFractalColor) {
     setIconImage(Toolkit.getDefaultToolkit().getImage(Launcher.class.getResource("/resources/fractalIcon.png")));
+    
+    
+    backgroundColor = inputBackgroundColor;
+    fractalColor = inputFractalColor;
     
     // instance variables that facilitate communication between
     // control and launcher
@@ -144,7 +157,8 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
       
       // drawcanvas setup
       super.paintComponent(g);
-      setBackground(Color.WHITE);
+      setBackground(backgroundColor);
+      g.setColor(fractalColor);
       
       //call to recursive method which belongs in Model class
       Model.renderSierpinskiTriangle(g, fractalDepth, p1, p2, p3);
