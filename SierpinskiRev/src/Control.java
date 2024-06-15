@@ -12,6 +12,7 @@ import java.awt.event.MouseWheelEvent;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class Control extends JFrame implements MouseListener, MouseWheelListener, MouseMotionListener {
   
   // color objects
