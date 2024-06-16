@@ -1,19 +1,21 @@
 /**
  * @author Gjin Rexhaj
- * Custom class used to create a rectangle which bounds an equilateral triangle.
- * Objects of this class contain a Width and Height int variable, with get/set methods.
  */
 
 package executable;
 
+/**
+ * Class used to create a rectangle which bounds an equilateral triangle.
+ * Objects of this class contain a {@code width} and {@code height} int variable, with getter and setter methods.
+ */
 public class RenderBounds {
   
   private int width;
   private int height;
   
   /**
-   * RenderBounds object constructor
-   * @param input The width of the RenderBounds object is set directly equal to this parameter.
+   * {@code RenderBounds} object constructor
+   * @param input The {@code width} of the {@code RenderBounds} object is set directly equal to this parameter.
    * The Height is calculated by multiplying this parameter by (sqrt(3))/(2)
    */
   public RenderBounds(int input) {
@@ -22,15 +24,15 @@ public class RenderBounds {
   }
   
   /**
-   * RenderBounds object default constructor
+   * {@code RenderBounds} object default constructor
    */
   public RenderBounds() {
   
   }
   
   /**
-   * Sets the width value (and subsequently the height)
-   * @param input is the inputted width
+   * Sets the {@code width} value (and subsequently the height)
+   * @param input is the inputted width. The {@code height} is calculated by multiplying this parameter by (sqrt(3))/(2)
    */
   public void setWidth(int input) {
     width = input;
@@ -38,7 +40,7 @@ public class RenderBounds {
   }
   
   /**
-   * Returns the width of a RenderBounds object
+   * Returns the width of a {@code RenderBounds} object
    * @return width
    */
   public int getWidth() {
@@ -46,7 +48,7 @@ public class RenderBounds {
   }
   
   /**
-   * Returns the height of a RenderBounds object
+   * Returns the height of a {@code RenderBounds} object
    * @return height
    */
   public int getHeight() {
@@ -54,7 +56,7 @@ public class RenderBounds {
   }
   
   /**
-   * Returns the center of a RenderBounds object
+   * Returns the center of a {@code RenderBounds} object
    * @return width/2
    */
   public int getCenter() {
@@ -62,7 +64,7 @@ public class RenderBounds {
   }
   
   /**
-   * Calculates the horizontal margin of the RenderBoudns object with respect to the resolution
+   * Calculates the horizontal margin of the {@code RenderBounds} object with respect to the resolution
    * of the drawing canvas
    * @param parentWidth Width of the drawing canvas
    * @return (parentWidth/2)-(width/2)

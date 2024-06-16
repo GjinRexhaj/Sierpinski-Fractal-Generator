@@ -1,3 +1,7 @@
+/**
+ * @author Gjin Rexhaj
+ */
+
 package tests;
 
 import java.awt.AWTException;
@@ -6,13 +10,22 @@ import java.awt.Robot;
 import java.awt.event.InputEvent;
 import executable.Launcher;
 
-
+/**
+ * Class containing methods that execute automated testing
+ */
 public class TesterClass {
   
-  // delay which controls how fast the bot operates
+  /**
+   * Delay in miliseconds which controls how fast the bot operates
+   */
   public static int delay = 10;
   
-  // tell robot to clcik render
+  /**
+   * Method that tells the robot to click the "Render" button
+   * 
+   * @param robot Robot object which will execute this action
+   * @throws InterruptedException
+   */
   public static void clickRender(Robot robot) throws InterruptedException {
     robot.mouseMove(425, 390);
     Thread.sleep(delay);
@@ -22,7 +35,12 @@ public class TesterClass {
     robot.mouseMove(968, 548);
   }
   
-  // tell robot to zoom
+  /**
+   * Method that tells the robot to Zoom in and out of the fractal
+   * 
+   * @param robot Robot object which will execute this action
+   * @throws InterruptedException
+   */
   public static void zoom(Robot robot) throws InterruptedException {
     for (int i = 0; i < 20; i++) {
       robot.mouseWheel(-1 );
@@ -34,7 +52,12 @@ public class TesterClass {
     }
   }
   
-  // tell robot to pan up left right down
+  /**
+   * Method that tells the robot to pan left, right, up, and down on the renderCanvas
+   * 
+   * @param robot Robot object which will execute this action
+   * @throws InterruptedException
+   */
   public static void pan(Robot robot) throws InterruptedException {
     // pan left
     for (int i = 0; i < 500; ) {
@@ -73,7 +96,13 @@ public class TesterClass {
     robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
   }
   
-  // tell robot to save image
+  /**
+   * Method that tells the robot to save the fractal as an image.
+   * {@code Please note, this function is currently resolution-specific 
+   * and only implemented for the lowest resolution}
+   * @param robot Robot object which will execute this action
+   * @throws InterruptedException
+   */
   public static void saveImage(Robot robot) throws InterruptedException {
     robot.mouseMove(494, 268);
     robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
@@ -81,7 +110,13 @@ public class TesterClass {
     robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
   }
   
-  // tell robot to close renderCanvas
+  /**
+   * Method that tells the robot to close the render canvas.
+   * {@code Please note, this function is currently resolution-specific 
+   * and only implemented for the lowest resolution}
+   * @param robot Robot object which will execute this action
+   * @throws InterruptedException
+   */
   public static void closeRenderCanvas(Robot robot) throws InterruptedException {
     robot.mouseMove(1440, 250);
     robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
@@ -89,7 +124,12 @@ public class TesterClass {
     robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
   }
   
-  // tell robot to increase resolution
+  /**
+   * Method that tells the robot to increase the resolution by one
+   * JSpinner increment
+   * @param robot Robot object which will execute this action
+   * @throws InterruptedException
+   */
   public static void increaseResolution(Robot robot) throws InterruptedException {
     robot.mouseMove(230, 375);
     robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
@@ -97,15 +137,41 @@ public class TesterClass {
     robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
   }
   
-  // tell the robot to increase the degree
+  /**
+   * Method that tells the robot to increase the degree by one
+   * JSpinner increment
+   * @param robot Robot object which will execute this action
+   * @throws InterruptedException
+   */
   public static void increaseDegree(Robot robot) throws InterruptedException {
     robot.mouseMove(300, 375);
     robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
     Thread.sleep(delay);
     robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
   }
+  
+  /**
+   * Method that tells the robot to decrease the degree by one
+   * JSpinner increment
+   * @param robot Robot object which will execute this action
+   * @throws InterruptedException
+   */
+  public static void decreaseDegree(Robot robot) throws InterruptedException {
+    robot.mouseMove(300, 400);
+    robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+    Thread.sleep(delay);
+    robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+  }
 
-  // run a full test for low resolution
+  /**
+   * Method that tells robot to run a full test
+   * {@code Please note, this function is currently resolution-specific 
+   * and only implemented for the lowest resolution, as it uses saveImage() and
+   * closeRenderCanvas(), which are also resolution specific}
+   * @param robot Robot object which will execute this action
+   * @throws InterruptedException@param robot
+   * @throws InterruptedException
+   */
   public static void lowRezTestRun(Robot robot) throws InterruptedException {
     for (int i = 0; i < 12; i ++) {
       clickRender(robot);
@@ -115,14 +181,6 @@ public class TesterClass {
       closeRenderCanvas(robot);
       increaseDegree(robot);
     }
-  }
-  
-  // tell the robot to increase the degree
-  public static void decreaseResolution(Robot robot) throws InterruptedException {
-    robot.mouseMove(300, 400);
-    robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-    Thread.sleep(delay);
-    robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
   }
   
   /**
@@ -149,10 +207,10 @@ public class TesterClass {
     Thread.sleep(500);
     
     // set resolution to zero
-    decreaseResolution(testerRobot);
-    decreaseResolution(testerRobot);
-    decreaseResolution(testerRobot);
-    decreaseResolution(testerRobot);
+    decreaseDegree(testerRobot);
+    decreaseDegree(testerRobot);
+    decreaseDegree(testerRobot);
+    decreaseDegree(testerRobot);
     Thread.sleep(delay);
     
     // run tests

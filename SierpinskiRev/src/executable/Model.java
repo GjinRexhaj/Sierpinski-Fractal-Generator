@@ -1,8 +1,4 @@
 /**
- * Model.java
- * 
- * Contains all backend methods used for rendering fractals
- * 
  * @author Gjin Rexhaj
  */
 
@@ -12,17 +8,27 @@ import java.awt.*;
 import javax.swing.*;
 
 
-
+/**
+ * Class containing all backend methods/logic for rendering fractals
+ */
 @SuppressWarnings("serial")
 public class Model extends JFrame {
   
-
-  // method to draw line between two points
+  /** method to draw line between two points
+   * 
+   * @param g Graphics component
+   * @param p1 First Point
+   * @param p2 Second Point
+   */
   private static void drawLine(Graphics g, Point p1, Point p2) {
     g.drawLine(p1.x, p1.y, p2.x, p2.y);
   }
   
-  //method to return midpoint between two points
+  /**
+  * Method to return midpoint between two points
+  * 
+  * @return Point
+  */
   private static Point midpoint(Point p1, Point p2) {
     return new Point((p1.x + p2.x) / 2, (p1.y + p2.y) / 2);
   }
