@@ -1,3 +1,7 @@
+/**
+ * @author Gjin Rexhaj
+ */
+
 package executable;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,6 +18,9 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 @SuppressWarnings("serial")
+/**
+ * Constructor for Control window
+ */
 public class Control extends JFrame implements MouseListener, MouseWheelListener, MouseMotionListener {
   
   // color objects
