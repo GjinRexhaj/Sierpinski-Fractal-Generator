@@ -1,3 +1,4 @@
+package executable;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -13,12 +14,17 @@ import java.awt.Toolkit;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SpinnerListModel;
+import javax.swing.JColorChooser;
 
 public class Launcher extends JFrame {
 
   private static final long serialVersionUID = 1L;
   private JPanel contentPane;
   
+  // create fractal and backgorund color objects for later use
+  // black and white are the default color options
+  Color fractalColor = new Color(0, 0, 0);
+  Color backgroundColor = new Color(255, 255, 255);
   
   /**
    * Launch the application.
@@ -44,7 +50,7 @@ public class Launcher extends JFrame {
     setAlwaysOnTop(false);
     setTitle("Java Fractal Generator");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setBounds(100, 100, 529, 453);
+    setBounds(100, 100, 529, 472);
     contentPane = new JPanel();
     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
     setResizable(false);
@@ -66,13 +72,13 @@ public class Launcher extends JFrame {
     JSpinner degreeSpinner = new JSpinner();
     degreeSpinner.setToolTipText("Select the degree of the fractal");
     degreeSpinner.setModel(new SpinnerNumberModel(5, 1, 12, 1));
-    degreeSpinner.setBounds(143, 235, 57, 68);
+    degreeSpinner.setBounds(143, 227, 57, 68);
     contentPane.add(degreeSpinner);
     
     JSpinner resolutionSpinner = new JSpinner();
     resolutionSpinner.setToolTipText("Select the resolution of the drawing canvas");
     resolutionSpinner.setModel(new SpinnerListModel(new String[] {"1024x576", "1152x648", "1280x720", "1366x768", "1600x900", "1920x1080"}));
-    resolutionSpinner.setBounds(26, 235, 107, 68);
+    resolutionSpinner.setBounds(26, 227, 107, 68);
     contentPane.add(resolutionSpinner);
     //
     
@@ -86,8 +92,8 @@ public class Launcher extends JFrame {
     lblMoreInfo.setBounds(25, 122, 461, 39);
     contentPane.add(lblMoreInfo);
     
-    JLabel lblVersion = new JLabel("Version 2.1,   github.com/gjinrexhaj,   implemented with Java Swing and AWT");
-    lblVersion.setBounds(10, 389, 541, 14);
+    JLabel lblVersion = new JLabel("Version 2.2,   github.com/gjinrexhaj,   implemented with Java Swing and AWT");
+    lblVersion.setBounds(10, 408, 541, 14);
     contentPane.add(lblVersion);
     
     JButton btnGenerateButton = new JButton("RENDER");
@@ -101,20 +107,64 @@ public class Launcher extends JFrame {
         String[] splitString = stringResolution.split("x");
         
         
-        new Control(Integer.parseInt(splitString[0]), Integer.parseInt(splitString[1]), (Integer) degreeSpinner.getValue());
+        new Control(Integer.parseInt(splitString[0]), Integer.parseInt(splitString[1]), (Integer) degreeSpinner.getValue(), backgroundColor, fractalColor);
         
       }
     });
     btnGenerateButton.setForeground(Color.BLACK);
     btnGenerateButton.setBackground(Color.GREEN);
     btnGenerateButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-    btnGenerateButton.setBounds(255, 235, 130, 68);
+    btnGenerateButton.setBounds(255, 227, 130, 68);
     contentPane.add(btnGenerateButton);
     
     JLabel lblResolution = new JLabel("Resolution and Degree");
     lblResolution.setFont(new Font("Tahoma", Font.PLAIN, 20));
-    lblResolution.setBounds(25, 195, 217, 29);
+    lblResolution.setBounds(25, 187, 217, 29);
     contentPane.add(lblResolution);
+    
+    JButton btnBackgroundColor = new JButton("");
+    btnBackgroundColor.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        new JColorChooser();
+        
+        backgroundColor = JColorChooser.showDialog(null, "Choose the background color", Color.BLACK);
+        btnBackgroundColor.setBackground(backgroundColor);
+      }
+    });
+    btnBackgroundColor.setToolTipText("Click to change the background color of the render canvas");
+    btnBackgroundColor.setForeground(Color.BLACK);
+    btnBackgroundColor.setFont(new Font("Tahoma", Font.PLAIN, 16));
+    btnBackgroundColor.setBackground(Color.WHITE);
+    btnBackgroundColor.setOpaque(true);
+    btnBackgroundColor.setBounds(25, 306, 29, 29);
+    contentPane.add(btnBackgroundColor);
+    
+    JButton btnFractalColor = new JButton("");
+    btnFractalColor.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        new JColorChooser();
+        
+        fractalColor = JColorChooser.showDialog(null, "Choose the fractal color", Color.BLACK);
+        btnFractalColor.setBackground(fractalColor);
+        
+      }
+    });
+    btnFractalColor.setToolTipText("Click to change the color of the rendered fractal");
+    btnFractalColor.setForeground(Color.BLACK);
+    btnFractalColor.setFont(new Font("Tahoma", Font.PLAIN, 16));
+    btnFractalColor.setBackground(Color.BLACK);
+    btnFractalColor.setBounds(25, 341, 29, 29);
+    contentPane.add(btnFractalColor);
+    
+    JLabel lblBackgroundColor = new JLabel("Background Color");
+    lblBackgroundColor.setFont(new Font("Tahoma", Font.PLAIN, 13));
+    lblBackgroundColor.setBounds(66, 306, 107, 29);
+    contentPane.add(lblBackgroundColor);
+    
+    JLabel lblFractalColor = new JLabel("Fractal Color");
+    lblFractalColor.setFont(new Font("Tahoma", Font.PLAIN, 13));
+    lblFractalColor.setBounds(64, 341, 107, 29);
+    contentPane.add(lblFractalColor);
     
     
   }

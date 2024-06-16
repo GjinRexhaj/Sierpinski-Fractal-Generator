@@ -1,3 +1,4 @@
+package executable;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,10 +13,17 @@ import java.awt.event.MouseWheelEvent;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class Control extends JFrame implements MouseListener, MouseWheelListener, MouseMotionListener {
+  
+  // color objects
+  Color backgroundColor;
+  Color fractalColor;
   
   // static iterator variable for save image name incrementing
   public static int iterator = 1;
+  
+  JLabel lblImageSaved = new JLabel();
   
   // how zoomed in the user is
   public int scrollFactor;
@@ -49,14 +57,23 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   //create a label which displays useful debug information
   //JLabel textArea = new JLabel();
   
-  // main method
+  //default color value for testing
+
+  
+  // main method for testing purposes
   public static void main(String[] args) {
-    new Control(1280 + 17, 720 + 40, 4);
+    Color testBackgroundColor = new Color(255, 255, 255);
+    Color testFractalColor = new Color(0, 0, 0);
+    new Control(1280 + 17, 720 + 40, 4, testBackgroundColor, testFractalColor);
   }
   
   // constructor
-  public Control(int xRez, int yRez, int degree) {
+  public Control(int xRez, int yRez, int degree, Color inputBackgroundColor, Color inputFractalColor) {
     setIconImage(Toolkit.getDefaultToolkit().getImage(Launcher.class.getResource("/resources/fractalIcon.png")));
+    
+    
+    backgroundColor = inputBackgroundColor;
+    fractalColor = inputFractalColor;
     
     // instance variables that facilitate communication between
     // control and launcher
@@ -110,6 +127,19 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     });
     */
     
+    // label which notifies user that image has been saved
+    File file = new File("");
+    String path = file.getAbsolutePath();
+    lblImageSaved.setForeground(Color.BLACK);
+    lblImageSaved.setBackground(Color.WHITE);
+    lblImageSaved.setFont(new Font("Tahoma", Font.PLAIN, 9));
+    lblImageSaved.setLocation(80, 0);
+    lblImageSaved.setBounds(100, 0, 700, 30);
+    add(lblImageSaved);
+    lblImageSaved.setVisible(true);
+    
+    
+    
     //add savebutton
     JButton btnSaveButton = new JButton("SAVE");
     btnSaveButton.setToolTipText("Click to save the latest generated fractal as a .png image.");
@@ -128,11 +158,12 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
 
         // save image
         saveImage("fractal_" + iterator, "png", xResolution, yResolution);
-        iterator++;
         
         // TO-DO, add subtext that briefly mentions "image saved to <directory>
         btnSaveButton.setEnabled(true);
         btnSaveButton.setVisible(true);
+        lblImageSaved.setText("fractal_" + iterator + ".png saved to " + path);
+        iterator++;
       }
     });
   }
@@ -144,11 +175,14 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
       
       // drawcanvas setup
       super.paintComponent(g);
-      setBackground(Color.WHITE);
+      setBackground(backgroundColor);
+      g.setColor(fractalColor);
+      lblImageSaved.setText("");
       
       //call to recursive method which belongs in Model class
       Model.renderSierpinskiTriangle(g, fractalDepth, p1, p2, p3);
       System.out.println("paintComponent method run...");
+      
       
     }
   }

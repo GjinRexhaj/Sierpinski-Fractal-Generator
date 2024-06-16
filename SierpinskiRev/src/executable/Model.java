@@ -1,3 +1,4 @@
+package executable;
 import java.awt.*;
 
 import javax.swing.*;
