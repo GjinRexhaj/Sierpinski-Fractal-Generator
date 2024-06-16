@@ -16,4 +16,4 @@ Currently only supports drawing Sierpinski Triangles.
 A command-line automated testing class with it's own main method. Implemented with java.awt.Robot.
 
 ## Documentation
-All of the documentation for this project can be found in this README file, I'll probably create a Javadoc sometime in the near future.
+All of the documentation for this project can be found in this README file, A comprehensive javadoc is currently in the works.
