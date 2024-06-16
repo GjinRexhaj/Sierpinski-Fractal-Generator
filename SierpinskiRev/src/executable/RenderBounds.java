@@ -1,5 +1,6 @@
 // custom class used to create a rectangle which bounds an equilateral triangle
 // objects of this class contain a Width and Height int variable, with get/set methods
+package executable;
 
 public class RenderBounds {
 
