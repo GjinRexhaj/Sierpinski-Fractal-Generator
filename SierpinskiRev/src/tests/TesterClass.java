@@ -184,7 +184,7 @@ public class TesterClass {
     }
     Thread.sleep(250);
     System.out.println("");
-    System.out.println("-- TEST HAS ENDED --");
+    System.out.println("-- TESTING HAS ENDED --");
     System.out.println("It's safe to use you mouse now");
   }
   
@@ -214,11 +214,11 @@ public class TesterClass {
         decisionState = false;
         decision = true;
         System.out.println("");
-        System.out.println("-- TEST IS BEGINNING --");
+        System.out.println("-- TESTING HAS BEGUN --");
       } else if (option.equals("n")) {
         decisionState = false;
         decision = false;
-        System.out.println("Program terminated");
+        System.out.println("-- PROGRAM TERMINATED --");
       } else {
         System.out.println("Invalid answer, type 'y' or 'n'");
         System.out.println();
