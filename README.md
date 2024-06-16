@@ -6,8 +6,7 @@ As the name implies, this is the launching point of the program. This is the fir
 
 ## Control.java
 After clicking "Render", a Control.java window will open up, which calls renderTriangles() from Model.java to draw a fractal in accordance with the selected options passed from Launcher.java.
-Control.java currently implements MouseListener, MouseWheelListener, and MouseMotionListener. Currently, only MouseWheelListener is being used and it's for zooming in/out. 
-Everytime a mouse event happens, it changes values such as zoomFactor and calls renderTriangles() again but it passes these changed variables to produce the desired results.
+Control.java currently implements MouseListener, MouseWheelListener, and MouseMotionListener. Everytime a mouse event happens, it changes values such as zoomFactor, deflection, etc. and calls renderTriangles() again but it passes these changed variables to produce the desired results.
 
 ## Model.java
 Contains definitions for the recursive methods used to draw fractals, which are then called by Control.java.
