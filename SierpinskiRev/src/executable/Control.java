@@ -23,6 +23,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   // static iterator variable for save image name incrementing
   public static int iterator = 1;
   
+  // Instance object "image saved" JLabel creation
   JLabel lblImageSaved = new JLabel();
   
   // how zoomed in the user is
@@ -33,39 +34,32 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   
   // TO-DO, implement and "infinite depth" setting which increments fractal
   // depth when zoom level increases, this is the defualt value for testing purposes
-  public int fractalDepth = 5;
+  public int fractalDepth;
   
-  // Test resolutions
-  public int xResolution = 1280 + 17; //19 px taken up by unknown
-  public int yResolution = 720 + 40; //40 px taken up by window header
+  // Declare resolutions
+  public int xResolution; 
+  public int yResolution; 
   
   // TO-DO, add click/drag functionality
   public double deflectionX = 0;
   public double deflectionY = 0;
   
-  //box where triangle will render inside of
+  // box where triangle will render inside of
   public RenderBounds box = new RenderBounds();
   
   // create canvas
   private DrawCanvas canvas;
  
-  // default point values for testing purposes: suited for 1280x720
-  Point p1 = new Point(xResolution / 2, 100); // 100 and 320 are hardcoded margin offset
-  Point p2 = new Point(320, yResolution - 100); 
-  Point p3 = new Point(xResolution - 320, yResolution - 100);
+  // intialize first points
+  Point p1 = new Point();
+  Point p2 = new Point();
+  Point p3 = new Point();
   
   //create a label which displays useful debug information
   //JLabel textArea = new JLabel();
   
   //default color value for testing
 
-  
-  // main method for testing purposes
-  public static void main(String[] args) {
-    Color testBackgroundColor = new Color(255, 255, 255);
-    Color testFractalColor = new Color(0, 0, 0);
-    new Control(1280 + 17, 720 + 40, 4, testBackgroundColor, testFractalColor);
-  }
   
   // constructor
   public Control(int xRez, int yRez, int degree, Color inputBackgroundColor, Color inputFractalColor) {
