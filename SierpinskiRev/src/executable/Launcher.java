@@ -67,8 +67,7 @@ public class Launcher extends JFrame {
     JLabel lblCredits = new JLabel("Developed by Gjin Rexhaj");
     lblCredits.setBounds(25, 65, 321, 14);
     contentPane.add(lblCredits);
-    
-    //
+
     JSpinner degreeSpinner = new JSpinner();
     degreeSpinner.setToolTipText("Select the degree of the fractal");
     degreeSpinner.setModel(new SpinnerNumberModel(5, 1, 12, 1));
@@ -80,7 +79,6 @@ public class Launcher extends JFrame {
     resolutionSpinner.setModel(new SpinnerListModel(new String[] {"1024x576", "1152x648", "1280x720", "1366x768", "1600x900", "1920x1080"}));
     resolutionSpinner.setBounds(26, 227, 107, 68);
     contentPane.add(resolutionSpinner);
-    //
     
     JLabel lblInfo = new JLabel("This program generates an \"nth\" order Sierpinski gasket on a seperate window. \r\n");
     lblInfo.setFont(new Font("Tahoma", Font.PLAIN, 13));
