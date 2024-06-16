@@ -2,7 +2,7 @@
  * @author Gjin Rexhaj
  */
 
-package executable;
+package application;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

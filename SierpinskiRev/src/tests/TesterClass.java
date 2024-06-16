@@ -8,8 +8,9 @@ import java.awt.AWTException;
 import java.awt.EventQueue;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
-import executable.Launcher;
 import java.util.Scanner;
+
+import application.Launcher;
 
 /**
  * Class containing methods that execute automated testing

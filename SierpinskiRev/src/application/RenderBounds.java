@@ -2,7 +2,7 @@
  * @author Gjin Rexhaj
  */
 
-package executable;
+package application;
 
 /**
  * Class used to create a rectangle which bounds an equilateral triangle.
