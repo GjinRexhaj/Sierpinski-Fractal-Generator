@@ -159,12 +159,12 @@ public class TesterClass {
     // run tests
     lowRezTestRun(testerRobot);
     
+    System.out.println("Test has been completed");
     
-    
-    while(true) {
-      Thread.sleep(5000);
-      System.out.println(MouseInfo.getPointerInfo().getLocation());
-    }
+    //while(true) {
+    //  Thread.sleep(5000);
+    //  System.out.println(MouseInfo.getPointerInfo().getLocation());
+    //}
     
   }
 }
