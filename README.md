@@ -14,7 +14,7 @@ Contains definitions for the recursive methods used to draw fractals, which are 
 Currently only supports drawing Sierpinski Triangles.
 
 ## TesterClass.java
-An automated testing class implemented with java.awt.Robot
+An automated testing class implemented with java.awt.Robot.
 
 ## Documentation
 All of the documentation for this project can be found in this README file, I'll probably create a Javadoc sometime in the near future.
