@@ -180,7 +180,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
       lblImageSaved.setText("");
       
       //call to recursive method which belongs in Model class
-      Model.renderSierpinskiTriangle(g, fractalDepth, p1, p2, p3);
+      Model.renderTriangles(g, fractalDepth, p1, p2, p3);
       System.out.println("paintComponent method run...");
       
       
