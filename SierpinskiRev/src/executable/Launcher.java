@@ -16,9 +16,9 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SpinnerListModel;
 import javax.swing.JColorChooser;
 
+@SuppressWarnings("serial")
 public class Launcher extends JFrame {
 
-  private static final long serialVersionUID = 1L;
   private JPanel contentPane;
   
   // create fractal and backgorund color objects for later use
