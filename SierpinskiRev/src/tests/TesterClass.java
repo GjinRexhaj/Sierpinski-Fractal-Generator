@@ -2,7 +2,6 @@ package tests;
 
 import java.awt.AWTException;
 import java.awt.EventQueue;
-import java.awt.MouseInfo;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
 import executable.Launcher;
