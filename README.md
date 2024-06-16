@@ -14,4 +14,4 @@ To run this program on Windows, simply download the latest version of the runnab
 To save a render to a .png file, simply click the "SAVE" button that appears on the window with the rendered fractal. Images are saved in the same directory as the runnable .jar file.
 
 ## Development
-This is the main/stable branch where releases come from, if you'd like to get involved or see how the program works, you should check out the development branch. 
+This is the main/stable branch where releases come from. If you'd like to get involved or see how the program works, you should check out the development branch. 
