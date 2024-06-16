@@ -13,5 +13,8 @@ Everytime a mouse event happens, it changes values such as zoomFactor and calls 
 Contains definitions for the recursive methods used to draw fractals, which are then called by Control.java.
 Currently only supports drawing Sierpinski Triangles.
 
+## TesterClass.java
+An automated testing class implemented with java.awt.Robot
+
 ## Documentation
 All of the documentation for this project can be found in this README file, I'll probably create a Javadoc sometime in the near future.
