@@ -201,7 +201,11 @@ public class TesterClass {
     String option;
     Scanner s1 = new Scanner(System.in);
     
-    System.out.println("TesterClass.java has been executed, your cursor will be controlled for a brief period of time.");
+    System.out.println("TesterClass.java, Version 1.0");
+    System.out.println("Written by Gjin Rexhaj");
+    System.out.println();
+    
+    System.out.println("Tester has been executed, your cursor will be controlled for a brief period of time.");
     System.out.println("DO NOT MOVE YOUR MOUSE WHILE THE TEST IS RUNNING!");
     System.out.println();
     
