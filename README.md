@@ -1,5 +1,5 @@
 # Development Branch
-This is the primary branch where new features will be integrated and tested before reaching main
+This is the primary branch where new features will be integrated and tested before reaching main. My IDE of choice is Eclipse, hence this repo's file structure.
 
 ## Launcher.java
 As the name implies, this is the launching point of the program. This is the first window which opens after the application is run, and it currently contains two JSpinners which let the user choose the resolution of the render canvas (Control.java) and the degree of the fractal to be rendered.
