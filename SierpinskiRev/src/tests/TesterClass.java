@@ -225,6 +225,8 @@ public class TesterClass {
       }
     }
     
+    s1.close();
+    
     Thread.sleep(250);
     
     if (decision) {
