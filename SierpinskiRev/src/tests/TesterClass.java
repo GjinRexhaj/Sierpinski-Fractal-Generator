@@ -9,6 +9,7 @@ import java.awt.EventQueue;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
 import executable.Launcher;
+import java.util.Scanner;
 
 /**
  * Class containing methods that execute automated testing
@@ -181,6 +182,10 @@ public class TesterClass {
       closeRenderCanvas(robot);
       increaseDegree(robot);
     }
+    Thread.sleep(250);
+    System.out.println("");
+    System.out.println("-- TEST HAS ENDED --");
+    System.out.println("It's safe to use you mouse now");
   }
   
   /**
@@ -191,37 +196,67 @@ public class TesterClass {
   public static void main(String[] args) throws AWTException, InterruptedException {
     Robot testerRobot = new Robot();
     
-    System.out.println("Test main method is running");
+    boolean decisionState = true;
+    boolean decision = false;
+    String option;
+    Scanner s1 = new Scanner(System.in);
     
-    EventQueue.invokeLater(new Runnable() {
-      public void run() {
-        try {
-          Launcher frame = new Launcher();
-          frame.setVisible(true);
-        } catch (Exception e) {
-          e.printStackTrace();
-        }
+    System.out.println("TesterClass.java has been executed, your cursor will be controlled for a brief period of time.");
+    System.out.println("DO NOT MOVE YOUR MOUSE WHILE THE TEST IS RUNNING!");
+    System.out.println();
+    
+    while(decisionState) {
+      System.out.println("Would you like to continue? (y/n)");
+      
+      option = s1.nextLine();
+      
+      if (option.equals("y")) {
+        decisionState = false;
+        decision = true;
+        System.out.println("");
+        System.out.println("-- TEST IS BEGINNING --");
+      } else if (option.equals("n")) {
+        decisionState = false;
+        decision = false;
+        System.out.println("Program terminated");
+      } else {
+        System.out.println("Invalid answer, type 'y' or 'n'");
+        System.out.println();
       }
-    });
+    }
     
-    Thread.sleep(500);
+    Thread.sleep(250);
     
-    // set resolution to zero
-    decreaseDegree(testerRobot);
-    decreaseDegree(testerRobot);
-    decreaseDegree(testerRobot);
-    decreaseDegree(testerRobot);
-    Thread.sleep(delay);
+    if (decision) {
     
-    // run tests
-    lowRezTestRun(testerRobot);
     
-    System.out.println("Test has been completed");
+      EventQueue.invokeLater(new Runnable() {
+        public void run() {
+          try {
+            Launcher frame = new Launcher();
+            frame.setVisible(true);
+          } catch (Exception e) {
+            e.printStackTrace();
+          }
+        }
+      });
     
-    //while(true) {
-    //  Thread.sleep(5000);
-    //  System.out.println(MouseInfo.getPointerInfo().getLocation());
-    //}
+      Thread.sleep(500);
     
+      // set resolution to zero
+      decreaseDegree(testerRobot);
+      decreaseDegree(testerRobot);
+      decreaseDegree(testerRobot);
+      decreaseDegree(testerRobot);
+      Thread.sleep(delay);
+    
+      // run tests
+      lowRezTestRun(testerRobot);
+    
+      //while(true) {
+      //  Thread.sleep(5000);
+      //  System.out.println(MouseInfo.getPointerInfo().getLocation());
+      //}
+    }
   }
 }
