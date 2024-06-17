@@ -16,6 +16,11 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SpinnerListModel;
 import javax.swing.JColorChooser;
 
+/**
+ * The launching point of the program- The very first window which opens up and allows
+ * the user to generate a fractal in acocrdance with specifiable parameters.
+ */
+
 @SuppressWarnings("serial")
 public class Launcher extends JFrame {
 

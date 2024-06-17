@@ -9,23 +9,23 @@ import javax.swing.*;
 
 
 /**
- * Class containing all backend methods/logic for rendering fractals
+ * Class containing all backend methods/logic for rendering fractals.
  */
 @SuppressWarnings("serial")
 public class Model extends JFrame {
   
-  /** method to draw line between two points
+  /** method to draw line between two points.
    * 
-   * @param g Graphics component
-   * @param p1 First Point
-   * @param p2 Second Point
+   * @param g Graphics component.
+   * @param p1 First Point.
+   * @param p2 Second Point.
    */
   private static void drawLine(Graphics g, Point p1, Point p2) {
     g.drawLine(p1.x, p1.y, p2.x, p2.y);
   }
   
   /**
-  * Method to return midpoint between two points
+  * Method to return midpoint between two points.
   * 
   * @return Point
   */
@@ -34,13 +34,13 @@ public class Model extends JFrame {
   }
   
   /** 
-   * Recursive method used to render Sierpinski triangles
+   * Recursive method used to render Sierpinski triangles.
    * 
-   * @param g Graphics component
-   * @param localDepth Depth of the Sierpinski fractal
-   * @param p1 Top-most point
-   * @param p2 Bottom-left point
-   * @param p3 Bottom-right point
+   * @param g Graphics component.
+   * @param localDepth Depth of the Sierpinski fractal.
+   * @param p1 Top-most point.
+   * @param p2 Bottom-left point.
+   * @param p3 Bottom-right point.
    */
   public static void renderTriangles(Graphics g, int localDepth, Point p1, Point p2, Point p3) {
     // base case

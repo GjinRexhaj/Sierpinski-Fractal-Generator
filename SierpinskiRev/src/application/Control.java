@@ -17,50 +17,101 @@ import java.awt.event.MouseWheelEvent;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-@SuppressWarnings("serial")
 /**
- * Constructor for Control window
+ * Class which creates a canvas containing the rendered fractal.
  */
+@SuppressWarnings("serial")
 public class Control extends JFrame implements MouseListener, MouseWheelListener, MouseMotionListener {
   
-  // color objects
+  /**
+   * {@code backgroundColor} is an object containing the color of the background.
+   */
   Color backgroundColor;
+  
+  /**
+   * {@code fractalColor} is an object containing the color of the fractal.
+   */
   Color fractalColor;
   
-  // static iterator variable for save image name incrementing
+  /**
+   * {@code iterator} is a static variable which increments each time an image is saved,
+   * used in saved image naming scheme.
+   */
   public static int iterator = 1;
   
-  // Instance object "image saved" JLabel creation
+  /**
+   * {@code lblImageSaved} is an isntance JLabel object which displays info about a saved image.
+   * upon saving
+   */
   JLabel lblImageSaved = new JLabel();
   
-  // how zoomed in the user is
+  /**
+   * {@code scrollFactor} is a variable which influences how "zoomed in" a fractal is .
+   */
   public int scrollFactor;
   
-  // the speed at which scrolling zooms into the fractal
+  /**
+   * {@code zoomSpeed} is a variable which controls the speed at which the image zooms in/out.
+   */
   public double zoomSpeed = 1.1232;
   
-  // TO-DO, implement and "infinite depth" setting which increments fractal
-  // depth when zoom level increases, this is the defualt value for testing purposes
+  /**
+   * {@code fractalDepth} is a variable which stores the degree of the fractal.
+   */
   public int fractalDepth;
   
-  // Declare resolutions
+  /**
+   * {@code xResolution} is a variable which stores the horizontal resolution of the window.
+   */
   public int xResolution; 
+  
+  /**
+   * {@code yResolution} is a variable which stores the vertical resolution of the window.
+   */
   public int yResolution; 
   
-  // TO-DO, add click/drag functionality
+  /**
+   * {@code deflectionX} is a variable which specifies horizontal movement of the fractal.
+   */
   public double deflectionX = 0;
+  
+  /**
+   * {@code deflectionY} is a variable which specifies vertical movement of the fractal.
+   */
   public double deflectionY = 0;
   
-  // box where triangle will render inside of
+  /**
+   * {@code RenderBounds} is a box which bounds an equilateral triangle.
+   */
   public RenderBounds box = new RenderBounds();
   
   // create canvas
   private DrawCanvas canvas;
  
-  // intialize first points
+  /**
+   * {@code p1} is the topmost point.
+   */
   Point p1 = new Point();
+  
+  /**
+   * {@code p2} is the bottom-left point.
+   */
   Point p2 = new Point();
+  
+  /**
+   * {@code p3} is the bottom-right point.
+   */
   Point p3 = new Point();
+  
+  /**
+   * {@code originalX} Used to know which direction fractal should be panned.
+   */
+  public int originalX;
+  
+  /**
+   * {@code originalY} Used to know which direction fractal should be panned.
+   */
+  public int originalY;
   
   //create a label which displays useful debug information
   //JLabel textArea = new JLabel();
@@ -68,7 +119,15 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   //default color value for testing
 
   
-  // constructor
+  /**
+   * Constructor of Control window.
+   * 
+   * @param xRez The horizontal resolution of the window.
+   * @param yRez The vertical resolution of the window.
+   * @param degree The degree of the fractal to be rendered.
+   * @param inputBackgroundColor The background color.
+   * @param inputFractalColor The fractal color.
+   */
   public Control(int xRez, int yRez, int degree, Color inputBackgroundColor, Color inputFractalColor) {
     setIconImage(Toolkit.getDefaultToolkit().getImage(Launcher.class.getResource("/resources/fractalIcon.png")));
     
@@ -228,11 +287,6 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     System.out.println("Mouse clicked: (" + e.getX() + "), (" + e.getY() + ")");
 
   }
-
-  
-  // variables so the program knows which direction mouse is being dragged
-  public int originalX;
-  public int originalY;
   
   @Override
   public void mousePressed(MouseEvent e) {
