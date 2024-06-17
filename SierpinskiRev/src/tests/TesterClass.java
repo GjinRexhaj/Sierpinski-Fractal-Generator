@@ -186,7 +186,7 @@ public class TesterClass {
     Thread.sleep(250);
     System.out.println("");
     System.out.println("-- TESTING HAS ENDED --");
-    System.out.println("It's safe to use you mouse now");
+    System.out.println("It's safe to use your mouse now");
   }
   
   /**
