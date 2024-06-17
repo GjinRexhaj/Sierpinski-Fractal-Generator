@@ -13,19 +13,19 @@ import java.util.Scanner;
 import application.Launcher;
 
 /**
- * Class containing methods that execute automated testing
+ * Class containing methods that execute automated testing.
  */
 public class TesterClass {
   
   /**
-   * Delay in miliseconds which controls how fast the bot operates
+   * Delay in miliseconds which controls how fast the bot operates.
    */
   public static int delay = 10;
   
   /**
-   * Method that tells the robot to click the "Render" button
+   * Method that tells the robot to click the "Render" button.
    * 
-   * @param robot Robot object which will execute this action
+   * @param robot Robot object which will execute this action.
    * @throws InterruptedException
    */
   public static void clickRender(Robot robot) throws InterruptedException {
@@ -38,9 +38,9 @@ public class TesterClass {
   }
   
   /**
-   * Method that tells the robot to Zoom in and out of the fractal
+   * Method that tells the robot to Zoom in and out of the fractal.
    * 
-   * @param robot Robot object which will execute this action
+   * @param robot Robot object which will execute this action.
    * @throws InterruptedException
    */
   public static void zoom(Robot robot) throws InterruptedException {
@@ -55,9 +55,9 @@ public class TesterClass {
   }
   
   /**
-   * Method that tells the robot to pan left, right, up, and down on the renderCanvas
+   * Method that tells the robot to pan left, right, up, and down on the renderCanvas.
    * 
-   * @param robot Robot object which will execute this action
+   * @param robot Robot object which will execute this action.
    * @throws InterruptedException
    */
   public static void pan(Robot robot) throws InterruptedException {
@@ -100,9 +100,9 @@ public class TesterClass {
   
   /**
    * Method that tells the robot to save the fractal as an image.
-   * {@code Please note, this function is currently resolution-specific 
-   * and only implemented for the lowest resolution}
-   * @param robot Robot object which will execute this action
+   * {@code Please note, this function is currently resolution-specific
+   * and only implemented for the lowest resolution}.
+   * @param robot Robot object which will execute this action.
    * @throws InterruptedException
    */
   public static void saveImage(Robot robot) throws InterruptedException {
@@ -115,7 +115,7 @@ public class TesterClass {
   /**
    * Method that tells the robot to close the render canvas.
    * {@code Please note, this function is currently resolution-specific 
-   * and only implemented for the lowest resolution}
+   * and only implemented for the lowest resolution}.
    * @param robot Robot object which will execute this action
    * @throws InterruptedException
    */
@@ -128,8 +128,8 @@ public class TesterClass {
   
   /**
    * Method that tells the robot to increase the resolution by one
-   * JSpinner increment
-   * @param robot Robot object which will execute this action
+   * JSpinner increment.
+   * @param robot Robot object which will execute this action.
    * @throws InterruptedException
    */
   public static void increaseResolution(Robot robot) throws InterruptedException {
@@ -141,8 +141,8 @@ public class TesterClass {
   
   /**
    * Method that tells the robot to increase the degree by one
-   * JSpinner increment
-   * @param robot Robot object which will execute this action
+   * JSpinner increment.
+   * @param robot Robot object which will execute this action.
    * @throws InterruptedException
    */
   public static void increaseDegree(Robot robot) throws InterruptedException {
@@ -154,8 +154,8 @@ public class TesterClass {
   
   /**
    * Method that tells the robot to decrease the degree by one
-   * JSpinner increment
-   * @param robot Robot object which will execute this action
+   * JSpinner increment.
+   * @param robot Robot object which will execute this action.
    * @throws InterruptedException
    */
   public static void decreaseDegree(Robot robot) throws InterruptedException {
@@ -166,10 +166,10 @@ public class TesterClass {
   }
 
   /**
-   * Method that tells robot to run a full test
+   * Method that tells robot to run a full test.
    * {@code Please note, this function is currently resolution-specific 
    * and only implemented for the lowest resolution, as it uses saveImage() and
-   * closeRenderCanvas(), which are also resolution specific}
+   * closeRenderCanvas(), which are also resolution specific}.
    * @param robot Robot object which will execute this action
    * @throws InterruptedException@param robot
    * @throws InterruptedException
