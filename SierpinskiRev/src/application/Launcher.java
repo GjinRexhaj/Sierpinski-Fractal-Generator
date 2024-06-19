@@ -15,6 +15,7 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SpinnerListModel;
 import javax.swing.JColorChooser;
+import javax.swing.UIManager;
 
 /**
  * The launching point of the program- The very first window which opens up and allows
@@ -55,7 +56,7 @@ public class Launcher extends JFrame {
     setAlwaysOnTop(false);
     setTitle("Java Fractal Generator");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setBounds(100, 100, 529, 472);
+    setBounds(100, 100, 529, 492);
     contentPane = new JPanel();
     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
     setResizable(false);
@@ -96,7 +97,7 @@ public class Launcher extends JFrame {
     contentPane.add(lblMoreInfo);
     
     JLabel lblVersion = new JLabel("Version 2.2,   github.com/gjinrexhaj,   implemented with Java Swing and AWT");
-    lblVersion.setBounds(10, 408, 541, 14);
+    lblVersion.setBounds(10, 428, 541, 14);
     contentPane.add(lblVersion);
     
     JButton btnGenerateButton = new JButton("RENDER");
@@ -161,13 +162,33 @@ public class Launcher extends JFrame {
     
     JLabel lblBackgroundColor = new JLabel("Background Color");
     lblBackgroundColor.setFont(new Font("Tahoma", Font.PLAIN, 13));
-    lblBackgroundColor.setBounds(66, 306, 107, 29);
+    lblBackgroundColor.setBounds(64, 306, 107, 29);
     contentPane.add(lblBackgroundColor);
     
     JLabel lblFractalColor = new JLabel("Fractal Color");
     lblFractalColor.setFont(new Font("Tahoma", Font.PLAIN, 13));
     lblFractalColor.setBounds(64, 341, 107, 29);
     contentPane.add(lblFractalColor);
+    
+    JButton btnSwapColors = new JButton("");
+    btnSwapColors.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        
+        
+        
+      }
+    });
+    btnSwapColors.setToolTipText("Click to swap Background color with Fractal color and vice versa");
+    btnSwapColors.setForeground(Color.BLACK);
+    btnSwapColors.setFont(new Font("Tahoma", Font.PLAIN, 12));
+    btnSwapColors.setBackground(UIManager.getColor("Button.background"));
+    btnSwapColors.setBounds(25, 376, 29, 29);
+    contentPane.add(btnSwapColors);
+    
+    JLabel lblSwapColors = new JLabel("Swap Colors");
+    lblSwapColors.setFont(new Font("Tahoma", Font.PLAIN, 13));
+    lblSwapColors.setBounds(63, 377, 107, 29);
+    contentPane.add(lblSwapColors);
     
     
   }
