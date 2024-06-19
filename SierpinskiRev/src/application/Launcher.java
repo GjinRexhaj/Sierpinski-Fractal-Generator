@@ -32,6 +32,13 @@ public class Launcher extends JFrame {
   Color fractalColor = new Color(0, 0, 0);
   Color backgroundColor = new Color(255, 255, 255);
   
+  // duplicate color objects to be used in swap color logic
+  Color originalFractalColor = fractalColor;
+  Color originalBackgroundColor = backgroundColor;
+  
+  // iterator for "swap colors" button
+  public static int swapIterator = 0;
+  
   /**
    * Launch the application.
    */
@@ -132,6 +139,8 @@ public class Launcher extends JFrame {
         new JColorChooser();
         
         backgroundColor = JColorChooser.showDialog(null, "Choose the background color", Color.BLACK);
+        originalBackgroundColor = backgroundColor;
+        originalFractalColor = fractalColor;
         btnBackgroundColor.setBackground(backgroundColor);
       }
     });
@@ -149,6 +158,8 @@ public class Launcher extends JFrame {
         new JColorChooser();
         
         fractalColor = JColorChooser.showDialog(null, "Choose the fractal color", Color.BLACK);
+        originalFractalColor = fractalColor;
+        originalBackgroundColor = backgroundColor;
         btnFractalColor.setBackground(fractalColor);
         
       }
@@ -168,14 +179,27 @@ public class Launcher extends JFrame {
     JLabel lblFractalColor = new JLabel("Fractal Color");
     lblFractalColor.setFont(new Font("Tahoma", Font.PLAIN, 13));
     lblFractalColor.setBounds(64, 341, 107, 29);
-    contentPane.add(lblFractalColor);
+    contentPane.add(lblFractalColor);    
     
     JButton btnSwapColors = new JButton("");
     btnSwapColors.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
+        if (swapIterator % 2 == 0) {
+          // case 0: swapIterator is even
+          fractalColor = originalBackgroundColor;
+          backgroundColor = originalFractalColor;
+          btnFractalColor.setBackground(fractalColor);
+          btnBackgroundColor.setBackground(backgroundColor);
+        } else {
+          // case 1: swapIterator is odd
+          fractalColor = originalFractalColor;
+          backgroundColor = originalBackgroundColor;
+          btnBackgroundColor.setBackground(backgroundColor);
+          btnFractalColor.setBackground(fractalColor);
+        }
         
-        
-        
+        // increment swapIterator
+        swapIterator++;
       }
     });
     btnSwapColors.setToolTipText("Click to swap Background color with Fractal color and vice versa");
