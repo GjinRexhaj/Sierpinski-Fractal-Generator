@@ -53,9 +53,16 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   JLabel lblImageSaved = new JLabel();
   
   /**
-   * {@code scrollFactor} is a variable which influences how "zoomed in" a fractal is .
+   * {@code scrollFactor} is a variable which influences how "zoomed in" a fractal is.
    */
   public int scrollFactor;
+  
+  /**
+   * {@code origin} is a Point object which contains the x and y coordinates of the center of the canvas.
+   */
+  
+  Point origin = new Point();
+  
   
   /**
    * {@code zoomSpeed} is a variable which controls the speed at which the image zooms in/out.
@@ -76,6 +83,16 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
    * {@code yResolution} is a variable which stores the vertical resolution of the window.
    */
   public int yResolution; 
+  
+  /**
+   * {@code mousePosX} is a variable which stores the x position of the mouse.
+   */
+  public int mousePosX;
+  
+  /**
+   * {@code mousePosX} is a variable which stores the y position of the mouse.
+   */
+  public int mousePosY;
   
   /**
    * {@code deflectionX} is a variable which specifies horizontal movement of the fractal.
@@ -140,6 +157,11 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     
     // make panspeed scale (slightly) exponentially with degree
     panSpeed = (degree * 1.09) - (degree - 1);
+    
+    
+    // set origin equal to the middle of the canvas
+    origin.setLocation(xRez/2, yRez/2);
+    
     
     backgroundColor = inputBackgroundColor;
     fractalColor = inputFractalColor;
@@ -261,6 +283,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   @Override
   public void mouseWheelMoved(MouseWheelEvent e) {
     // nested if statements to determine scroll wheel direction
+    
     int notches = e.getWheelRotation();
     System.out.println("scrollFactor: " + scrollFactor);
     
@@ -346,20 +369,24 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
       originalY = e.getY();
     }
     
+    
     p1.setLocation(xResolution/2 + deflectionX, 0 - scrollFactor + deflectionY);
     p2.setLocation(box.calculateHorizontalMargin(xResolution) - scrollFactor + deflectionX, box.getHeight() + scrollFactor + deflectionY);
     p3.setLocation(xResolution - box.calculateHorizontalMargin(xResolution) + scrollFactor + deflectionX, box.getHeight() + scrollFactor + deflectionY);
+    
     repaint();
   }
 
   @Override
   public void mouseMoved(MouseEvent e) {
     // TODO Auto-generated method stub
-    // mouseTracker("Mouse moved", e); // commented out as it keeps running paintComponent
-    //int mousePosX = e.getX();
-    //int mousePosY = e.getY();
-    
+    // mouseTracker("Mouse moved", e); // commented out as it keeps running paintComponent    
   } 
+  
+  public void updateMousePosition(MouseEvent e) {
+    mousePosX = e.getX();
+    mousePosX = e.getX();
+  }
   
   // method to display crucial mouse info
   //private void mouseTracker(String description, MouseEvent e) {
