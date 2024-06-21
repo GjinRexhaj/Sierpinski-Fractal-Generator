@@ -39,6 +39,13 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
    */
   public static int iterator = 1;
   
+  
+  /**
+   * {@code panSpeed} is an object-dependent variable which controls the speed at which dragging
+   * pans the fractal.
+   */
+  public double panSpeed = 1;
+  
   /**
    * {@code lblImageSaved} is an isntance JLabel object which displays info about a saved image.
    * upon saving
@@ -131,6 +138,8 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   public Control(int xRez, int yRez, int degree, Color inputBackgroundColor, Color inputFractalColor) {
     setIconImage(Toolkit.getDefaultToolkit().getImage(Launcher.class.getResource("/resources/fractalIcon.png")));
     
+    // make panspeed scale (slightly) exponentially with degree
+    panSpeed = (degree * 1.09) - (degree - 1);
     
     backgroundColor = inputBackgroundColor;
     fractalColor = inputFractalColor;
@@ -319,10 +328,10 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     // increment deflectionX if dragged right
     // decrement deflectionX if dragged left
     if (e.getX() > originalX) {
-      deflectionX++;
+      deflectionX+=panSpeed;
       originalX = e.getX();
     } else if (e.getX() < originalX) {
-      deflectionX--;
+      deflectionX-=panSpeed;
       originalX = e.getX();
     }
     
@@ -330,10 +339,10 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     // decrement deflectionY if dragged down
     // NOTE Y AXIS IS INVERTED IN JAVA!
     if (e.getY() > originalY) {
-      deflectionY++;
+      deflectionY+=panSpeed;
       originalY = e.getY();
     } else if (e.getY() < originalY) {
-      deflectionY--;
+      deflectionY-=panSpeed;
       originalY = e.getY();
     }
     
