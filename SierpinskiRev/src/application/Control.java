@@ -192,7 +192,10 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     setLocationRelativeTo(null);
     canvas = new DrawCanvas();
     
+    System.out.println(backgroundColor.getRGB());
     
+    // set toolbar color to slightly brighter
+    getContentPane().setBackground(backgroundColor.brighter());
     
     canvas.setBounds(0, 30, xResolution, yResolution);
     canvas.setOpaque(true);
@@ -255,6 +258,12 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
         // hide button while screenshot processes
         btnSaveButton.setEnabled(false);
         btnSaveButton.setVisible(false);
+        btnInfoButton.setEnabled(false);
+        btnInfoButton.setVisible(false);
+        
+        //change toolbar color to original background color
+        getContentPane().setBackground(backgroundColor);
+        
         
         System.out.println("save button hit");
 
@@ -264,8 +273,14 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
         // TO-DO, add subtext that briefly mentions "image saved to <directory>
         btnSaveButton.setEnabled(true);
         btnSaveButton.setVisible(true);
+        btnInfoButton.setEnabled(true);
+        btnInfoButton.setVisible(true);
         lblImageSaved.setText("fractal_" + iterator + ".png saved to " + path);
         iterator++;
+        
+        //change toolbar color back to brighter than background
+        getContentPane().setBackground(backgroundColor.brighter());
+        
       }
     });
   }
