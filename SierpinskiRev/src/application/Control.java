@@ -50,7 +50,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
    * {@code lblImageSaved} is an isntance JLabel object which displays info about a saved image.
    * upon saving
    */
-  JLabel lblImageSaved = new JLabel();
+  JLabel lblImageSaved = new JLabel("");
   
   /**
    * {@code scrollFactor} is a variable which influences how "zoomed in" a fractal is.
@@ -137,11 +137,48 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
    */
   public int originalY;
   
-  //create a label which displays useful debug information
-  //JLabel textArea = new JLabel();
+  /**
+   * {@code setActionBarColor} Used to set the color of the action bar.
+   */
+  public void setActionBarColor() {
+    //sets actionbar color to the fractal color
+    getContentPane().setBackground(backgroundColor.darker());
+  }
   
-  //default color value for testing
-
+  /**
+   * {@code hideLabel} Used to show or hide a JLabel depending on boolean condition.
+   * @param label desired JLabel
+   * @param bool whether to hide or show
+   */
+  public static void hideLabel(JLabel label, boolean bool) {
+    if (bool == true) {
+      label.setOpaque(false);
+      label.setVisible(false);
+    } else {
+      label.setOpaque(true);
+      label.setVisible(true);
+    }
+  }
+  /**
+   * {@code labelSize} Dimension object which contains the size of imaeg saved label. 
+   */
+  public int labelSize;
+  
+  /**
+   * {@code hideButton} Used to show or hide a JButton depending on boolean condition.
+   * @param button desired JButton
+   * @param bool whether to hide or show
+   */
+  public static void hideButton(JButton button, boolean bool) {
+    if (bool == true) {
+      button.setVisible(false);
+      button.setEnabled(false);
+    } else {
+      button.setVisible(true);
+      button.setEnabled(true);
+    }
+  }
+  
   
   /**
    * Constructor of Control window.
@@ -192,13 +229,10 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     setLocationRelativeTo(null);
     canvas = new DrawCanvas();
     
-    System.out.println(backgroundColor.getRGB());
-    
     // set toolbar color to slightly brighter
-    getContentPane().setBackground(backgroundColor.brighter());
+    setActionBarColor();
     
     canvas.setBounds(0, 30, xResolution, yResolution);
-    canvas.setOpaque(true);
     canvas.addMouseWheelListener(this);
     canvas.addMouseMotionListener(this);
     canvas.addMouseListener(this);
@@ -211,7 +245,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     btnInfoButton.setToolTipText("Click to open fractal information window.");
     btnInfoButton.setForeground(Color.BLACK);
     btnInfoButton.setFont(new Font("Tahoma", Font.PLAIN, 9));
-    btnInfoButton.setBackground(Color.LIGHT_GRAY);
+    btnInfoButton.setBackground(Color.CYAN);
     btnInfoButton.setBounds(80, 0, 110, 30);
     add(btnInfoButton);
     btnInfoButton.addActionListener(new ActionListener() {
@@ -238,13 +272,9 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     lblImageSaved.setForeground(Color.BLACK);
     lblImageSaved.setBackground(Color.WHITE);
     lblImageSaved.setFont(new Font("Tahoma", Font.PLAIN, 9));
-    lblImageSaved.setLocation(80, 0);
-    lblImageSaved.setBounds(100, 0, 700, 30);
     add(lblImageSaved);
-    lblImageSaved.setVisible(true);
     
-    
-    
+
     //add savebutton
     JButton btnSaveButton = new JButton("SAVE");
     btnSaveButton.setToolTipText("Click to save the latest generated fractal as a .png image.");
@@ -256,30 +286,36 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     btnSaveButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         // hide button while screenshot processes
-        btnSaveButton.setEnabled(false);
-        btnSaveButton.setVisible(false);
-        btnInfoButton.setEnabled(false);
-        btnInfoButton.setVisible(false);
-        
+        hideButton(btnSaveButton, true);
+        hideButton(btnInfoButton, true);
+        hideLabel(lblImageSaved, true);
+
         //change toolbar color to original background color
         getContentPane().setBackground(backgroundColor);
-        
         
         System.out.println("save button hit");
 
         // save image
         saveImage("fractal_" + iterator, "png", xResolution, yResolution);
         
-        // TO-DO, add subtext that briefly mentions "image saved to <directory>
-        btnSaveButton.setEnabled(true);
-        btnSaveButton.setVisible(true);
-        btnInfoButton.setEnabled(true);
-        btnInfoButton.setVisible(true);
-        lblImageSaved.setText("fractal_" + iterator + ".png saved to " + path);
+        // show buttons
+        hideButton(btnSaveButton, false);
+        hideButton(btnInfoButton, false);
+        
+        // set "image saved" text
+        lblImageSaved.setText("fractal_" + iterator + ".png saved to " + path) ;
+        
+        // set label to be in top-right corner
+        labelSize = (int) lblImageSaved.getPreferredSize().getWidth();
+        lblImageSaved.setBounds(xResolution - labelSize-20, 0, xResolution - labelSize-40, 20);
+        System.out.println(labelSize);
+        
+        // iterate filename and show "image saved" label
         iterator++;
+        hideLabel(lblImageSaved, false);
         
         //change toolbar color back to brighter than background
-        getContentPane().setBackground(backgroundColor.brighter());
+        setActionBarColor();
         
       }
     });
@@ -294,7 +330,6 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
       super.paintComponent(g);
       setBackground(backgroundColor);
       g.setColor(fractalColor);
-      lblImageSaved.setText("");
       
       //call to recursive method which belongs in Model class
       Model.renderTriangles(g, fractalDepth, p1, p2, p3);
@@ -332,6 +367,8 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     
     System.out.println(box.getWidth());
     System.out.println(box.getHeight());
+    
+    hideLabel(lblImageSaved, true);
     
     repaint();
     
@@ -399,6 +436,8 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     p1.setLocation(xResolution/2 + deflectionX, 0 - scrollFactor + deflectionY);
     p2.setLocation(box.calculateHorizontalMargin(xResolution) - scrollFactor + deflectionX, box.getHeight() + scrollFactor + deflectionY);
     p3.setLocation(xResolution - box.calculateHorizontalMargin(xResolution) + scrollFactor + deflectionX, box.getHeight() + scrollFactor + deflectionY);
+    
+    hideLabel(lblImageSaved, true);
     
     repaint();
   }
