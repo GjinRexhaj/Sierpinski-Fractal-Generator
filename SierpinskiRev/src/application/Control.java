@@ -253,7 +253,8 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
         String infoString = 
               "Fractal: Sierpinski Triangle\n"
             + "Degree: " + fractalDepth + "\n"
-            + "Resolution: " + xResolution + "x" + yResolution + "\n";
+            + "Resolution: " + xResolution + "x" + yResolution + "\n"
+            + "Filename: " + "fractal_" + iterator + ".png\n";
         
         // create JDialog which shows analysis pane
         JOptionPane.showMessageDialog(null, infoString, "Information", JOptionPane.INFORMATION_MESSAGE);
