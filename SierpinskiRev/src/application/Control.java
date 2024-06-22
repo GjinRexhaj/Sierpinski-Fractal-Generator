@@ -191,6 +191,9 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     setTitle("Fractal Viewer");
     setLocationRelativeTo(null);
     canvas = new DrawCanvas();
+    
+    
+    
     canvas.setBounds(0, 30, xResolution, yResolution);
     canvas.setOpaque(true);
     canvas.addMouseWheelListener(this);
@@ -200,24 +203,28 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     this.add(canvas);
     this.setVisible(true);
     
-    // TO-DO: add analysis button which opens seperate dialog box
-    // which displays details about what's being viewed
-    
-    //add analysis button
-    JButton btnAnalysisButton = new JButton("ANALYSIS");
-    btnAnalysisButton.setToolTipText("Click to open fractal analysis window.");
-    btnAnalysisButton.setForeground(Color.BLACK);
-    btnAnalysisButton.setFont(new Font("Tahoma", Font.PLAIN, 9));
-    btnAnalysisButton.setBackground(Color.LIGHT_GRAY);
-    btnAnalysisButton.setBounds(80, 0, 100, 30);
-    add(btnAnalysisButton);
-    btnAnalysisButton.addActionListener(new ActionListener() {
+    // information button
+    JButton btnInfoButton = new JButton("INFORMATION");
+    btnInfoButton.setToolTipText("Click to open fractal information window.");
+    btnInfoButton.setForeground(Color.BLACK);
+    btnInfoButton.setFont(new Font("Tahoma", Font.PLAIN, 9));
+    btnInfoButton.setBackground(Color.LIGHT_GRAY);
+    btnInfoButton.setBounds(80, 0, 110, 30);
+    add(btnInfoButton);
+    btnInfoButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
+        String infoString = 
+              "Fractal: Sierpinski Triangle\n"
+            + "Degree: " + fractalDepth + "\n"
+            + "Resolution: " + xResolution + "x" + yResolution + "\n";
+        
         // create JDialog which shows analysis pane
+        JOptionPane.showMessageDialog(null, infoString, "Information", JOptionPane.INFORMATION_MESSAGE);
+        
         System.out.println("analysis button hit");
-        JDialog analysis = new JDialog();
-        analysis.setLayout(new FlowLayout());
-        analysis.setVisible(true);
+        //JDialog analysis = new JDialog();
+        //analysis.setLayout(new FlowLayout());
+        //analysis.setVisible(true);
       }
     });
     
