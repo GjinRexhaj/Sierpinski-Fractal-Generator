@@ -202,21 +202,25 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     
     // TO-DO: add analysis button which opens seperate dialog box
     // which displays details about what's being viewed
-    /*
+    
     //add analysis button
     JButton btnAnalysisButton = new JButton("ANALYSIS");
     btnAnalysisButton.setToolTipText("Click to open fractal analysis window.");
     btnAnalysisButton.setForeground(Color.BLACK);
     btnAnalysisButton.setFont(new Font("Tahoma", Font.PLAIN, 9));
     btnAnalysisButton.setBackground(Color.LIGHT_GRAY);
-    btnAnalysisButton.setBounds(80, yResolution - 75, 100, 36);
+    btnAnalysisButton.setBounds(80, 0, 100, 30);
     add(btnAnalysisButton);
     btnAnalysisButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        
+        // create JDialog which shows analysis pane
+        System.out.println("analysis button hit");
+        JDialog analysis = new JDialog();
+        analysis.setLayout(new FlowLayout());
+        analysis.setVisible(true);
       }
     });
-    */
+    
     
     // label which notifies user that image has been saved
     File file = new File("");
