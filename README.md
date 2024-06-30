@@ -16,4 +16,4 @@ Currently only supports drawing Sierpinski Triangles.
 A command-line automated testing class with it's own main method. Implemented with java.awt.Robot.
 
 ## Documentation
-All of the documentation for this project can be found in this README file and the Javadoc folder,
+All of the documentation for this project can be found in this README file and this repo's Javadoc: https://gjinrexhaj.github.io/Sierpinski-Fractal-Generator/
