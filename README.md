@@ -3,7 +3,7 @@ A Java GUI program which renders an "nth" order Sierpinski gasket. The canvas si
 
 ## Development
 If you'd like to get involved or see how the latest iteration of the program currently works, feel free to check out the development branch.
-Additionally, Javadoc for this porject can be found at this site: https://gjinrexhaj.github.io/Sierpinski-Fractal-Generator/
+Additionally, Javadoc for this project can be found at this site: https://gjinrexhaj.github.io/Sierpinski-Fractal-Generator/
 
 ## Prerequisites
 To run this program, your computer must have Java. Ignore this process if you have it installed.
