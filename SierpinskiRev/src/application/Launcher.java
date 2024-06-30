@@ -19,7 +19,7 @@ import javax.swing.UIManager;
 
 /**
  * The launching point of the program- The very first window which opens up and allows
- * the user to generate a fractal in acocrdance with specifiable parameters.
+ * the user to generate a fractal in accordance with specifiable parameters.
  */
 
 @SuppressWarnings("serial")
@@ -27,7 +27,7 @@ public class Launcher extends JFrame {
 
   private JPanel contentPane;
   
-  // create fractal and backgorund color objects for later use
+  // create fractal and background color objects for later use
   // black and white are the default color options
   Color fractalColor = new Color(0, 0, 0);
   Color backgroundColor = new Color(255, 255, 255);
