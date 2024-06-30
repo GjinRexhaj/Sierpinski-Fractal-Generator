@@ -2,7 +2,7 @@
 A Java GUI program which renders an "nth" order Sierpinski gasket. The canvas size and degree of the rendered Sierpinski gasket are user-specified.
 
 ## Development
-This is the main/stable branch where releases come from. If you'd like to get involved or see how the latest iteration of the program currently works, feel free to check out the development branch.
+If you'd like to get involved or see how the latest iteration of the program currently works, feel free to check out the development branch.
 Additionally, Javadoc for this porject can be found at this site: https://gjinrexhaj.github.io/Sierpinski-Fractal-Generator/
 
 ## Prerequisites
