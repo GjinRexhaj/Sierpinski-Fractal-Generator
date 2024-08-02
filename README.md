@@ -1,19 +1,18 @@
-# Development Branch
-This is the primary branch where new features will be integrated and tested before reaching main. My IDE of choice is Eclipse, hence this repo's file structure.
+# Sierpinski-Fractal-Generator
+A Java GUI program which renders an "nth" order Sierpinski gasket. The canvas size and degree of the rendered Sierpinski gasket are user-specified.
 
-## Launcher.java
-As the name implies, this is the launching point of the program. This is the first window which opens after the application is run, and it currently contains two JSpinners which let the user choose the resolution of the render canvas (Control.java) and the degree of the fractal to be rendered.
+## Development
+If you'd like to get involved or see how the latest iteration of the program currently works, feel free to check out the development branch.
+Additionally, Javadoc for this project can be found at this site: https://gjinrexhaj.github.io/Sierpinski-Fractal-Generator/
 
-## Control.java
-After clicking "Render", a Control.java window will open up, which calls renderTriangles() from Model.java to draw a fractal in accordance with the selected options passed from Launcher.java.
-Control.java currently implements MouseListener, MouseWheelListener, and MouseMotionListener. Everytime a mouse event happens, it changes values such as zoomFactor, deflection, etc. and calls renderTriangles() again but it passes these changed variables to produce the desired results.
+## Prerequisites
+To run this program, your computer must have Java. Ignore this process if you have it installed.
 
-## Model.java
-Contains definitions for the recursive methods used to draw fractals, which are then called by Control.java.
-Currently only supports drawing Sierpinski Triangles.
+1. Navigate to the official Java downloads page: https://www.java.com/download/ie_manual.jsp
+2. Download and run the Java installer
 
-## TesterClass.java
-A command-line automated testing class with it's own main method. Implemented with java.awt.Robot.
+## Running the program
+To run this program on Windows, simply download the latest version of the runnable .jar file (see in releases tab) and run the file like an executable.
 
-## Documentation
-All of the documentation for this project can be found in this README file and the Javadoc folder,
+## Saving images
+To save a render to a .png file, simply click the "SAVE" button that appears on the window with the rendered fractal. Images are saved in the same directory as the runnable .jar file.
