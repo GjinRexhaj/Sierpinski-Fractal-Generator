@@ -210,6 +210,7 @@ public class TesterClass {
     System.out.println("DO NOT MOVE YOUR MOUSE WHILE THE TEST IS RUNNING!");
     System.out.println();
     
+    
     while(decisionState) {
       System.out.println("Would you like to continue? (y/n)");
       

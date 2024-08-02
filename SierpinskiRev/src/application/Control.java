@@ -5,6 +5,8 @@
 package application;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -21,7 +23,7 @@ import javax.swing.*;
  * Class which creates a canvas containing the rendered fractal.
  */
 @SuppressWarnings("serial")
-public class Control extends JFrame implements MouseListener, MouseWheelListener, MouseMotionListener {
+public class Control extends JFrame implements MouseListener, MouseWheelListener, MouseMotionListener, KeyListener {
   
   /**
    * {@code backgroundColor} is an object containing the color of the background.
@@ -235,6 +237,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     canvas.setBounds(0, 30, xResolution, yResolution);
     canvas.addMouseWheelListener(this);
     canvas.addMouseMotionListener(this);
+    canvas.addKeyListener(this);
     canvas.addMouseListener(this);
     //canvas.add(textArea);
     this.add(canvas);
@@ -375,11 +378,15 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     
   }
 
-
+  //can pan also by using WASD
+  @Override
+  public void keyPressed(KeyEvent e) {
+	//TODO Implement panning with WASD functionality
+  }
+  
   // debug and unused overriden mouse event methods
   @Override
   public void mouseClicked(MouseEvent e) {
-    // TODO Auto-generated method stub
     System.out.println("Mouse clicked: (" + e.getX() + "), (" + e.getY() + ")");
 
   }
@@ -472,5 +479,19 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     } catch (Exception e) {
       e.printStackTrace();
     }
+  }
+  
+  
+  // Unimplemented Keylistener events
+  @Override
+  public void keyTyped(KeyEvent e) {
+	// TODO Auto-generated method stub
+	
+  }
+
+  @Override
+  public void keyReleased(KeyEvent e) {
+	// TODO Auto-generated method stub
+	
   }
 }
