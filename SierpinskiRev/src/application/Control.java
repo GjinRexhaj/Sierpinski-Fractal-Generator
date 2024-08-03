@@ -235,6 +235,8 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     setActionBarColor();
     
     canvas.setBounds(0, 30, xResolution, yResolution);
+    
+    // add input listener componenets
     canvas.addMouseWheelListener(this);
     canvas.addMouseMotionListener(this);
     canvas.addKeyListener(this);
