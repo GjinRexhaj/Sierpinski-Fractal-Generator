@@ -5,6 +5,8 @@
 package application;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -21,7 +23,7 @@ import javax.swing.*;
  * Class which creates a canvas containing the rendered fractal.
  */
 @SuppressWarnings("serial")
-public class Control extends JFrame implements MouseListener, MouseWheelListener, MouseMotionListener {
+public class Control extends JFrame implements MouseListener, MouseWheelListener, MouseMotionListener/*, KeyListener*/ {
   
   /**
    * {@code backgroundColor} is an object containing the color of the background.
@@ -180,6 +182,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   }
   
   
+  
   /**
    * Constructor of Control window.
    * 
@@ -194,7 +197,6 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     
     // make panspeed scale (slightly) exponentially with degree
     panSpeed = (degree * 1.09) - (degree - 1);
-    
     
     // set origin equal to the middle of the canvas
     origin.setLocation(xRez/2, yRez/2);
@@ -233,12 +235,17 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     setActionBarColor();
     
     canvas.setBounds(0, 30, xResolution, yResolution);
+    
+    // add input listener componenets
     canvas.addMouseWheelListener(this);
     canvas.addMouseMotionListener(this);
     canvas.addMouseListener(this);
+    
     //canvas.add(textArea);
     this.add(canvas);
     this.setVisible(true);
+    
+    canvas.requestFocus();
     
     // information button
     JButton btnInfoButton = new JButton("INFORMATION");
@@ -374,12 +381,12 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     repaint();
     
   }
-
-
+  
+  
+  
   // debug and unused overriden mouse event methods
   @Override
   public void mouseClicked(MouseEvent e) {
-    // TODO Auto-generated method stub
     System.out.println("Mouse clicked: (" + e.getX() + "), (" + e.getY() + ")");
 
   }
@@ -473,4 +480,5 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
       e.printStackTrace();
     }
   }
+  
 }

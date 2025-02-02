@@ -118,7 +118,10 @@ public class Launcher extends JFrame {
         String[] splitString = stringResolution.split("x");
         
         
-        new Control(Integer.parseInt(splitString[0]), Integer.parseInt(splitString[1]), (Integer) degreeSpinner.getValue(), backgroundColor, fractalColor);
+        Control c1 = new Control(Integer.parseInt(splitString[0]), Integer.parseInt(splitString[1]), (Integer) degreeSpinner.getValue(), backgroundColor, fractalColor);
+        // request focus for control window
+        c1.requestFocusInWindow();
+        
         
       }
     });
