@@ -23,7 +23,7 @@ import javax.swing.*;
  * Class which creates a canvas containing the rendered fractal.
  */
 @SuppressWarnings("serial")
-public class Control extends JFrame implements MouseListener, MouseWheelListener, MouseMotionListener, KeyListener {
+public class Control extends JFrame implements MouseListener, MouseWheelListener, MouseMotionListener/*, KeyListener*/ {
   
   /**
    * {@code backgroundColor} is an object containing the color of the background.
@@ -182,6 +182,7 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
   }
   
   
+  
   /**
    * Constructor of Control window.
    * 
@@ -196,7 +197,6 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     
     // make panspeed scale (slightly) exponentially with degree
     panSpeed = (degree * 1.09) - (degree - 1);
-    
     
     // set origin equal to the middle of the canvas
     origin.setLocation(xRez/2, yRez/2);
@@ -239,11 +239,13 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     // add input listener componenets
     canvas.addMouseWheelListener(this);
     canvas.addMouseMotionListener(this);
-    canvas.addKeyListener(this);
     canvas.addMouseListener(this);
+    
     //canvas.add(textArea);
     this.add(canvas);
     this.setVisible(true);
+    
+    canvas.requestFocus();
     
     // information button
     JButton btnInfoButton = new JButton("INFORMATION");
@@ -379,12 +381,8 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     repaint();
     
   }
-
-  //can pan also by using WASD
-  @Override
-  public void keyPressed(KeyEvent e) {
-	//TODO Implement panning with WASD functionality
-  }
+  
+  
   
   // debug and unused overriden mouse event methods
   @Override
@@ -483,17 +481,4 @@ public class Control extends JFrame implements MouseListener, MouseWheelListener
     }
   }
   
-  
-  // Unimplemented Keylistener events
-  @Override
-  public void keyTyped(KeyEvent e) {
-	// TODO Auto-generated method stub
-	
-  }
-
-  @Override
-  public void keyReleased(KeyEvent e) {
-	// TODO Auto-generated method stub
-	
-  }
 }
